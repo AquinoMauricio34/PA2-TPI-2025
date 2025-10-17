@@ -136,8 +136,6 @@ public class CrearFacturaController {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(crearF, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
-        System.out.println("-----------------");
-        facturaDao.findAllFacturas().stream().forEach(System.out::println);
     }
     
     public void agregarArticulo(){

@@ -38,7 +38,6 @@ public class EditarClienteController {
             editarC.setTelefonoCliTf(cliente.get().getTelefono());
         }else
             JOptionPane.showMessageDialog(editarC, "No existen un cliente registrado con el dni "+editarC.getDniBuscarTf().getText(),"Error",JOptionPane.ERROR_MESSAGE);
-        clienteDao.findAllClientes().forEach(System.out::print);
     }
     
     private void limpiarCampos(){

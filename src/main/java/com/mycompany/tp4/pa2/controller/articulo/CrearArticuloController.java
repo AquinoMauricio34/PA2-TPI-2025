@@ -37,7 +37,6 @@ public class CrearArticuloController {
     private void seleccionarPanel() {
         String seleccionado = (String) crearA.getTipoArticuloCombo().getSelectedItem();
         crearA.setPanel(seleccionado);
-        System.out.println("Panel "+seleccionado+ " seleccionado.");
     }
 
     private void cargarItems(){
@@ -89,19 +88,6 @@ public class CrearArticuloController {
             JOptionPane.showMessageDialog(crearA, "Articulo añadido.","Información",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(crearA, e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-        }
-        System.out.println("--------------");
-        for(Articulo a: articuloDao.findAllArticulos()){
-            if(a instanceof Herramienta){
-                Herramienta h = (Herramienta) a;
-                System.out.println(h.toString());
-            }else if(a instanceof Industrial){
-                Industrial i = (Industrial) a;
-                System.out.println(i.toString());
-            }else if(a instanceof Domiciliaria){
-                Domiciliaria d = (Domiciliaria) a;
-                System.out.println(d.toString());
-            }
         }
     }
 

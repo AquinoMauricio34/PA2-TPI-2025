@@ -38,7 +38,6 @@ public class BorrarClienteController {
             borrarC.setTelefonoCliTf(cliente.get().getTelefono());
         }else
             JOptionPane.showMessageDialog(borrarC, "No existen un cliente registrado con el dni "+borrarC.getDniBuscarTf().getText(),"Error",JOptionPane.ERROR_MESSAGE);
-        clienteDao.findAllClientes().forEach(System.out::print);
     }
 
     private void cerrarVentana() {
@@ -53,7 +52,6 @@ public class BorrarClienteController {
         } catch (Exception ex) { //si no encuentra lo avisa
             JOptionPane.showMessageDialog(borrarC, "No existe cliente con dni "+borrarC.getDniBuscarTf().getText()+" registrado en el sistema.","Error",JOptionPane.ERROR_MESSAGE);
         }
-        //clienteDao.findAllClientes().forEach(System.out::println);
     }
     
     private void limpiarCampos(){

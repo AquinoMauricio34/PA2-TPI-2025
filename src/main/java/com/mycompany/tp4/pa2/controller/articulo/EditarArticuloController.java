@@ -109,7 +109,6 @@ public class EditarArticuloController {
             case ELECTRICIDAD_INDUSTRIAL -> seleccionado =  "Electricidad Industrial";
         }
         editarA.setPanel(seleccionado);
-        System.out.println("Panel "+seleccionado+ " seleccionado.");
         return seleccionado;
     }
     

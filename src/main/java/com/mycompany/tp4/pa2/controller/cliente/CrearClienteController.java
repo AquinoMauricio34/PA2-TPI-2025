@@ -33,7 +33,6 @@ public class CrearClienteController {
         try {
             clienteDao.addCliente(cliente);
             JOptionPane.showMessageDialog(crearview,"Cliente ha sido registrado","Registro de cliente",JOptionPane.INFORMATION_MESSAGE);
-            //clienteDao.findAllClientes().forEach(System.out::println);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(crearview, ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }

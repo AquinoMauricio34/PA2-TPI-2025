@@ -80,7 +80,6 @@ public class DetalleFacturaController {
                     this.detalleF.agregarItemPanel(bloque);
                 }
                 default -> {
-                    System.err.println("Tipo de artículo no reconocido: " + i.getArticulo().getClass().getSimpleName());
                 }
 
             }
