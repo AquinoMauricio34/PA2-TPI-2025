@@ -43,9 +43,13 @@ public class HerramientaPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcionHerramienteTextA = new javax.swing.JTextArea();
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Descripción");
 
         descripcionHerramienteTextA.setColumns(20);
+        descripcionHerramienteTextA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         descripcionHerramienteTextA.setLineWrap(true);
         descripcionHerramienteTextA.setRows(5);
         descripcionHerramienteTextA.setWrapStyleWord(true);
@@ -69,7 +73,7 @@ public class HerramientaPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

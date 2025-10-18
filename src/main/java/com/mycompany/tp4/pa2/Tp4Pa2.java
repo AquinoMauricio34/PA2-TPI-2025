@@ -23,6 +23,18 @@ public class Tp4Pa2 {
 
     public static void main(String[] args) {
         
+        // cambio el look de swing
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            System.out.println("error con el look and feel");
+        }
+        
         ClienteDAOImpl clienteDao = ClienteDAOImpl.getInstancia();
         try {
             clienteDao.addCliente(new Cliente("Mauricio","Aquino","44772888","Calle 135 Nº 2450","3764632667"));

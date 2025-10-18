@@ -47,16 +47,24 @@ public class ElectricidadIndustrialPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         temperaturaMaxSp = new javax.swing.JSpinner();
 
+        setBackground(java.awt.Color.white);
+
+        potenciaMaximaSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         potenciaMaximaSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Potencia máxima");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Temperatura mínima");
 
+        temperaturaMinSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         temperaturaMinSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Temperatura máxima");
 
+        temperaturaMaxSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         temperaturaMaxSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -74,7 +82,7 @@ public class ElectricidadIndustrialPanel extends javax.swing.JPanel {
                     .addComponent(potenciaMaximaSp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(temperaturaMinSp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(temperaturaMaxSp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,7 +99,7 @@ public class ElectricidadIndustrialPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(temperaturaMaxSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

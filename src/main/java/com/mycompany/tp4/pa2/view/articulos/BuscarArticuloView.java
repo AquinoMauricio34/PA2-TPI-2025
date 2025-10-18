@@ -84,8 +84,12 @@ public class BuscarArticuloView extends javax.swing.JFrame {
         setTitle("Busqueda de Artículo");
         setResizable(false);
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Nombre del artículo");
 
+        tablaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -109,19 +113,26 @@ public class BuscarArticuloView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaDatos.setColumnSelectionAllowed(true);
+        tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(tablaDatos);
+        tablaDatos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablaDatos.getColumnModel().getColumnCount() > 0) {
             tablaDatos.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        nombreArtBuscarTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        nombreArtBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
         jScrollPane1.setBorder(null);
 
         datosArticuloTA.setEditable(false);
-        datosArticuloTA.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         datosArticuloTA.setColumns(20);
         datosArticuloTA.setLineWrap(true);
         datosArticuloTA.setRows(5);
@@ -193,7 +204,7 @@ public class BuscarArticuloView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

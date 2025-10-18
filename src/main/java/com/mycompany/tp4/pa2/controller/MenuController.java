@@ -51,7 +51,7 @@ public class MenuController {
 
 
     private void cerrarPrograma() {
-        menu.dispose();
+        System.exit(0);
     }
     
     

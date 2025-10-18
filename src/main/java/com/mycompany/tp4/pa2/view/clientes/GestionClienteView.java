@@ -57,8 +57,12 @@ public class GestionClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de Clientes");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Gestion Cliente");
 
+        crearClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         crearClienteBtn.setText("Crear");
         crearClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,12 +70,16 @@ public class GestionClienteView extends javax.swing.JFrame {
             }
         });
 
+        buscarClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarClienteBtn.setText("Buscar");
 
+        editarClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         editarClienteBtn.setText("Editar");
 
+        EliminarClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         EliminarClienteBtn.setText("Eliminar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -87,7 +95,7 @@ public class GestionClienteView extends javax.swing.JFrame {
                     .addComponent(buscarClienteBtn)
                     .addComponent(jLabel1)
                     .addComponent(crearClienteBtn))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +112,7 @@ public class GestionClienteView extends javax.swing.JFrame {
                 .addComponent(EliminarClienteBtn)
                 .addGap(18, 18, 18)
                 .addComponent(atrasBtn)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,7 +144,7 @@ public class GestionClienteView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

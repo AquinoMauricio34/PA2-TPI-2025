@@ -41,16 +41,24 @@ public class GestionArticuloView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion de Artículos");
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Gestion Articulo");
 
+        crearBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         crearBtn.setText("Crear");
 
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
 
+        editarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         editarBtn.setText("Editar");
 
+        EliminarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         EliminarBtn.setText("Eliminar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,7 +94,7 @@ public class GestionArticuloView extends javax.swing.JFrame {
                 .addComponent(EliminarBtn)
                 .addGap(18, 18, 18)
                 .addComponent(atrasBtn)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,7 +122,7 @@ public class GestionArticuloView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

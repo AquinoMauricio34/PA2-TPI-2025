@@ -45,38 +45,54 @@ public class ItemHerramientaPanel extends javax.swing.JPanel {
         setBackground(java.awt.Color.white);
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Articulo");
 
         nombreArticuloTf.setEditable(false);
+        nombreArticuloTf.setBackground(new java.awt.Color(255, 255, 255));
+        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nombreArticuloTf.setFocusable(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Cantidad");
 
         cantidadTf.setEditable(false);
+        cantidadTf.setBackground(new java.awt.Color(255, 255, 255));
+        cantidadTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cantidadTf.setFocusable(false);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Descripción");
 
         descripcionTA.setEditable(false);
-        descripcionTA.setBackground(java.awt.Color.white);
         descripcionTA.setColumns(20);
+        descripcionTA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         descripcionTA.setRows(5);
         descripcionTA.setFocusable(false);
         jScrollPane1.setViewportView(descripcionTA);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Tipo Articulo");
 
         tipoTf.setEditable(false);
+        tipoTf.setBackground(new java.awt.Color(255, 255, 255));
+        tipoTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tipoTf.setFocusable(false);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Precio Unit.");
 
         precioUtf.setEditable(false);
+        precioUtf.setBackground(new java.awt.Color(255, 255, 255));
+        precioUtf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioUtf.setFocusable(false);
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Precio Total");
 
         precioTTf.setEditable(false);
+        precioTTf.setBackground(new java.awt.Color(255, 255, 255));
+        precioTTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioTTf.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -100,7 +116,7 @@ public class ItemHerramientaPanel extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tipoTf, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -136,7 +152,7 @@ public class ItemHerramientaPanel extends javax.swing.JPanel {
                             .addComponent(jLabel8)
                             .addComponent(precioTTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

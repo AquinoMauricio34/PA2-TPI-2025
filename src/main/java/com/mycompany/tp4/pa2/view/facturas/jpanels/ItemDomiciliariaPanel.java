@@ -44,34 +44,46 @@ public class ItemDomiciliariaPanel extends javax.swing.JPanel {
         setBackground(java.awt.Color.white);
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Articulo");
 
         nombreArticuloTf.setEditable(false);
+        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nombreArticuloTf.setFocusable(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Cantidad");
 
         cantidadTf.setEditable(false);
+        cantidadTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cantidadTf.setFocusable(false);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Potencia Máxima");
 
         potenciaTf.setEditable(false);
+        potenciaTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         potenciaTf.setFocusable(false);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Tipo Articulo");
 
         tipoTf.setEditable(false);
+        tipoTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tipoTf.setFocusable(false);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Precio Unit.");
 
         precioUtf.setEditable(false);
+        precioUtf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioUtf.setFocusable(false);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Precio Total");
 
         precioTTf.setEditable(false);
+        precioTTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioTTf.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -97,7 +109,7 @@ public class ItemDomiciliariaPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(potenciaTf, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)

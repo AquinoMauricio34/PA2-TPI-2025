@@ -71,8 +71,12 @@ public class BuscarClienteView extends javax.swing.JFrame {
         setTitle("Busqueda Cliente");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("DNI");
 
+        tablaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -98,8 +102,13 @@ public class BuscarClienteView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaDatos);
 
+        dniBuscarTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        dniBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -159,7 +168,7 @@ public class BuscarClienteView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

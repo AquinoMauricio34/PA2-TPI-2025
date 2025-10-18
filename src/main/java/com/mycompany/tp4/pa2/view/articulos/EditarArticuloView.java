@@ -148,23 +148,35 @@ public class EditarArticuloView extends javax.swing.JFrame {
         setTitle("Edición de Artículo");
         setResizable(false);
 
+        bgJPanel.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Tipo de Artículo");
 
+        principalPanel.setBackground(new java.awt.Color(255, 255, 255));
         principalPanel.setLayout(new java.awt.CardLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre");
 
         nombreArticuloTf.setEditable(false);
+        nombreArticuloTf.setBackground(new java.awt.Color(204, 204, 204));
+        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Precio");
 
+        guardarArticuloBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         guardarArticuloBtn.setText("Guardar");
 
+        precioSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         tipoArticuloTf.setEditable(false);
+        tipoArticuloTf.setBackground(new java.awt.Color(204, 204, 204));
+        tipoArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Edición");
 
         javax.swing.GroupLayout bgJPanelLayout = new javax.swing.GroupLayout(bgJPanel);
@@ -193,7 +205,7 @@ public class EditarArticuloView extends javax.swing.JFrame {
                                 .addGroup(bgJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(precioSp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))))
-                        .addContainerGap(61, Short.MAX_VALUE))))
+                        .addContainerGap(49, Short.MAX_VALUE))))
             .addComponent(principalPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bgJPanelLayout.setVerticalGroup(
@@ -220,6 +232,9 @@ public class EditarArticuloView extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
+        jPanel1.setBackground(java.awt.Color.white);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Nombre del artículo");
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,8 +262,13 @@ public class EditarArticuloView extends javax.swing.JFrame {
         });
         jScrollPane.setViewportView(tablaDatos);
 
+        nombreArtBuscarTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        nombreArtBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -266,7 +286,7 @@ public class EditarArticuloView extends javax.swing.JFrame {
                             .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(buscarBtn)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +301,7 @@ public class EditarArticuloView extends javax.swing.JFrame {
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(atrasBtn)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,7 +333,7 @@ public class EditarArticuloView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

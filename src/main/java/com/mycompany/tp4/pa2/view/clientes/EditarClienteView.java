@@ -117,26 +117,55 @@ public class EditarClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edición de Cliente");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("DNI");
 
+        dniBuscarTf.setBackground(new java.awt.Color(240, 240, 240));
+        dniBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarDniBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarDniBtn.setText("Buscar");
 
+        nombreCliTf.setBackground(new java.awt.Color(240, 240, 240));
+        nombreCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Apellido");
 
+        apellidoCliTf.setBackground(new java.awt.Color(240, 240, 240));
+        apellidoCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("DNI");
 
         dniCliTf.setEditable(false);
+        dniCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        dniCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Dirección");
 
+        direccionCliTf.setBackground(new java.awt.Color(240, 240, 240));
+        direccionCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Telefono");
 
+        telefonoCliTf.setBackground(new java.awt.Color(240, 240, 240));
+        telefonoCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        editarClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         editarClienteBtn.setText("Editar");
 
+        limpiarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         limpiarBtn.setText("Limpiar");
 
+        cancelarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cancelarBtn.setText("Atrás");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,7 +199,7 @@ public class EditarClienteView extends javax.swing.JFrame {
                         .addComponent(limpiarBtn)
                         .addGap(18, 18, 18)
                         .addComponent(editarClienteBtn)
-                        .addGap(0, 28, Short.MAX_VALUE))))
+                        .addGap(0, 7, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +235,7 @@ public class EditarClienteView extends javax.swing.JFrame {
                     .addComponent(cancelarBtn)
                     .addComponent(editarClienteBtn)
                     .addComponent(limpiarBtn))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,7 +263,7 @@ public class EditarClienteView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

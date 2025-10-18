@@ -64,18 +64,31 @@ public class CrearFacturaView extends javax.swing.JFrame {
         setTitle("Creación de Factura");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        seleccionClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         seleccionClienteBtn.setText("Seleccionar Cliente");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Nombre");
 
         nombreClienteTf.setEditable(false);
+        nombreClienteTf.setBackground(new java.awt.Color(255, 255, 255));
+        nombreClienteTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("DNI");
 
         dniClienteTf.setEditable(false);
+        dniClienteTf.setBackground(new java.awt.Color(255, 255, 255));
+        dniClienteTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Nombre del artículo");
 
+        tablaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -102,26 +115,31 @@ public class CrearFacturaView extends javax.swing.JFrame {
         tablaDatos.setEnabled(false);
         jScrollPane.setViewportView(tablaDatos);
 
+        nombreArtBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nombreArtBuscarTf.setEnabled(false);
 
+        cantidadArticuloSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cantidadArticuloSp.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         cantidadArticuloSp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cantidadArticuloSp.setEnabled(false);
 
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
         buscarBtn.setEnabled(false);
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
+        agregarArticuloBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         agregarArticuloBtn.setText("Agregar -->");
         agregarArticuloBtn.setEnabled(false);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Cantidad");
 
         jScrollPane1.setBorder(null);
 
         datosArticuloTA.setEditable(false);
-        datosArticuloTA.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         datosArticuloTA.setColumns(20);
         datosArticuloTA.setLineWrap(true);
         datosArticuloTA.setRows(5);
@@ -131,6 +149,7 @@ public class CrearFacturaView extends javax.swing.JFrame {
         datosArticuloTA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(datosArticuloTA);
 
+        tablaArticulosSeleccionados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaArticulosSeleccionados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -162,13 +181,18 @@ public class CrearFacturaView extends javax.swing.JFrame {
             tablaArticulosSeleccionados.getColumnModel().getColumn(1).setPreferredWidth(1);
         }
 
+        removerArticuloBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         removerArticuloBtn.setText("Remover");
         removerArticuloBtn.setEnabled(false);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Total a pagar");
 
         precioTotalTf.setEditable(false);
+        precioTotalTf.setBackground(new java.awt.Color(255, 255, 255));
+        precioTotalTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        crearFacturaBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         crearFacturaBtn.setText("Crear Factura");
         crearFacturaBtn.setEnabled(false);
 
@@ -250,11 +274,13 @@ public class CrearFacturaView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(atrasBtn)
                     .addComponent(crearFacturaBtn))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Tipo de Factura");
 
+        tipoFacturaCb.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tipoFacturaCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
         tipoFacturaCb.setEnabled(false);
 
@@ -323,7 +349,7 @@ public class CrearFacturaView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

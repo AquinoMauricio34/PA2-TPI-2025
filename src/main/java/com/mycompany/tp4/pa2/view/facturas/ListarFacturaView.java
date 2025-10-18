@@ -52,8 +52,12 @@ public class ListarFacturaView extends javax.swing.JFrame {
         setTitle("Lista de Facturas");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Nro de Factura");
 
+        tablaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -79,10 +83,16 @@ public class ListarFacturaView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaDatos);
 
+        nroBuscarTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        nroBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarBtn.setText("Buscar");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
+        detalleBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         detalleBtn.setText("Ver Detalles");
         detalleBtn.setEnabled(false);
 
@@ -105,7 +115,7 @@ public class ListarFacturaView extends javax.swing.JFrame {
                                 .addComponent(nroBuscarTf, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(buscarBtn)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +160,7 @@ public class ListarFacturaView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

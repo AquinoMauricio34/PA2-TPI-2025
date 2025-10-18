@@ -51,7 +51,7 @@ public class DetalleFacturaController {
                     bloque.setDescripcionTA(h.getDescripcion());
                     bloque.setTipoTf("Herramienta");
                     bloque.setPrecioUtf("$"+String.valueOf(h.getPrecio()));
-                    bloque.setPrecioTTf(String.valueOf(h.getPrecio()*i.getCantidad()));
+                    bloque.setPrecioTTf("$"+String.valueOf(h.getPrecio()*i.getCantidad()));
                     bloque.setPreferredSize(new Dimension(612, 219));
                     this.detalleF.agregarItemPanel(bloque);
                 }
@@ -63,8 +63,8 @@ public class DetalleFacturaController {
                     bloque.setTempMinTf(String.valueOf(indu.getTemperaturaMinima())+" °C");
                     bloque.setTempMTf(String.valueOf(indu.getTemperaturaMaxima())+" °C");
                     bloque.setPotenciaTf(String.valueOf(indu.getPotenciaMaxima())+" V");
-                    bloque.setPrecioUtf(String.valueOf("$"+indu.getPrecio()));
-                    bloque.setPrecioTTf(String.valueOf(indu.getPrecio()*i.getCantidad()));
+                    bloque.setPrecioUtf("$"+String.valueOf(indu.getPrecio()));
+                    bloque.setPrecioTTf("$"+String.valueOf(indu.getPrecio()*i.getCantidad()));
                     bloque.setPreferredSize(new Dimension(612, 74));
                     this.detalleF.agregarItemPanel(bloque);
                 }
@@ -74,8 +74,8 @@ public class DetalleFacturaController {
                     bloque.setCantidadTf(String.valueOf(i.getCantidad()));
                     bloque.setTipoTf("Electricidad Domiciliaria");
                     bloque.setPotenciaTf(String.valueOf(d.getPotenciaMaxima())+" V");
-                    bloque.setPrecioUtf(String.valueOf("$"+d.getPrecio()));
-                    bloque.setPrecioTTf(String.valueOf(d.getPrecio()*i.getCantidad()));
+                    bloque.setPrecioUtf("$"+String.valueOf(d.getPrecio()));
+                    bloque.setPrecioTTf("$"+String.valueOf(d.getPrecio()*i.getCantidad()));
                     bloque.setPreferredSize(new Dimension(612, 74));
                     this.detalleF.agregarItemPanel(bloque);
                 }

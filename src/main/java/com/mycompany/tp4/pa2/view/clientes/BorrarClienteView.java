@@ -98,34 +98,59 @@ public class BorrarClienteView extends javax.swing.JFrame {
         setTitle("Baja de Cliente");
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("DNI");
 
+        dniBuscarTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        dniBuscarTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buscarDniBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buscarDniBtn.setText("Buscar");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Dirección");
 
         direccionCliTf.setEditable(false);
+        direccionCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        direccionCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         telefonoCliTf.setEditable(false);
+        telefonoCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        telefonoCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Telefono");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre");
 
         nombreCliTf.setEditable(false);
+        nombreCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        nombreCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Apellido");
 
         apellidoCliTf.setEditable(false);
+        apellidoCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        apellidoCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("DNI");
 
         dniCliTf.setEditable(false);
+        dniCliTf.setBackground(new java.awt.Color(204, 204, 204));
+        dniCliTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        cancelarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cancelarBtn.setText("Atrás");
 
+        borrarClienteBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         borrarClienteBtn.setText("Borrar");
 
+        limpiarBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         limpiarBtn.setText("Limpiar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -195,7 +220,7 @@ public class BorrarClienteView extends javax.swing.JFrame {
                     .addComponent(cancelarBtn)
                     .addComponent(borrarClienteBtn)
                     .addComponent(limpiarBtn))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,7 +248,7 @@ public class BorrarClienteView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

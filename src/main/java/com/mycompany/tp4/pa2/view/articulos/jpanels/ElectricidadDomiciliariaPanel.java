@@ -39,8 +39,12 @@ public class ElectricidadDomiciliariaPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         potenciaMaximaSp = new javax.swing.JSpinner();
 
+        setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Potencia máxima");
 
+        potenciaMaximaSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         potenciaMaximaSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -52,7 +56,7 @@ public class ElectricidadDomiciliariaPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(potenciaMaximaSp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,7 +65,7 @@ public class ElectricidadDomiciliariaPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(potenciaMaximaSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

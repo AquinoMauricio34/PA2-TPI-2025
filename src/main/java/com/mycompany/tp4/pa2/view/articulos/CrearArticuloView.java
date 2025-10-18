@@ -80,18 +80,32 @@ public class CrearArticuloView extends javax.swing.JFrame {
         setTitle("Creación de Artículo");
         setResizable(false);
 
+        bgJPanel.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Tipo de Artículo");
 
+        tipoArticuloCombo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        principalPanel.setBackground(java.awt.Color.white);
         principalPanel.setLayout(new java.awt.CardLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre");
 
+        nombreArticuloTf.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Precio");
 
+        atrasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         atrasBtn.setText("Atrás");
 
+        guardarArticuloBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         guardarArticuloBtn.setText("Guardar");
 
+        precioSp.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         precioSp.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         javax.swing.GroupLayout bgJPanelLayout = new javax.swing.GroupLayout(bgJPanel);
@@ -137,13 +151,13 @@ public class CrearArticuloView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tipoArticuloCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(principalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(bgJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(atrasBtn)
                     .addComponent(guardarArticuloBtn))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,7 +185,7 @@ public class CrearArticuloView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
