@@ -88,7 +88,6 @@ public class CrearFacturaView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Nombre del artículo");
 
-        tablaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -149,7 +148,6 @@ public class CrearFacturaView extends javax.swing.JFrame {
         datosArticuloTA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(datosArticuloTA);
 
-        tablaArticulosSeleccionados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tablaArticulosSeleccionados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
