@@ -53,7 +53,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         nombreArticuloTf.setEditable(false);
         nombreArticuloTf.setBackground(new java.awt.Color(255, 255, 255));
-        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        nombreArticuloTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         nombreArticuloTf.setFocusable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -61,7 +61,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         cantidadTf.setEditable(false);
         cantidadTf.setBackground(new java.awt.Color(255, 255, 255));
-        cantidadTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cantidadTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         cantidadTf.setFocusable(false);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -69,7 +69,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         potenciaTf.setEditable(false);
         potenciaTf.setBackground(new java.awt.Color(255, 255, 255));
-        potenciaTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        potenciaTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         potenciaTf.setFocusable(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -77,12 +77,12 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         tempMTf.setEditable(false);
         tempMTf.setBackground(new java.awt.Color(255, 255, 255));
-        tempMTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tempMTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tempMTf.setFocusable(false);
 
         tempMinTf.setEditable(false);
         tempMinTf.setBackground(new java.awt.Color(255, 255, 255));
-        tempMinTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tempMinTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tempMinTf.setFocusable(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -93,7 +93,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         tipoTf.setEditable(false);
         tipoTf.setBackground(new java.awt.Color(255, 255, 255));
-        tipoTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tipoTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tipoTf.setFocusable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -101,7 +101,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         precioUtf.setEditable(false);
         precioUtf.setBackground(new java.awt.Color(255, 255, 255));
-        precioUtf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        precioUtf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         precioUtf.setFocusable(false);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -109,7 +109,7 @@ public class ItemIndustrialPanel extends javax.swing.JPanel {
 
         precioTTf.setEditable(false);
         precioTTf.setBackground(new java.awt.Color(255, 255, 255));
-        precioTTf.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        precioTTf.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         precioTTf.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

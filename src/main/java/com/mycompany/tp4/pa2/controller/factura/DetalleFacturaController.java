@@ -52,7 +52,7 @@ public class DetalleFacturaController {
                     bloque.setTipoTf("Herramienta");
                     bloque.setPrecioUtf("$"+String.valueOf(h.getPrecio()));
                     bloque.setPrecioTTf("$"+String.valueOf(h.getPrecio()*i.getCantidad()));
-                    bloque.setPreferredSize(new Dimension(612, 219));
+                    bloque.setPreferredSize(new Dimension(820, 249));
                     this.detalleF.agregarItemPanel(bloque);
                 }
                 case Industrial indu -> {
@@ -65,7 +65,7 @@ public class DetalleFacturaController {
                     bloque.setPotenciaTf(String.valueOf(indu.getPotenciaMaxima())+" V");
                     bloque.setPrecioUtf("$"+String.valueOf(indu.getPrecio()));
                     bloque.setPrecioTTf("$"+String.valueOf(indu.getPrecio()*i.getCantidad()));
-                    bloque.setPreferredSize(new Dimension(612, 74));
+                    bloque.setPreferredSize(new Dimension(823, 106));
                     this.detalleF.agregarItemPanel(bloque);
                 }
                 case Domiciliaria d -> {
@@ -76,7 +76,7 @@ public class DetalleFacturaController {
                     bloque.setPotenciaTf(String.valueOf(d.getPotenciaMaxima())+" V");
                     bloque.setPrecioUtf("$"+String.valueOf(d.getPrecio()));
                     bloque.setPrecioTTf("$"+String.valueOf(d.getPrecio()*i.getCantidad()));
-                    bloque.setPreferredSize(new Dimension(612, 74));
+                    bloque.setPreferredSize(new Dimension(820, 106));
                     this.detalleF.agregarItemPanel(bloque);
                 }
                 default -> {
