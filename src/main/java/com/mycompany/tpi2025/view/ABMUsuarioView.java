@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author aquin
  */
-public class CrearUsuarioView extends javax.swing.JPanel {
+public class ABMUsuarioView extends javax.swing.JPanel {
 
     /**
      * Creates new form CrearVoluntarioView
      */
-    public CrearUsuarioView() {
+    public ABMUsuarioView() {
         initComponents();
         System.out.println("CrearUsuarioView creado------------------------------------------------");
     }
@@ -38,7 +38,7 @@ public class CrearUsuarioView extends javax.swing.JPanel {
         telefono = new javax.swing.JTextField();
         nombreDeUsuiario = new javax.swing.JTextField();
         contrasenia = new javax.swing.JTextField();
-        registrarBtn = new javax.swing.JButton();
+        accionBtn = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
 
         jLabel1.setText("Nombre");
@@ -49,7 +49,7 @@ public class CrearUsuarioView extends javax.swing.JPanel {
 
         jLabel4.setText("Contraseña");
 
-        registrarBtn.setText("Registrar");
+        accionBtn.setText("-");
 
         titulo.setText("-");
 
@@ -58,8 +58,8 @@ public class CrearUsuarioView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
-                .addComponent(registrarBtn)
+                .addContainerGap(447, Short.MAX_VALUE)
+                .addComponent(accionBtn)
                 .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -98,13 +98,14 @@ public class CrearUsuarioView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(registrarBtn)
+                .addComponent(accionBtn)
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton accionBtn;
     private javax.swing.JTextField contrasenia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -112,7 +113,6 @@ public class CrearUsuarioView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreDeUsuiario;
-    private javax.swing.JButton registrarBtn;
     private javax.swing.JTextField telefono;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
@@ -131,7 +131,7 @@ public class CrearUsuarioView extends javax.swing.JPanel {
 
     public void setRegistrarListener(ActionListener listener) {
         System.out.println("Listener------------------------------------------------");
-        registrarBtn.addActionListener(listener);
+        accionBtn.addActionListener(listener);
     }
 
     public String getTelefono() {
@@ -144,5 +144,9 @@ public class CrearUsuarioView extends javax.swing.JPanel {
     
     public void setTitulo(String text){
         titulo.setText(text);
+    }
+
+    public void setAccion(String texto) {
+        accionBtn.setText(texto);
     }
 }

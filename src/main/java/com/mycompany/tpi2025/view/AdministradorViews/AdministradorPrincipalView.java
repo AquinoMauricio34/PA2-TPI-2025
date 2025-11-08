@@ -4,7 +4,8 @@
  */
 package com.mycompany.tpi2025.view.AdministradorViews;
 
-import com.mycompany.tpi2025.view.CrearUsuarioView;
+import com.mycompany.tpi2025.controller.Paneles;
+import com.mycompany.tpi2025.view.ABMUsuarioView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdministradorPrincipalView.class.getName());
     private final CardLayout cl;
-    private final Map<String, JPanel> paneles = new HashMap<>();
+    private final Map<Paneles, JPanel> paneles = new HashMap<>();
 
     public AdministradorPrincipalView() {
         initComponents();
@@ -46,14 +47,19 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         cerrarMI = new javax.swing.JMenuItem();
         adminM = new javax.swing.JMenu();
         crearAdminMI = new javax.swing.JMenuItem();
+        eliminarAdminMI = new javax.swing.JMenuItem();
         vetM = new javax.swing.JMenu();
         crearVetMI = new javax.swing.JMenuItem();
+        eliminarVetMI = new javax.swing.JMenuItem();
         famM = new javax.swing.JMenu();
         crearFamMI = new javax.swing.JMenuItem();
+        eliminarFamMI = new javax.swing.JMenuItem();
         volM = new javax.swing.JMenu();
         crearVolMI = new javax.swing.JMenuItem();
+        eliminarVolMI = new javax.swing.JMenuItem();
         hogarM = new javax.swing.JMenu();
         crearHogarMI = new javax.swing.JMenuItem();
+        eliminarHogarMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -81,12 +87,18 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearAdminMI.setText("Crear");
         adminM.add(crearAdminMI);
 
+        eliminarAdminMI.setText("Eliminar");
+        adminM.add(eliminarAdminMI);
+
         menuBar.add(adminM);
 
         vetM.setText("Veterinarios");
 
         crearVetMI.setText("Crear");
         vetM.add(crearVetMI);
+
+        eliminarVetMI.setText("Eliminar");
+        vetM.add(eliminarVetMI);
 
         menuBar.add(vetM);
 
@@ -95,6 +107,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearFamMI.setText("Crear");
         famM.add(crearFamMI);
 
+        eliminarFamMI.setText("Eliminar");
+        famM.add(eliminarFamMI);
+
         menuBar.add(famM);
 
         volM.setText("Voluntarios");
@@ -102,12 +117,18 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearVolMI.setText("Crear");
         volM.add(crearVolMI);
 
+        eliminarVolMI.setText("Eliminar");
+        volM.add(eliminarVolMI);
+
         menuBar.add(volM);
 
         hogarM.setText("Hogar");
 
         crearHogarMI.setText("Crear");
         hogarM.add(crearHogarMI);
+
+        eliminarHogarMI.setText("Eliminar");
+        hogarM.add(eliminarHogarMI);
 
         menuBar.add(hogarM);
 
@@ -166,6 +187,11 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem crearHogarMI;
     private javax.swing.JMenuItem crearVetMI;
     private javax.swing.JMenuItem crearVolMI;
+    private javax.swing.JMenuItem eliminarAdminMI;
+    private javax.swing.JMenuItem eliminarFamMI;
+    private javax.swing.JMenuItem eliminarHogarMI;
+    private javax.swing.JMenuItem eliminarVetMI;
+    private javax.swing.JMenuItem eliminarVolMI;
     private javax.swing.JMenu famM;
     private javax.swing.JMenu hogarM;
     private javax.swing.JMenuBar menuBar;
@@ -175,7 +201,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatosPrincipales(String titulo, String nombre, String telefono, String nombreUsuario) {
-        DatosPrincipalesPanelView panel = getPanel("DATOS_PRINCIPALES", DatosPrincipalesPanelView.class);
+        DatosPrincipalesPanelView panel = getPanel(Paneles.DATOS_PRINCIPALES, DatosPrincipalesPanelView.class);
         panel.setTitulo(titulo);
         panel.setNombre(nombre);
         panel.setTelefono(telefono);
@@ -189,7 +215,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setCerrarSesionListener(ActionListener listener) {
         cerrarSesionMI.addActionListener(listener);
     }
-
+    
+    //CREACION
+    
     public void setCrearAdminListener(ActionListener listener) {
         crearAdminMI.addActionListener(listener);
     }
@@ -209,42 +237,66 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setCrearHogarListener(ActionListener l) {
         crearHogarMI.addActionListener(l);
     }
+    
+    //ELIMINAR
+    
+    public void setEliminarAdminListener(ActionListener listener) {
+        eliminarAdminMI.addActionListener(listener);
+    }
 
-    public void mostrarPanel(String identificador) {
+    public void setEliminarVetListener(ActionListener l) {
+        eliminarVetMI.addActionListener(l);
+    }
+
+    public void setEliminarVolListener(ActionListener l) {
+        eliminarVolMI.addActionListener(l);
+    }
+
+    public void setEliminarFamListener(ActionListener l) {
+        eliminarFamMI.addActionListener(l);
+    }
+
+    public void setEliminarHogarListener(ActionListener l) {
+        eliminarHogarMI.addActionListener(l);
+    }
+    
+    //GESTION DE PANELES
+
+    public void mostrarPanel(Paneles identificador) {
         JPanel vista = paneles.get(identificador);
 
         if (vista == null) {
             vista = crearPanel(identificador);
             if (vista != null) {
                 paneles.put(identificador, vista);
-                contenedor.add(vista, identificador);
+                contenedor.add(vista, identificador.getTexto());
             } else {
-                System.out.println("No se pudo crear el panel para: " + identificador);
+                System.out.println("No se pudo crear el panel para: " + identificador.getTexto());
                 return;
             }
         }
 
-        cl.show(contenedor, identificador);
+        cl.show(contenedor, identificador.getTexto());
     }
 
-    private JPanel crearPanel(String identificador) {
+    private JPanel crearPanel(Paneles identificador) {
         switch (identificador) {
-            case "DATOS_PRINCIPALES":
+            case DATOS_PRINCIPALES:
                 return new DatosPrincipalesPanelView();
 
-            case "CREAR_ADMINISTRADOR":
-            case "CREAR_FAMILIA":
-            case "CREAR_VETERINARIO":
-            case "CREAR_VOLUNTARIO":
-            case "CREAR_HOGAR":
-                return new CrearUsuarioView();
+            case CREAR_ADMINISTRADOR:
+            case CREAR_FAMILIA:
+            case CREAR_VETERINARIO:
+            case CREAR_VOLUNTARIO:
+            case CREAR_HOGAR:
+                return new ABMUsuarioView();
 
             default:
                 return null;
         }
     }
 
-    public <N extends JPanel> N getPanel(String identificador, Class<N> tipo) {
+    public <N extends JPanel> N getPanel(Paneles identificador, Class<N> tipo) {
         JPanel panel = paneles.get(identificador);
         if (panel == null) {
             return null;

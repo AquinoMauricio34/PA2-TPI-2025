@@ -1,0 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
+ */
+package com.mycompany.tpi2025.controller;
+
+/**
+ *
+ * @author aquin
+ */
+public enum AccionUsuario {
+    GUARDAR("GUARDAR"),
+    ELIMINAR("ELIMINAR"),
+    MODIFICAR("MODIFICAR");
+    
+    private final String texto;
+    
+    private AccionUsuario(String texto) {
+        this.texto = texto;
+    }
+    
+    public String getTexto() {
+        return texto;
+    }
+}

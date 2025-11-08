@@ -13,7 +13,7 @@ import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
-import com.mycompany.tpi2025.view.CrearUsuarioView;
+import com.mycompany.tpi2025.view.ABMUsuarioView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,7 +32,7 @@ public class AdministradorPrincipalController {
     //administrador usuario
     private Administrador administrador;
     private final EntityManagerFactory emf;
-    private final Map<JPanel, CrearUsuarioController> controllers = new HashMap<>();
+    private final Map<JPanel, ABMUsuarioController> controllers = new HashMap<>();
 
     public AdministradorPrincipalController(AdministradorPrincipalView principal, Administrador administrador, EntityManagerFactory emf) {
         this.view = principal;
@@ -42,11 +42,11 @@ public class AdministradorPrincipalController {
         mostrarDatosPrincipales();
         view.setCerrarAplicacionListener(l -> cerrarView());
         view.setCerrarSesionListener(l -> cerrarSesion());
-        view.setCrearAdminListener(l -> mostrarCrearUsuarioView("CREAR_ADMINISTRADOR", Administrador.class));
-        view.setCrearVetListener(l -> mostrarCrearUsuarioView("CREAR_VETERINARIO", Veterinario.class));
-        view.setCrearVolListener(l -> mostrarCrearUsuarioView("CREAR_VOLUNTARIO", Voluntario.class));
-        view.setCrearFamListener(l -> mostrarCrearUsuarioView("CREAR_FAMILIA", Familia.class));
-        view.setCrearHogarListener(l -> mostrarCrearUsuarioView("CREAR_HOGAR", Hogar.class));
+        view.setCrearAdminListener(l -> mostrarABMUsuarioView(Paneles.CREAR_ADMINISTRADOR, Administrador.class,AccionUsuario.GUARDAR));
+        view.setCrearVetListener(l -> mostrarABMUsuarioView(Paneles.CREAR_VETERINARIO, Veterinario.class,AccionUsuario.GUARDAR));
+        view.setCrearVolListener(l -> mostrarABMUsuarioView(Paneles.CREAR_VOLUNTARIO, Voluntario.class,AccionUsuario.GUARDAR));
+        view.setCrearFamListener(l -> mostrarABMUsuarioView(Paneles.CREAR_FAMILIA, Familia.class,AccionUsuario.GUARDAR));
+        view.setCrearHogarListener(l -> mostrarABMUsuarioView(Paneles.CREAR_HOGAR, Hogar.class,AccionUsuario.GUARDAR));
     }
 
     public void cerrarView() {
@@ -75,7 +75,7 @@ public class AdministradorPrincipalController {
     }
 
     public void mostrarDatosPrincipales() {
-        view.mostrarPanel("DATOS_PRINCIPALES");
+        view.mostrarPanel(Paneles.DATOS_PRINCIPALES);
         view.cargarDatosPrincipales(
                 "Datos " + administrador.getClass().getSimpleName(), 
                 administrador.getNombre(),
@@ -84,15 +84,15 @@ public class AdministradorPrincipalController {
         );
     }
 
-    public <T extends Usuario> void mostrarCrearUsuarioView(String identificador, Class<T> tipoUsuario) {
+    public <T extends Usuario> void mostrarABMUsuarioView(Paneles identificador, Class<T> tipoUsuario, AccionUsuario tipoAccion) {
         view.mostrarPanel(identificador);
         try {
-            CrearUsuarioView panel = view.getPanel(identificador, CrearUsuarioView.class);
+            ABMUsuarioView panel = view.getPanel(identificador, ABMUsuarioView.class);
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
             if(!controllers.containsKey(panel)){
-                controllers.put(panel, new CrearUsuarioController<T>(panel, tipoUsuario, emf));
+                controllers.put(panel, new ABMUsuarioController<T>(panel, tipoUsuario, emf,tipoAccion));
             }
         } catch (Exception ex) {
             ex.printStackTrace();

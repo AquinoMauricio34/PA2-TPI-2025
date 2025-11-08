@@ -34,6 +34,11 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eliminarAdminMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="vetM">
@@ -44,6 +49,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="crearVetMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eliminarVetMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -58,6 +68,11 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eliminarFamMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="volM">
@@ -70,6 +85,11 @@
                 <Property name="text" type="java.lang.String" value="Crear"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eliminarVolMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="hogarM">
@@ -80,6 +100,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="crearHogarMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="eliminarHogarMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
             </MenuItem>
           </SubComponents>
