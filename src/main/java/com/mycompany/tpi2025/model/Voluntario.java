@@ -1,0 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.tpi2025.model;
+
+import jakarta.persistence.Entity;
+
+/**
+ *
+ * @author aquin
+ */
+@Entity
+public class Voluntario extends Usuario{
+
+    //para que el hibernate funcione necesita de un constructor vacio
+    public Voluntario() {
+        super();
+    }
+    
+    public Voluntario(String nombre, String contrasenia, String telefono, String usuario) {
+        super(nombre, contrasenia, telefono, usuario);
+    }
+    
+    
+    
+    
+    /*
+        - registrar gato
+        - actualizar el estado de un gato
+        - asignar un qr a el gato
+        - registrar tarea realizada
+        - asignar gato a familia y hogar
+    */
+}
