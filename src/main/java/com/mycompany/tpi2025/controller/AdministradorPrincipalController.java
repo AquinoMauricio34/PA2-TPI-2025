@@ -76,7 +76,12 @@ public class AdministradorPrincipalController {
 
     public void mostrarDatosPrincipales() {
         view.mostrarPanel("DATOS_PRINCIPALES");
-        view.cargarDatosPrincipales("Datos " + administrador.getClass().getSimpleName(), administrador.getNombre(), administrador.getTelefono(), administrador.getNombreUsuario());
+        view.cargarDatosPrincipales(
+                "Datos " + administrador.getClass().getSimpleName(), 
+                administrador.getNombre(),
+                administrador.getTelefono(),
+                administrador.getNombreUsuario()
+        );
     }
 
     public <T extends Usuario> void mostrarCrearUsuarioView(String identificador, Class<T> tipoUsuario) {
