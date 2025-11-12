@@ -60,6 +60,7 @@
     <Component class="javax.swing.JButton" name="accionBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="-"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane">

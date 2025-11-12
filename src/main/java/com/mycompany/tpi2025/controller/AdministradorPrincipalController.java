@@ -58,6 +58,12 @@ public class AdministradorPrincipalController {
         view.setBuscarVolListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_VOLUNTARIO, Voluntario.class,AccionBuscar.DETALLES,encabezados));
         view.setBuscarFamListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_FAMILIA, Familia.class,AccionBuscar.DETALLES,encabezados));
         view.setBuscarHogarListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_HOGAR, Hogar.class,AccionBuscar.DETALLES,encabezados));
+        //ELIMINACION
+        view.setEliminarAdminListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_ADMINISTRADOR, Administrador.class,AccionBuscar.ELIMINAR,encabezados));
+        view.setEliminarVetListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_VETERINARIO, Veterinario.class,AccionBuscar.ELIMINAR,encabezados));
+        view.setEliminarVolListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_VOLUNTARIO, Voluntario.class,AccionBuscar.ELIMINAR,encabezados));
+        view.setEliminarFamListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_FAMILIA, Familia.class,AccionBuscar.ELIMINAR,encabezados));
+        view.setEliminarHogarListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_HOGAR, Hogar.class,AccionBuscar.ELIMINAR,encabezados));
     }
 
     public void cerrarView() {

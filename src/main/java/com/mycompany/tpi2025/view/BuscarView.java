@@ -7,8 +7,10 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.controller.DatosTabla;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -23,6 +25,7 @@ public class BuscarView extends javax.swing.JPanel {
      */
     public BuscarView() {
         initComponents();
+        activarAccion(false);
     }
 
     /**
@@ -43,6 +46,7 @@ public class BuscarView extends javax.swing.JPanel {
         buscarBtn = new javax.swing.JButton();
 
         accionBtn.setText("-");
+        accionBtn.setEnabled(false);
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,6 +136,10 @@ public class BuscarView extends javax.swing.JPanel {
     public void setBuscarListener(ActionListener listener) {
         buscarBtn.addActionListener(listener);
     }
+    
+    public void setSeleccionTablaListener(ListSelectionListener listener){
+        this.tablaDatos.getSelectionModel().addListSelectionListener(listener);
+    }
 
     public JTable getTablaDatos() {
         return tablaDatos;
@@ -169,5 +177,21 @@ public class BuscarView extends javax.swing.JPanel {
 
     public void setBuscarUsuarioTf(String buscarUsuarioTf) {
         this.buscarUsuarioTf.setText(buscarUsuarioTf);
+    }
+    
+    public void mostrarMensaje(String titulo,String texto, int tipoMensaje){
+        JOptionPane.showMessageDialog(this, texto,titulo,tipoMensaje);
+    }
+    
+    public int obtenerIndiceFila(){
+        return tablaDatos.getSelectedRow();
+    }
+    
+    public String obtenerValorTabla(int fila, int columna){
+        return tablaDatos.getValueAt(fila, columna).toString();
+    }
+    
+    public void activarAccion(boolean valor){
+        accionBtn.setEnabled(valor);
     }
 }
