@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.tpi2025.model;
+import com.mycompany.tpi2025.controller.DatosTabla;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -17,22 +16,26 @@ import java.io.Serializable;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario implements Serializable {
+public class Usuario implements Serializable,DatosTabla {
     
     private String nombre;
     private String contrasenia;
     private String telefono;
+    private String tipoUsuario;
     
     @Id
     private String nombreUsuario;
     
-    public Usuario(){}
+    public Usuario(){
+        this.tipoUsuario = this.getClass().getSimpleName();
+    }
 
     public Usuario(String nombre, String contrasenia, String telefono, String usuario) {
         this.nombre = nombre;
         this.contrasenia = contrasenia;
         this.telefono = telefono;
         this.nombreUsuario = usuario;
+        this.tipoUsuario = this.getClass().getSimpleName();
     }
 
     public String getNombre() {
@@ -67,6 +70,19 @@ public class Usuario implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    @Override
+    public Object[] obtenerDatos() {
+        return new Object[] { nombre, nombreUsuario, telefono };
     }
     
     

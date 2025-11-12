@@ -4,38 +4,45 @@
  */
 package com.mycompany.tpi2025.controller;
 
+import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
+import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.view.BuscarView;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author aquin
  */
-public class BuscarController {
+public class BuscarController<T extends Usuario> {
     private BuscarView view;
-
-    public BuscarController(BuscarView view) {
+    private UsuarioJpaController dao;
+    private final Class<T> tipoUsuario;
+    
+     public BuscarController(BuscarView view, Class<T> tipoUsuario, AccionBuscar tipoAccion,String[] encabezados , EntityManagerFactory emf) {
         this.view = view;
+        this.dao = new UsuarioJpaController(emf);
+        this.tipoUsuario = tipoUsuario;
+        System.out.println("Controller------------------------------------------------");
+        view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
+        view.setAccionTexto(tipoAccion.getTexto());
+        iniciarTabla(encabezados);
+        view.setAccionListener(l -> accion(tipoAccion));
     }
     
-//    private void reloadTable(){
-//        // se obtiene el modelo de la tabla y se hace un cast para tener el metodo addRow, que de lo contrario con TableModel no tiene.
-//        DefaultTableModel model = (DefaultTableModel) buscarA.getTablaDatos().getModel();
-//        //se quitan las filas presentes en la tabla para cargar las nuevas filas
-//        model.setRowCount(0);
-//        // se obtiene la lista de articulos registrados
-//        List<Articulo> articulos = articuloDao.findAllArticulos();
-//        //por cada cliente, guarda cada uno de sus datos en un array y lo carga en el modelo como una fila.
-//        for(Articulo a: articulos){
-//            Object[] o = new Object[1];
-//            o[0] = a.getNombre();
-//            model.addRow(o);
-//        }
-//        // se hace el set del modelo en la tabla
-//        buscarA.setTablaDatos(model);
-//    }
-    
-    
-    
+    public void iniciarTabla(String[] encabezados){
+        List<Usuario> lista = dao.findUsuariosByTipo(tipoUsuario.getSimpleName());
+        view.reloadTable(lista, encabezados);
+    }
+     
+
+    private void accion(AccionBuscar tipo) {
+        switch (tipo) {
+            case DETALLES -> {}
+            case ELIMINAR -> {}
+            case SELECCIONAR -> {}
+            default -> throw new AssertionError(tipo.name());
+
+        }
+    }
 }

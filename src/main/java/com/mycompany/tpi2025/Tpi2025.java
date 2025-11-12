@@ -55,48 +55,48 @@ public class Tpi2025 {
         
         
         
-//        UsuarioJpaController dao = new UsuarioJpaController(JPAUtil.getEmf());
-//        GatoJpaController daoG = new GatoJpaController(JPAUtil.getEmf());
-//        
-//
-//        Usuario usu = new Administrador("Mauricio Aquino", "calculonumerico", "376632667", "mauaquinooo");
-//        Usuario usu4 = new Administrador("Carina Pastori", "contra123", "3764150925", "elusuario");
-//        Usuario usu1 = new Veterinario("Mateo Veteri", "vetericontra", "3764112233", "veterinario1");
-//        Usuario usu2 = new Voluntario("Tomas Voll", "volcontra", "3764223344", "volluntario2");
-//        Usuario usu3 = new Familia("Aquino Fami", "famicontra", "3764334455", "familia3");
-//        
-//        
-//        Tratamiento t = new Tratamiento();
-//        t.setDescripcion("Desparasitación interna");
-//        t.setFecha_inicio(new Date());
-//        t.setFecha_fin(Date.from(LocalDate.now().plusDays(3).atStartOfDay(ZoneId.systemDefault()).toInstant()));
-//        t.setAbandono_tratamiento(false);
-//        
-//
-//        Diagnostico d = new Diagnostico();
-//        d.setDescripcion("Control rutinario, sin anomalías graves");
-//        d.setDiagnostico("Salud óptima");
-//        d.setFecha_diagnostico(LocalDate.now());
-//        d.setTratamiento(t);
-//
-//        Gato g1 = new Gato("QR1", "michi1", "morado", "primerazona", "morado, manchas blancas y negras", EstadoSalud.SANO);
-//        g1.setHistorial();
-//        //se le agrega el historial al que pertenece (JPA)
-//        d.setHistorial(g1.getHistorial());
-//        g1.getHistorial().addDiagnostico(d);
-//        
-//
-//        try {
-//            dao.create(usu);
-//            dao.create(usu1);
-//            dao.create(usu2);
-//            dao.create(usu3);
-//            dao.create(usu4);
-//            daoG.create(g1);
-//        } catch (Exception ex) {
-//            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-//            ex.printStackTrace();
-//        }
+        UsuarioJpaController dao = new UsuarioJpaController(emf);
+        GatoJpaController daoG = new GatoJpaController(emf);
+        
+
+        Usuario usu = new Administrador("Mauricio Aquino", "calculonumerico", "376632667", "mauaquinooo");
+        Usuario usu4 = new Administrador("Carina Pastori", "contra123", "3764150925", "elusuario");
+        Usuario usu1 = new Veterinario("Mateo Veteri", "vetericontra", "3764112233", "veterinario1");
+        Usuario usu2 = new Voluntario("Tomas Voll", "volcontra", "3764223344", "volluntario2");
+        Usuario usu3 = new Familia("Aquino Fami", "famicontra", "3764334455", "familia3");
+        
+        
+        Tratamiento t = new Tratamiento();
+        t.setDescripcion("Desparasitación interna");
+        t.setFecha_inicio(new Date());
+        t.setFecha_fin(Date.from(LocalDate.now().plusDays(3).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        t.setAbandono_tratamiento(false);
+        
+
+        Diagnostico d = new Diagnostico();
+        d.setDescripcion("Control rutinario, sin anomalías graves");
+        d.setDiagnostico("Salud óptima");
+        d.setFecha_diagnostico(LocalDate.now());
+        d.setTratamiento(t);
+
+        Gato g1 = new Gato("QR1", "michi1", "morado", "primerazona", "morado, manchas blancas y negras", EstadoSalud.SANO);
+        g1.setHistorial();
+        //se le agrega el historial al que pertenece (JPA)
+        d.setHistorial(g1.getHistorial());
+        g1.getHistorial().addDiagnostico(d);
+        
+
+        try {
+            dao.create(usu);
+            dao.create(usu1);
+            dao.create(usu2);
+            dao.create(usu3);
+            dao.create(usu4);
+            daoG.create(g1);
+        } catch (Exception ex) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            ex.printStackTrace();
+        }
 
 
         

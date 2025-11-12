@@ -14,6 +14,7 @@ import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
 import com.mycompany.tpi2025.view.ABMUsuarioView;
+import com.mycompany.tpi2025.view.BuscarView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -32,7 +33,9 @@ public class AdministradorPrincipalController {
     //administrador usuario
     private Administrador administrador;
     private final EntityManagerFactory emf;
-    private final Map<JPanel, ABMUsuarioController> controllers = new HashMap<>();
+    private final Map<JPanel, ABMUsuarioController> ABMUsuarioControllers = new HashMap<>();
+    //CAMBIAR ABMUsuarioController
+    private final Map<JPanel, BuscarController> BuscarControllers = new HashMap<>();
 
     public AdministradorPrincipalController(AdministradorPrincipalView principal, Administrador administrador, EntityManagerFactory emf) {
         this.view = principal;
@@ -42,11 +45,19 @@ public class AdministradorPrincipalController {
         mostrarDatosPrincipales();
         view.setCerrarAplicacionListener(l -> cerrarView());
         view.setCerrarSesionListener(l -> cerrarSesion());
-        view.setCrearAdminListener(l -> mostrarABMUsuarioView(Paneles.CREAR_ADMINISTRADOR, Administrador.class,AccionUsuario.GUARDAR));
-        view.setCrearVetListener(l -> mostrarABMUsuarioView(Paneles.CREAR_VETERINARIO, Veterinario.class,AccionUsuario.GUARDAR));
-        view.setCrearVolListener(l -> mostrarABMUsuarioView(Paneles.CREAR_VOLUNTARIO, Voluntario.class,AccionUsuario.GUARDAR));
-        view.setCrearFamListener(l -> mostrarABMUsuarioView(Paneles.CREAR_FAMILIA, Familia.class,AccionUsuario.GUARDAR));
-        view.setCrearHogarListener(l -> mostrarABMUsuarioView(Paneles.CREAR_HOGAR, Hogar.class,AccionUsuario.GUARDAR));
+        //CREACION
+        view.setCrearAdminListener(l -> mostrarABMUsuarioView(PanelesAdministrador.CREAR_ADMINISTRADOR, Administrador.class,AccionUsuario.GUARDAR));
+        view.setCrearVetListener(l -> mostrarABMUsuarioView(PanelesAdministrador.CREAR_VETERINARIO, Veterinario.class,AccionUsuario.GUARDAR));
+        view.setCrearVolListener(l -> mostrarABMUsuarioView(PanelesAdministrador.CREAR_VOLUNTARIO, Voluntario.class,AccionUsuario.GUARDAR));
+        view.setCrearFamListener(l -> mostrarABMUsuarioView(PanelesAdministrador.CREAR_FAMILIA, Familia.class,AccionUsuario.GUARDAR));
+        view.setCrearHogarListener(l -> mostrarABMUsuarioView(PanelesAdministrador.CREAR_HOGAR, Hogar.class,AccionUsuario.GUARDAR));
+        //BUSQUEDA
+        String[] encabezados = {"Nombre","Nombre de Usuario","Telefono"};
+        view.setBuscarAdminListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_ADMINISTRADOR, Administrador.class,AccionBuscar.DETALLES,encabezados));
+        view.setBuscarVetListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_VETERINARIO, Veterinario.class,AccionBuscar.DETALLES,encabezados));
+        view.setBuscarVolListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_VOLUNTARIO, Voluntario.class,AccionBuscar.DETALLES,encabezados));
+        view.setBuscarFamListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_FAMILIA, Familia.class,AccionBuscar.DETALLES,encabezados));
+        view.setBuscarHogarListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_HOGAR, Hogar.class,AccionBuscar.DETALLES,encabezados));
     }
 
     public void cerrarView() {
@@ -75,7 +86,7 @@ public class AdministradorPrincipalController {
     }
 
     public void mostrarDatosPrincipales() {
-        view.mostrarPanel(Paneles.DATOS_PRINCIPALES);
+        view.mostrarPanel(PanelesAdministrador.DATOS_PRINCIPALES);
         view.cargarDatosPrincipales(
                 "Datos " + administrador.getClass().getSimpleName(), 
                 administrador.getNombre(),
@@ -84,16 +95,34 @@ public class AdministradorPrincipalController {
         );
     }
 
-    public <T extends Usuario> void mostrarABMUsuarioView(Paneles identificador, Class<T> tipoUsuario, AccionUsuario tipoAccion) {
+    public <T extends Usuario> void mostrarABMUsuarioView(PanelesAdministrador identificador, Class<T> tipoUsuario, AccionUsuario tipoAccion) {
         view.mostrarPanel(identificador);
         try {
             ABMUsuarioView panel = view.getPanel(identificador, ABMUsuarioView.class);
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
-            if(!controllers.containsKey(panel)){
-                controllers.put(panel, new ABMUsuarioController<T>(panel, tipoUsuario, emf,tipoAccion));
+            //si todavía no tiene controller, se crea y guarda en el HashMap
+            if(!ABMUsuarioControllers.containsKey(panel)){
+                ABMUsuarioControllers.put(panel, new ABMUsuarioController<T>(panel, tipoUsuario, emf,tipoAccion));
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private <T extends Usuario> void mostrarBuscarView(PanelesAdministrador identificador, Class<T> tipoUsuario, AccionBuscar tipoAccion,String[] encabezados) {
+        view.mostrarPanel(identificador);
+        try {
+            BuscarView panel = view.getPanel(identificador, BuscarView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            //si todavía no tiene controller, se crea y guarda en el HashMap
+            if(!BuscarControllers.containsKey(panel)){
+                BuscarControllers.put(panel, new BuscarController<T>(panel, tipoUsuario, tipoAccion, encabezados, emf));
+            }else
+                BuscarControllers.get(panel).iniciarTabla(encabezados);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

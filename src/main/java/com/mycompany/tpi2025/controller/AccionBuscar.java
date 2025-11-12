@@ -8,17 +8,14 @@ package com.mycompany.tpi2025.controller;
  *
  * @author aquin
  */
-public enum Paneles {
-    DATOS_PRINCIPALES("DATOS_PRINCIPALES"),
-    CREAR_ADMINISTRADOR("CREAR_ADMINISTRADOR"),
-    CREAR_FAMILIA("CREAR_FAMILIA"),
-    CREAR_VETERINARIO("CREAR_VETERINARIO"),
-    CREAR_VOLUNTARIO("CREAR_VOLUNTARIO"),
-    CREAR_HOGAR("CREAR_HOGAR");
+public enum AccionBuscar {
+    SELECCIONAR("SELECCIONAR"),
+    DETALLES("DETALLES"),
+    ELIMINAR("ELIMINAR");
     
     private final String texto;
     
-    private Paneles(String texto) {
+    private AccionBuscar(String texto) {
         this.texto = texto;
     }
     

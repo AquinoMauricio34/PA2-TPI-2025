@@ -26,7 +26,7 @@ public class ABMUsuarioController<T extends Usuario> {
         this.tipoUsuario = tipoUsuario;
         System.out.println("Controller------------------------------------------------");
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
-        view.setAccion(tipoAccion.getTexto());
+        view.setAccionTexto(tipoAccion.getTexto());
         view.setRegistrarListener(l -> accion(tipoAccion));
     }
 

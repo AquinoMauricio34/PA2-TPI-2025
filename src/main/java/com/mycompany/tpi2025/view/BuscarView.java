@@ -4,7 +4,11 @@
  */
 package com.mycompany.tpi2025.view;
 
+import com.mycompany.tpi2025.controller.DatosTabla;
+import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -29,11 +33,12 @@ public class BuscarView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        accionBtn = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
+        titulo = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
+        accionBtn.setText("jButton1");
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,37 +67,48 @@ public class BuscarView extends javax.swing.JPanel {
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(tablaDatos);
 
+        titulo.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(accionBtn)
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titulo)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addGap(23, 23, 23)
+                .addComponent(titulo)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(accionBtn)
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton accionBtn;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable tablaDatos;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
+    public void setAccionListener(ActionListener listener){
+        accionBtn.addActionListener(listener);
+    }
+    
     public JTable getTablaDatos() {
         return tablaDatos;
     }
@@ -106,10 +122,6 @@ public class BuscarView extends javax.swing.JPanel {
             columnas
         ));
     }
-
-    public void setTablaDatos(TableModel dataModel){
-        tablaDatos.setModel(dataModel);
-    }
     
     public void resaltarFila(int fila) {
         // -1 porque si no se encuentra el articulo con el nombre insertado devuelve -1
@@ -117,5 +129,23 @@ public class BuscarView extends javax.swing.JPanel {
             tablaDatos.setRowSelectionInterval(fila, fila);
             tablaDatos.scrollRectToVisible(tablaDatos.getCellRect(fila, 0, true));
         }
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo.setText(titulo);
+    }
+
+    public void setAccionTexto(String texto) {
+        this.accionBtn.setText(texto);
+    }
+    
+    public <T extends DatosTabla> void reloadTable(List<T> elementos, String[] encabezados) {
+        DefaultTableModel model = new DefaultTableModel(encabezados, 0);
+
+        for (T elem : elementos) {
+            model.addRow(elem.obtenerDatos());
+        }
+
+        tablaDatos.setModel(model);
     }
 }

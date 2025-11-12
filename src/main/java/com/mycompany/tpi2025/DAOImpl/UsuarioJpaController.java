@@ -12,6 +12,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
@@ -140,4 +141,17 @@ public class UsuarioJpaController implements Serializable {
         }
     }
     
+    public List<Usuario> findUsuariosByTipo(String tipoUsuario) {
+    EntityManager em = getEntityManager();
+    try {
+        TypedQuery<Usuario> query = em.createQuery(
+            "SELECT u FROM Usuario u WHERE u.tipoUsuario = :tipoUsuario",
+            Usuario.class
+        );
+        query.setParameter("tipoUsuario", tipoUsuario);
+        return query.getResultList();
+    } finally {
+        em.close();
+    }
+}
 }

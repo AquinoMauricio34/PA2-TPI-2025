@@ -146,7 +146,7 @@ public class ABMUsuarioView extends javax.swing.JPanel {
         titulo.setText(text);
     }
 
-    public void setAccion(String texto) {
+    public void setAccionTexto(String texto) {
         accionBtn.setText(texto);
     }
 }
