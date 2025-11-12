@@ -8,6 +8,7 @@ import com.mycompany.tpi2025.controller.DatosTabla;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -37,8 +38,11 @@ public class BuscarView extends javax.swing.JPanel {
         jScrollPane = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         titulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        buscarUsuarioTf = new javax.swing.JTextField();
+        buscarBtn = new javax.swing.JButton();
 
-        accionBtn.setText("jButton1");
+        accionBtn.setText("-");
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,25 +67,32 @@ public class BuscarView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tablaDatos.setColumnSelectionAllowed(true);
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(tablaDatos);
+        tablaDatos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         titulo.setText("-");
+
+        jLabel1.setText("Buscar usuario");
+
+        buscarBtn.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(accionBtn)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titulo)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(accionBtn)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(titulo)
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(buscarUsuarioTf, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(buscarBtn))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,40 +100,43 @@ public class BuscarView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(titulo)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarUsuarioTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(accionBtn)
-                .addGap(21, 21, 21))
+                .addGap(42, 42, 42))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accionBtn;
+    private javax.swing.JButton buscarBtn;
+    private javax.swing.JTextField buscarUsuarioTf;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
-    public void setAccionListener(ActionListener listener){
+    public void setAccionListener(ActionListener listener) {
         accionBtn.addActionListener(listener);
     }
-    
+
+    public void setBuscarListener(ActionListener listener) {
+        buscarBtn.addActionListener(listener);
+    }
+
     public JTable getTablaDatos() {
         return tablaDatos;
     }
 
-    //metodo para insertar las columnas con sus encabezados
-    public void setColumnas(String[] columnas){
-        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            columnas
-        ));
-    }
-    
     public void resaltarFila(int fila) {
         // -1 porque si no se encuentra el articulo con el nombre insertado devuelve -1
         if (fila != -1) {
@@ -138,7 +152,7 @@ public class BuscarView extends javax.swing.JPanel {
     public void setAccionTexto(String texto) {
         this.accionBtn.setText(texto);
     }
-    
+
     public <T extends DatosTabla> void reloadTable(List<T> elementos, String[] encabezados) {
         DefaultTableModel model = new DefaultTableModel(encabezados, 0);
 
@@ -147,5 +161,13 @@ public class BuscarView extends javax.swing.JPanel {
         }
 
         tablaDatos.setModel(model);
+    }
+
+    public String getBuscarUsuarioTf() {
+        return buscarUsuarioTf.getText();
+    }
+
+    public void setBuscarUsuarioTf(String buscarUsuarioTf) {
+        this.buscarUsuarioTf.setText(buscarUsuarioTf);
     }
 }

@@ -23,11 +23,11 @@ public class BuscarController<T extends Usuario> {
         this.view = view;
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
-        System.out.println("Controller------------------------------------------------");
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
         view.setAccionTexto(tipoAccion.getTexto());
         iniciarTabla(encabezados);
         view.setAccionListener(l -> accion(tipoAccion));
+        view.setBuscarListener(l -> buscarUsuario());
     }
     
     public void iniciarTabla(String[] encabezados){
@@ -43,6 +43,15 @@ public class BuscarController<T extends Usuario> {
             case SELECCIONAR -> {}
             default -> throw new AssertionError(tipo.name());
 
+        }
+    }
+
+    private void buscarUsuario() {
+        String nombreUsuario = view.getBuscarUsuarioTf();
+        List<Usuario> lista = dao.findUsuariosByTipo(tipoUsuario.getSimpleName());
+        int indice = lista.indexOf(lista.stream().filter(v -> v.getNombreUsuario().toLowerCase().equals(nombreUsuario.toLowerCase()) || v.getNombre().toLowerCase().equals(nombreUsuario.toLowerCase())).findFirst().orElse(null));
+        if(indice != -1){
+            view.resaltarFila(indice); //aunque aquí ya se haga la verificación del -1 se mantiene en el view por si se utiliza en otro momento.  
         }
     }
 }
