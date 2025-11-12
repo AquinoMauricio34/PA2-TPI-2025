@@ -5,7 +5,7 @@
 package com.mycompany.tpi2025.view.AdministradorViews;
 
 import com.mycompany.tpi2025.controller.PanelesAdministrador;
-import com.mycompany.tpi2025.view.ABMUsuarioView;
+import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
 import java.awt.CardLayout;
@@ -50,22 +50,27 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearAdminMI = new javax.swing.JMenuItem();
         eliminarAdminMI = new javax.swing.JMenuItem();
         buscarAdminMI = new javax.swing.JMenuItem();
+        modificarAdminMI = new javax.swing.JMenuItem();
         vetM = new javax.swing.JMenu();
         crearVetMI = new javax.swing.JMenuItem();
         eliminarVetMI = new javax.swing.JMenuItem();
         buscarVetMI = new javax.swing.JMenuItem();
+        modificarVetMI = new javax.swing.JMenuItem();
         famM = new javax.swing.JMenu();
         crearFamMI = new javax.swing.JMenuItem();
         eliminarFamMI = new javax.swing.JMenuItem();
         buscarFamMI = new javax.swing.JMenuItem();
+        modificarFamMI = new javax.swing.JMenuItem();
         volM = new javax.swing.JMenu();
         crearVolMI = new javax.swing.JMenuItem();
         eliminarVolMI = new javax.swing.JMenuItem();
         buscarVolMI = new javax.swing.JMenuItem();
+        modificarVolMI = new javax.swing.JMenuItem();
         hogarM = new javax.swing.JMenu();
         crearHogarMI = new javax.swing.JMenuItem();
         eliminarHogarMI = new javax.swing.JMenuItem();
         buscarHogarMI = new javax.swing.JMenuItem();
+        modificarHogarMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -99,6 +104,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         buscarAdminMI.setText("Buscar");
         adminM.add(buscarAdminMI);
 
+        modificarAdminMI.setText("Modificar");
+        adminM.add(modificarAdminMI);
+
         menuBar.add(adminM);
 
         vetM.setText("Veterinarios");
@@ -112,9 +120,12 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         buscarVetMI.setText("Buscar");
         vetM.add(buscarVetMI);
 
+        modificarVetMI.setText("Modificar");
+        vetM.add(modificarVetMI);
+
         menuBar.add(vetM);
 
-        famM.setText("Familias");
+        famM.setText("Familia");
 
         crearFamMI.setText("Crear");
         famM.add(crearFamMI);
@@ -124,6 +135,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
         buscarFamMI.setText("Buscar");
         famM.add(buscarFamMI);
+
+        modificarFamMI.setText("Modificar");
+        famM.add(modificarFamMI);
 
         menuBar.add(famM);
 
@@ -138,6 +152,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         buscarVolMI.setText("Buscar");
         volM.add(buscarVolMI);
 
+        modificarVolMI.setText("Modificar");
+        volM.add(modificarVolMI);
+
         menuBar.add(volM);
 
         hogarM.setText("Hogar");
@@ -150,6 +167,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
         buscarHogarMI.setText("Buscar");
         hogarM.add(buscarHogarMI);
+
+        modificarHogarMI.setText("Modificar");
+        hogarM.add(modificarHogarMI);
 
         menuBar.add(hogarM);
 
@@ -221,6 +241,11 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu famM;
     private javax.swing.JMenu hogarM;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem modificarAdminMI;
+    private javax.swing.JMenuItem modificarFamMI;
+    private javax.swing.JMenuItem modificarHogarMI;
+    private javax.swing.JMenuItem modificarVetMI;
+    private javax.swing.JMenuItem modificarVolMI;
     private javax.swing.JMenu tpM;
     private javax.swing.JMenu vetM;
     private javax.swing.JMenu volM;
@@ -308,6 +333,28 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         buscarHogarMI.addActionListener(l);
     }
     
+    //MODIFICAR
+    
+    public void setModificarAdminListener(ActionListener listener) {
+        modificarAdminMI.addActionListener(listener);
+    }
+
+    public void setModificarVetListener(ActionListener l) {
+        modificarVetMI.addActionListener(l);
+    }
+
+    public void setModificarVolListener(ActionListener l) {
+        modificarVolMI.addActionListener(l);
+    }
+
+    public void setModificarFamListener(ActionListener l) {
+        modificarFamMI.addActionListener(l);
+    }
+
+    public void setModificarHogarListener(ActionListener l) {
+        modificarHogarMI.addActionListener(l);
+    }
+    
     //GESTION DE PANELES
 
     public void mostrarPanel(PanelesAdministrador identificador) {
@@ -331,7 +378,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         return switch (identificador) {
             case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
             case CREAR_ADMINISTRADOR, CREAR_FAMILIA, CREAR_VETERINARIO, CREAR_VOLUNTARIO, CREAR_HOGAR,
-                MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new ABMUsuarioView();
+                MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new AMUsuarioView();
             case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR,
                 ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR -> new BuscarView();
             default -> null;

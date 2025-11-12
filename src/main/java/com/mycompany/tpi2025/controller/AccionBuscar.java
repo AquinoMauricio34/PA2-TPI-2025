@@ -9,7 +9,6 @@ package com.mycompany.tpi2025.controller;
  * @author aquin
  */
 public enum AccionBuscar {
-    SELECCIONAR("SELECCIONAR"),
     DETALLES("DETALLES"),
     ELIMINAR("ELIMINAR");
     

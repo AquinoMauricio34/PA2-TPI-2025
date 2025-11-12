@@ -6,17 +6,18 @@ package com.mycompany.tpi2025.view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author aquin
  */
-public class ABMUsuarioView extends javax.swing.JPanel {
+public class AMUsuarioView extends javax.swing.JPanel {
 
     /**
      * Creates new form CrearVoluntarioView
      */
-    public ABMUsuarioView() {
+    public AMUsuarioView() {
         initComponents();
         System.out.println("CrearUsuarioView creado------------------------------------------------");
     }
@@ -129,7 +130,7 @@ public class ABMUsuarioView extends javax.swing.JPanel {
         return nombreDeUsuiario.getText();
     }
 
-    public void setRegistrarListener(ActionListener listener) {
+    public void setAccionListener(ActionListener listener) {
         System.out.println("Listener------------------------------------------------");
         accionBtn.addActionListener(listener);
     }
@@ -149,4 +150,26 @@ public class ABMUsuarioView extends javax.swing.JPanel {
     public void setAccionTexto(String texto) {
         accionBtn.setText(texto);
     }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia.setText(contrasenia);
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre.setText(nombre);
+    }
+
+    public void setNombreDeUsuiario(String nombreDeUsuiario) {
+        this.nombreDeUsuiario.setText(nombreDeUsuiario);
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono.setText(telefono);
+    }
+
+    public void estadoContrasenia(boolean b) {
+        contrasenia.setEditable(b);
+    }
+    
+    
 }

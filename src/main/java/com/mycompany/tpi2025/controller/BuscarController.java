@@ -45,7 +45,6 @@ public class BuscarController<T extends Usuario> {
         switch (tipo) {
             case DETALLES -> {}
             case ELIMINAR -> eliminar();
-            case SELECCIONAR -> {}
             default -> throw new AssertionError(tipo.name());
         }
     }
@@ -100,4 +99,10 @@ public class BuscarController<T extends Usuario> {
             }
         }
     }
+
+    public T getUsuario() {
+        return tipoUsuario.cast(usuario);
+    }
+
+    
 }

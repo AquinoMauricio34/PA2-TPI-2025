@@ -6,7 +6,7 @@ package com.mycompany.tpi2025;
 
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
-import com.mycompany.tpi2025.controller.ABMUsuarioController;
+import com.mycompany.tpi2025.controller.AMUsuarioController;
 import com.mycompany.tpi2025.controller.LoginController;
 import com.mycompany.tpi2025.model.Administrador;
 import com.mycompany.tpi2025.model.Diagnostico;
@@ -17,7 +17,7 @@ import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
-import com.mycompany.tpi2025.view.ABMUsuarioView;
+import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.LoginView;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

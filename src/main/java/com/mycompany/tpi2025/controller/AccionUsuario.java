@@ -10,7 +10,6 @@ package com.mycompany.tpi2025.controller;
  */
 public enum AccionUsuario {
     GUARDAR("GUARDAR"),
-    ELIMINAR("ELIMINAR"),
     MODIFICAR("MODIFICAR");
     
     private final String texto;
