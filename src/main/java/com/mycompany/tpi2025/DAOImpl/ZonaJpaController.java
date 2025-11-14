@@ -5,14 +5,12 @@
 package com.mycompany.tpi2025.DAOImpl;
 
 import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
-import com.mycompany.tpi2025.DAOImpl.exceptions.PreexistingEntityException;
-import com.mycompany.tpi2025.model.Usuario;
+import com.mycompany.tpi2025.model.Zona;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
@@ -21,9 +19,9 @@ import java.util.List;
  *
  * @author aquin
  */
-public class UsuarioJpaController implements Serializable {
+public class ZonaJpaController implements Serializable {
 
-    public UsuarioJpaController(EntityManagerFactory emf) {
+    public ZonaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,33 +29,14 @@ public class UsuarioJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    public List<Usuario> findUsuariosByTipo(String tipoUsuario) {
-        EntityManager em = getEntityManager();
-        try {
-            TypedQuery<Usuario> query = em.createQuery(
-                "SELECT u FROM Usuario u WHERE u.tipoUsuario = :tipoUsuario",
-                Usuario.class
-            );
-            query.setParameter("tipoUsuario", tipoUsuario);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
-    }
 
-    public void create(Usuario usuario) throws PreexistingEntityException, Exception {
+    public void create(Zona zona) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(usuario);
+            em.persist(zona);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findUsuario(usuario.getNombreUsuario()) != null) {
-                throw new PreexistingEntityException("Usuario " + usuario + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -65,19 +44,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
+    public void edit(Zona zona) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            usuario = em.merge(usuario);
+            zona = em.merge(zona);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = usuario.getNombreUsuario();
-                if (findUsuario(id) == null) {
-                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
+                long id = zona.getId();
+                if (findZona(id) == null) {
+                    throw new NonexistentEntityException("The zona with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -88,19 +67,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException {
+    public void destroy(long id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Usuario usuario;
+            Zona zona;
             try {
-                usuario = em.getReference(Usuario.class, id);
-                usuario.getNombreUsuario();
+                zona = em.getReference(Zona.class, id);
+                zona.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The zona with id " + id + " no longer exists.", enfe);
             }
-            em.remove(usuario);
+            em.remove(zona);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -109,19 +88,19 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public List<Usuario> findUsuarioEntities() {
-        return findUsuarioEntities(true, -1, -1);
+    public List<Zona> findZonaEntities() {
+        return findZonaEntities(true, -1, -1);
     }
 
-    public List<Usuario> findUsuarioEntities(int maxResults, int firstResult) {
-        return findUsuarioEntities(false, maxResults, firstResult);
+    public List<Zona> findZonaEntities(int maxResults, int firstResult) {
+        return findZonaEntities(false, maxResults, firstResult);
     }
 
-    private List<Usuario> findUsuarioEntities(boolean all, int maxResults, int firstResult) {
+    private List<Zona> findZonaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Usuario.class));
+            cq.select(cq.from(Zona.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -133,20 +112,20 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public Usuario findUsuario(String id) {
+    public Zona findZona(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Usuario.class, id);
+            return em.find(Zona.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUsuarioCount() {
+    public int getZonaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Usuario> rt = cq.from(Usuario.class);
+            Root<Zona> rt = cq.from(Zona.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

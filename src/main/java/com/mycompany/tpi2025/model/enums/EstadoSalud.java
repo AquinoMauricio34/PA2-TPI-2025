@@ -9,8 +9,18 @@ package com.mycompany.tpi2025.model.enums;
  * @author aquin
  */
 public enum EstadoSalud {
-    ENFERMO,
-    SANO,
-    EN_TRATAMIENTO,
-    ESTERILIZADO
+    ENFERMO("ENFERMO"),
+    SANO("SANO"),
+    EN_TRATAMIENTO("EN_TRATAMIENTO"),
+    ESTERILIZADO("ESTERILIZADO");
+    
+    private final String texto;
+    
+    private EstadoSalud(String texto) {
+        this.texto = texto;
+    }
+    
+    public String getTexto() {
+        return texto;
+    }
 }

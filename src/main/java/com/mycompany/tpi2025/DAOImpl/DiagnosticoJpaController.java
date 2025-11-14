@@ -12,8 +12,10 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import com.mycompany.tpi2025.model.HistorialGato;
+import com.mycompany.tpi2025.model.Tratamiento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +34,9 @@ public class DiagnosticoJpaController implements Serializable {
     }
 
     public void create(Diagnostico diagnostico) {
+        if (diagnostico.getTratamientos() == null) {
+            diagnostico.setTratamientos(new ArrayList<Tratamiento>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -41,10 +46,25 @@ public class DiagnosticoJpaController implements Serializable {
                 historial = em.getReference(historial.getClass(), historial.getId());
                 diagnostico.setHistorial(historial);
             }
+            List<Tratamiento> attachedTratamientos = new ArrayList<Tratamiento>();
+            for (Tratamiento tratamientosTratamientoToAttach : diagnostico.getTratamientos()) {
+                tratamientosTratamientoToAttach = em.getReference(tratamientosTratamientoToAttach.getClass(), tratamientosTratamientoToAttach.getId());
+                attachedTratamientos.add(tratamientosTratamientoToAttach);
+            }
+            diagnostico.setTratamientos(attachedTratamientos);
             em.persist(diagnostico);
             if (historial != null) {
                 historial.getDiagnosticos().add(diagnostico);
                 historial = em.merge(historial);
+            }
+            for (Tratamiento tratamientosTratamiento : diagnostico.getTratamientos()) {
+                Diagnostico oldDiagnosticoOfTratamientosTratamiento = tratamientosTratamiento.getDiagnostico();
+                tratamientosTratamiento.setDiagnostico(diagnostico);
+                tratamientosTratamiento = em.merge(tratamientosTratamiento);
+                if (oldDiagnosticoOfTratamientosTratamiento != null) {
+                    oldDiagnosticoOfTratamientosTratamiento.getTratamientos().remove(tratamientosTratamiento);
+                    oldDiagnosticoOfTratamientosTratamiento = em.merge(oldDiagnosticoOfTratamientosTratamiento);
+                }
             }
             em.getTransaction().commit();
         } finally {
@@ -62,10 +82,19 @@ public class DiagnosticoJpaController implements Serializable {
             Diagnostico persistentDiagnostico = em.find(Diagnostico.class, diagnostico.getId());
             HistorialGato historialOld = persistentDiagnostico.getHistorial();
             HistorialGato historialNew = diagnostico.getHistorial();
+            List<Tratamiento> tratamientosOld = persistentDiagnostico.getTratamientos();
+            List<Tratamiento> tratamientosNew = diagnostico.getTratamientos();
             if (historialNew != null) {
                 historialNew = em.getReference(historialNew.getClass(), historialNew.getId());
                 diagnostico.setHistorial(historialNew);
             }
+            List<Tratamiento> attachedTratamientosNew = new ArrayList<Tratamiento>();
+            for (Tratamiento tratamientosNewTratamientoToAttach : tratamientosNew) {
+                tratamientosNewTratamientoToAttach = em.getReference(tratamientosNewTratamientoToAttach.getClass(), tratamientosNewTratamientoToAttach.getId());
+                attachedTratamientosNew.add(tratamientosNewTratamientoToAttach);
+            }
+            tratamientosNew = attachedTratamientosNew;
+            diagnostico.setTratamientos(tratamientosNew);
             diagnostico = em.merge(diagnostico);
             if (historialOld != null && !historialOld.equals(historialNew)) {
                 historialOld.getDiagnosticos().remove(diagnostico);
@@ -74,6 +103,23 @@ public class DiagnosticoJpaController implements Serializable {
             if (historialNew != null && !historialNew.equals(historialOld)) {
                 historialNew.getDiagnosticos().add(diagnostico);
                 historialNew = em.merge(historialNew);
+            }
+            for (Tratamiento tratamientosOldTratamiento : tratamientosOld) {
+                if (!tratamientosNew.contains(tratamientosOldTratamiento)) {
+                    tratamientosOldTratamiento.setDiagnostico(null);
+                    tratamientosOldTratamiento = em.merge(tratamientosOldTratamiento);
+                }
+            }
+            for (Tratamiento tratamientosNewTratamiento : tratamientosNew) {
+                if (!tratamientosOld.contains(tratamientosNewTratamiento)) {
+                    Diagnostico oldDiagnosticoOfTratamientosNewTratamiento = tratamientosNewTratamiento.getDiagnostico();
+                    tratamientosNewTratamiento.setDiagnostico(diagnostico);
+                    tratamientosNewTratamiento = em.merge(tratamientosNewTratamiento);
+                    if (oldDiagnosticoOfTratamientosNewTratamiento != null && !oldDiagnosticoOfTratamientosNewTratamiento.equals(diagnostico)) {
+                        oldDiagnosticoOfTratamientosNewTratamiento.getTratamientos().remove(tratamientosNewTratamiento);
+                        oldDiagnosticoOfTratamientosNewTratamiento = em.merge(oldDiagnosticoOfTratamientosNewTratamiento);
+                    }
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -108,6 +154,11 @@ public class DiagnosticoJpaController implements Serializable {
             if (historial != null) {
                 historial.getDiagnosticos().remove(diagnostico);
                 historial = em.merge(historial);
+            }
+            List<Tratamiento> tratamientos = diagnostico.getTratamientos();
+            for (Tratamiento tratamientosTratamiento : tratamientos) {
+                tratamientosTratamiento.setDiagnostico(null);
+                tratamientosTratamiento = em.merge(tratamientosTratamiento);
             }
             em.remove(diagnostico);
             em.getTransaction().commit();

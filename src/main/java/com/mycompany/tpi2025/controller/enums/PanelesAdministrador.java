@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package com.mycompany.tpi2025.controller;
+package com.mycompany.tpi2025.controller.enums;
 
 /**
  *
@@ -39,7 +39,11 @@ public enum PanelesAdministrador {
     CREAR_HOGAR("CREAR_HOGAR"),
     BUSCAR_HOGAR("BUSCAR_HOGAR"),
     MODIFICAR_HOGAR("MODIFICAR_HOGAR"),
-    ELIMINAR_HOGAR("ELIMINAR_HOGAR");
+    ELIMINAR_HOGAR("ELIMINAR_HOGAR"),
+    
+    CREAR_GATO("CREAR_GATOS"),
+    VER_HISTORIAL("VER_HISTORIAL"),
+    CREAR_DIAGNOSTICO("CREAR_DIAGNOSTICO");
     
     private final String texto;
     

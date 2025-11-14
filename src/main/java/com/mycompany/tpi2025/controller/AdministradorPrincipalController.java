@@ -4,10 +4,15 @@
  */
 package com.mycompany.tpi2025.controller;
 
+import com.mycompany.tpi2025.controller.enums.AccionUsuario;
+import com.mycompany.tpi2025.controller.enums.AccionBuscar;
+import com.mycompany.tpi2025.controller.enums.PanelesAdministrador;
 import com.mycompany.tpi2025.JPAUtil;
 import com.mycompany.tpi2025.Tpi2025;
 import com.mycompany.tpi2025.model.Administrador;
+import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Familia;
+import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
@@ -15,6 +20,9 @@ import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
+import com.mycompany.tpi2025.view.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.CrearGatoView;
+import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -36,6 +44,9 @@ public class AdministradorPrincipalController {
     private final Map<JPanel, AMUsuarioController> AMUsuarioControllers = new HashMap<>();
     //CAMBIAR AMUsuarioController
     private final Map<JPanel, BuscarController> BuscarControllers = new HashMap<>();
+    private CrearGatoController crearGatoController = null;
+    private VerHistorialGatoController verHistorialGatoController = null;
+    private CrearDiagnosticoController crearDiagnosticoController=null;
 
     public AdministradorPrincipalController(AdministradorPrincipalView principal, Administrador administrador, EntityManagerFactory emf) {
         this.view = principal;
@@ -70,6 +81,10 @@ public class AdministradorPrincipalController {
         view.setModificarVolListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_VOLUNTARIO,PanelesAdministrador.MODIFICAR_VOLUNTARIO, Voluntario.class,encabezados));
         view.setModificarFamListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_FAMILIA,PanelesAdministrador.MODIFICAR_FAMILIA, Familia.class,encabezados));
         view.setModificarHogarListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_HOGAR,PanelesAdministrador.MODIFICAR_HOGAR, Hogar.class,encabezados));
+        //GATOS
+        view.setCrearGatoListener(l -> mostrarCrearGatoView(PanelesAdministrador.CREAR_GATO));
+        view.setHistorialGatoListener(l -> establecerComunicacionHistorial_CrearDiagnosticoView());
+        
     }
 
     public void cerrarView() {
@@ -167,4 +182,74 @@ public class AdministradorPrincipalController {
         
     }
 
+    private void mostrarCrearGatoView(PanelesAdministrador identificador) {
+        view.mostrarPanel(identificador);
+        try {
+            CrearGatoView panel = view.getPanel(identificador, CrearGatoView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(crearGatoController == null) crearGatoController = new CrearGatoController(panel,"GUARDAR", emf);
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    private void mostrarModificarGatoView(PanelesAdministrador identificador, Gato gato) {
+        view.mostrarPanel(identificador);
+        try {
+            CrearGatoView panel = view.getPanel(identificador, CrearGatoView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(crearGatoController == null) crearGatoController = new CrearGatoController(panel,gato,"MODIFICAR", emf);
+            
+        } catch (Exception e) {
+        }
+    }
+    
+//    private void gatoModificacion(PanelesAdministrador identificadorBusqueda, PanelesAdministrador identificadorModificacion, Class<T> tipoUsuario, String[] encabezados){
+//        mostrarBuscarView(identificadorBusqueda,tipoUsuario,AccionBuscar.DETALLES,encabezados);
+//        BuscarView panel = view.getPanel(identificadorBusqueda, BuscarView.class);
+//        //se obtiene el controller de la vista creada
+//        BuscarController<T> controller = BuscarControllers.get(panel);
+//        panel.setAccionListener(l -> {
+//            mostrarModificacionUsuarioView(identificadorModificacion,controller.getUsuario(), tipoUsuario);
+//        });
+//        
+//    }
+    
+    private void establecerComunicacionHistorial_CrearDiagnosticoView(){
+        view.mostrarPanel(PanelesAdministrador.VER_HISTORIAL);
+        try {
+            VerHistorialGatoView panel = view.getPanel(PanelesAdministrador.VER_HISTORIAL, VerHistorialGatoView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(verHistorialGatoController == null) verHistorialGatoController = new VerHistorialGatoController(panel, emf);
+            panel.setAniadirListener(l -> {
+                //abrir el panel de crear y pasarle el diagnostico
+                mostrarCrearDiagnosticoView(verHistorialGatoController.getDiagnostico());
+            });
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    private void mostrarCrearDiagnosticoView(Diagnostico diagnostico){
+        view.mostrarPanel(PanelesAdministrador.CREAR_DIAGNOSTICO);
+        try {
+            CrearDiagnosticoView panel = view.getPanel(PanelesAdministrador.CREAR_DIAGNOSTICO, CrearDiagnosticoView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(crearDiagnosticoController == null) crearDiagnosticoController = new CrearDiagnosticoController(panel, emf);
+            crearDiagnosticoController.setDiagnostico(diagnostico);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

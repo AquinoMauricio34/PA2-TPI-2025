@@ -5,14 +5,15 @@
 package com.mycompany.tpi2025.DAOImpl;
 
 import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
-import com.mycompany.tpi2025.model.Tratamiento;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import com.mycompany.tpi2025.model.Diagnostico;
+import com.mycompany.tpi2025.model.Tratamiento;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 
 /**
@@ -35,7 +36,16 @@ public class TratamientoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Diagnostico diagnostico = tratamiento.getDiagnostico();
+            if (diagnostico != null) {
+                diagnostico = em.getReference(diagnostico.getClass(), diagnostico.getId());
+                tratamiento.setDiagnostico(diagnostico);
+            }
             em.persist(tratamiento);
+            if (diagnostico != null) {
+                diagnostico.getTratamientos().add(tratamiento);
+                diagnostico = em.merge(diagnostico);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -49,7 +59,22 @@ public class TratamientoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Tratamiento persistentTratamiento = em.find(Tratamiento.class, tratamiento.getId());
+            Diagnostico diagnosticoOld = persistentTratamiento.getDiagnostico();
+            Diagnostico diagnosticoNew = tratamiento.getDiagnostico();
+            if (diagnosticoNew != null) {
+                diagnosticoNew = em.getReference(diagnosticoNew.getClass(), diagnosticoNew.getId());
+                tratamiento.setDiagnostico(diagnosticoNew);
+            }
             tratamiento = em.merge(tratamiento);
+            if (diagnosticoOld != null && !diagnosticoOld.equals(diagnosticoNew)) {
+                diagnosticoOld.getTratamientos().remove(tratamiento);
+                diagnosticoOld = em.merge(diagnosticoOld);
+            }
+            if (diagnosticoNew != null && !diagnosticoNew.equals(diagnosticoOld)) {
+                diagnosticoNew.getTratamientos().add(tratamiento);
+                diagnosticoNew = em.merge(diagnosticoNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -78,6 +103,11 @@ public class TratamientoJpaController implements Serializable {
                 tratamiento.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tratamiento with id " + id + " no longer exists.", enfe);
+            }
+            Diagnostico diagnostico = tratamiento.getDiagnostico();
+            if (diagnostico != null) {
+                diagnostico.getTratamientos().remove(tratamiento);
+                diagnostico = em.merge(diagnostico);
             }
             em.remove(tratamiento);
             em.getTransaction().commit();

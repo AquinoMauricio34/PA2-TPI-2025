@@ -31,6 +31,7 @@ public class HistorialGato implements Serializable {
     public HistorialGato() {}
     
     public void addDiagnostico(Diagnostico diagnostico){
+        diagnostico.setHistorial(this);
         this.diagnosticos.add(diagnostico);
     }
 

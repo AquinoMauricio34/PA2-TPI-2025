@@ -5,8 +5,9 @@
 package com.mycompany.tpi2025;
 
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
+import com.mycompany.tpi2025.DAOImpl.TratamientoJpaController;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
-import com.mycompany.tpi2025.controller.AMUsuarioController;
+import com.mycompany.tpi2025.DAOImpl.ZonaJpaController;
 import com.mycompany.tpi2025.controller.LoginController;
 import com.mycompany.tpi2025.model.Administrador;
 import com.mycompany.tpi2025.model.Diagnostico;
@@ -16,16 +17,12 @@ import com.mycompany.tpi2025.model.Tratamiento;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
+import com.mycompany.tpi2025.model.Zona;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
-import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.LoginView;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 /**
  *
@@ -54,44 +51,76 @@ public class Tpi2025 {
         
         
         
-        
         UsuarioJpaController dao = new UsuarioJpaController(emf);
         GatoJpaController daoG = new GatoJpaController(emf);
+        ZonaJpaController daoZ = new ZonaJpaController(emf);
+        TratamientoJpaController daoT = new TratamientoJpaController(emf);
         
+        Zona z1 = new Zona("se encuentra el la localizacion 1");
+        Zona z2 = new Zona("se encuentra el la localizacion 22");
+        Zona z3 = new Zona("se encuentra el la localizacion 333");
+        
+        try {
+            
+            daoZ.create(z1);
+            daoZ.create(z2);
+            daoZ.create(z3);
+        } catch (Exception ex) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            ex.printStackTrace();
+        }
 
         Usuario usu = new Administrador("Mauricio Aquino", "calculonumerico", "376632667", "mauaquinooo");
-        Usuario usu4 = new Administrador("Carina Pastori", "contra123", "3764150925", "elusuario");
+        Usuario usu4 = new Administrador("Carina Pastori", "a", "3764150925", "a");
         Usuario usu1 = new Veterinario("Mateo Veteri", "vetericontra", "3764112233", "veterinario1");
         Usuario usu2 = new Voluntario("Tomas Voll", "volcontra", "3764223344", "volluntario2");
         Usuario usu3 = new Familia("Aquino Fami", "famicontra", "3764334455", "familia3");
         
-        
         Tratamiento t = new Tratamiento();
         t.setDescripcion("Desparasitación interna");
-        t.setFecha_inicio(new Date());
-        t.setFecha_fin(Date.from(LocalDate.now().plusDays(3).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        t.setFecha_inicio(LocalDate.now());
+        t.setFecha_fin(LocalDate.now().plusDays(3));
         t.setAbandono_tratamiento(false);
         
-
-        Diagnostico d = new Diagnostico();
-        d.setDescripcion("Control rutinario, sin anomalías graves");
-        d.setDiagnostico("Salud óptima");
-        d.setFecha_diagnostico(LocalDate.now());
-        d.setTratamiento(t);
-
-        Gato g1 = new Gato("QR1", "michi1", "morado", "primerazona", "morado, manchas blancas y negras", EstadoSalud.SANO);
-        g1.setHistorial();
-        //se le agrega el historial al que pertenece (JPA)
-        d.setHistorial(g1.getHistorial());
-        g1.getHistorial().addDiagnostico(d);
-        
-
         try {
             dao.create(usu);
             dao.create(usu1);
             dao.create(usu2);
             dao.create(usu3);
             dao.create(usu4);
+            //daoT.create(t);
+        } catch (Exception ex) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            ex.printStackTrace();
+        }
+        
+
+        Diagnostico d = new Diagnostico();
+        d.setDescripcion("Control rutinario, sin anomalías graves");
+        d.setDiagnostico("Salud óptima");
+        d.setFecha_diagnostico(LocalDate.now());
+        d.addTratamiento(t);
+        
+        Diagnostico d2 = new Diagnostico();
+        d2.setDescripcion("Sangrado de nariz orificio derecho");
+        d2.setDiagnostico("Sangre");
+        d2.setFecha_diagnostico(LocalDate.now());
+        
+        Zona zz1 = daoZ.findZona(2);
+        System.out.println(zz1);
+        Gato g1 = new Gato("QR1", "michi1", "morado", null, "morado, manchas blancas y negras", EstadoSalud.SANO);
+        g1.setHistorial();
+        g1.getHistorial().addDiagnostico(d);
+        g1.getHistorial().addDiagnostico(d2);
+        g1.setZona(zz1);
+        
+        
+        
+        
+        
+
+        try {
+            
             daoG.create(g1);
         } catch (Exception ex) {
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");

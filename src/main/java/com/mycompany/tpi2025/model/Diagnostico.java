@@ -6,14 +6,18 @@ package com.mycompany.tpi2025.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,9 +29,12 @@ public class Diagnostico implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "tratamiento_id")
-    private Tratamiento tratamiento=null;
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "tratamiento_id")
+//    private Tratamiento tratamiento=null;
+    
+    @OneToMany(mappedBy = "diagnostico", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Tratamiento> tratamientos = new ArrayList<>();
     
     @ManyToOne
     @JoinColumn(name = "historial_id")
@@ -40,15 +47,10 @@ public class Diagnostico implements Serializable {
 
     public Diagnostico() {}
 
-    public Diagnostico(String descripcion, String diagnostico, LocalDate fecha_diagnostico, Tratamiento tratamiento) {
+    public Diagnostico(String descripcion, String diagnostico, LocalDate fecha_diagnostico) {
         this.descripcion = descripcion;
         this.diagnostico = diagnostico;
         this.fecha_diagnostico = fecha_diagnostico;
-        this.tratamiento = tratamiento;
-    }
-
-    public Diagnostico(String descripcion, String diagnostico, LocalDate fecha_diagnostico) {
-        this(descripcion, diagnostico, fecha_diagnostico, null);
     }
 
     public Long getId() {
@@ -67,10 +69,6 @@ public class Diagnostico implements Serializable {
         return fecha_diagnostico;
     }
 
-    public Tratamiento getTratamiento() {
-        return tratamiento;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -81,10 +79,6 @@ public class Diagnostico implements Serializable {
 
     public void setFecha_diagnostico(LocalDate fecha_diagnostico) {
         this.fecha_diagnostico = fecha_diagnostico;
-    }
-
-    public void setTratamiento(Tratamiento tratamiento) {
-        this.tratamiento = tratamiento;
     }
 
     public HistorialGato getHistorial() {
@@ -99,7 +93,17 @@ public class Diagnostico implements Serializable {
         this.id = id;
     }
 
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
     
-    
+    public void addTratamiento(Tratamiento tratamiento){
+        tratamiento.setDiagnostico(this);
+        tratamientos.add(tratamiento);
+    }
     
 }

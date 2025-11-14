@@ -43,18 +43,19 @@ public class Gato implements Serializable {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario=null;
     
-    
+    @ManyToOne
+    @JoinColumn(name = "zona_id")
+    private Zona zona=null;
     
     private String qr;
     private String nombre; //opcional
     private String color;
-    private String zona;
     private String caracteristicas;
     
     
     public Gato(){}
     
-    public Gato(String qr, String nombre, String color, String zona, String caracteristicas, EstadoSalud estadoSalud) {
+    public Gato(String qr, String nombre, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud) {
         this.qr = qr;
         this.caracteristicas = caracteristicas;
         this.nombre = nombre;
@@ -65,7 +66,7 @@ public class Gato implements Serializable {
         this.usuario = null;
     }
     
-    public Gato(String qr, String nombre, String color, String zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion) {
+    public Gato(String qr, String nombre, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion) {
         
         this.nombre = nombre;
         this.color = color;
@@ -76,11 +77,11 @@ public class Gato implements Serializable {
     }
     
     //atributo nombre es opcional
-    public Gato(String qr, String color, String zona, String caracteristicas, EstadoSalud estadoSalud){
+    public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud){
         this(qr,"",color,zona,caracteristicas,estadoSalud,EstadoAdopcion.NO_ADOPTADO);
     }
     
-    public Gato(String qr, String color, String zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion){
+    public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion){
         this(qr,"",color,zona,caracteristicas,estadoSalud,estadoAdopcion);
     }
 
@@ -100,7 +101,7 @@ public class Gato implements Serializable {
         return color;
     }
 
-    public String getZona() {
+    public Zona getZona() {
         return zona;
     }
 
@@ -166,7 +167,14 @@ public class Gato implements Serializable {
         this.color = color;
     }
 
-    public void setZona(String zona) {
+    public void setZona(Zona zona) {
         this.zona = zona;
     }
+
+    @Override
+    public String toString() {
+        return "Gato{" + "id=" + id + ", estadoSalud=" + estadoSalud + ", historial=" + historial + ", estadoAdopcion=" + estadoAdopcion + ", usuario=" + usuario + ", zona=" + zona + ", qr=" + qr + ", nombre=" + nombre + ", color=" + color + ", caracteristicas=" + caracteristicas + '}';
+    }
+    
+    
 }

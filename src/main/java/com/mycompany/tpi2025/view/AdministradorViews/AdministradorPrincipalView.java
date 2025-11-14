@@ -4,10 +4,13 @@
  */
 package com.mycompany.tpi2025.view.AdministradorViews;
 
-import com.mycompany.tpi2025.controller.PanelesAdministrador;
+import com.mycompany.tpi2025.controller.enums.PanelesAdministrador;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
+import com.mycompany.tpi2025.view.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.CrearGatoView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
+import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -71,6 +74,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         eliminarHogarMI = new javax.swing.JMenuItem();
         buscarHogarMI = new javax.swing.JMenuItem();
         modificarHogarMI = new javax.swing.JMenuItem();
+        gatoHistorialMI = new javax.swing.JMenu();
+        crearGatoMI = new javax.swing.JMenuItem();
+        historialMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -157,7 +163,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
         menuBar.add(volM);
 
-        hogarM.setText("Hogar");
+        hogarM.setText("Hogares");
 
         crearHogarMI.setText("Crear");
         hogarM.add(crearHogarMI);
@@ -172,6 +178,16 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         hogarM.add(modificarHogarMI);
 
         menuBar.add(hogarM);
+
+        gatoHistorialMI.setText("Gatos");
+
+        crearGatoMI.setText("Crear");
+        gatoHistorialMI.add(crearGatoMI);
+
+        historialMI.setText("Historial");
+        gatoHistorialMI.add(historialMI);
+
+        menuBar.add(gatoHistorialMI);
 
         setJMenuBar(menuBar);
 
@@ -230,6 +246,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel contenedor;
     private javax.swing.JMenuItem crearAdminMI;
     private javax.swing.JMenuItem crearFamMI;
+    private javax.swing.JMenuItem crearGatoMI;
     private javax.swing.JMenuItem crearHogarMI;
     private javax.swing.JMenuItem crearVetMI;
     private javax.swing.JMenuItem crearVolMI;
@@ -239,6 +256,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem eliminarVetMI;
     private javax.swing.JMenuItem eliminarVolMI;
     private javax.swing.JMenu famM;
+    private javax.swing.JMenu gatoHistorialMI;
+    private javax.swing.JMenuItem historialMI;
     private javax.swing.JMenu hogarM;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem modificarAdminMI;
@@ -355,6 +374,15 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarHogarMI.addActionListener(l);
     }
     
+    //GATOS
+    
+    public void setCrearGatoListener(ActionListener l) {
+        crearGatoMI.addActionListener(l);
+    }
+    public void setHistorialGatoListener(ActionListener l) {
+        historialMI.addActionListener(l);
+    }
+    
     //GESTION DE PANELES
 
     public void mostrarPanel(PanelesAdministrador identificador) {
@@ -381,6 +409,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
                 MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new AMUsuarioView();
             case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR,
                 ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR -> new BuscarView();
+            case CREAR_GATO -> new CrearGatoView();
+            case VER_HISTORIAL -> new VerHistorialGatoView();
+            case CREAR_DIAGNOSTICO -> new CrearDiagnosticoView();
             default -> null;
         };
     }
