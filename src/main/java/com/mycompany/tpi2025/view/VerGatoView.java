@@ -185,10 +185,7 @@ public class VerGatoView extends javax.swing.JFrame {
     public void reloadTable(List<Gato> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
-        System.out.println("AB1");
         for (Gato elem : elementos) {
-            System.out.println("------------------------------elem: "+elem);
-            //System.out.println("ABC "+elem.getId()+";;"+elem.getLocalizacion());
             model.addRow(new Object[]{elem.getId(),elem.getNombre(),elem.getCaracteristicas()});
         }
 

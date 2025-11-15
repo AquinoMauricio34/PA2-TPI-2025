@@ -48,10 +48,7 @@ public class VerHistorialGatoView extends javax.swing.JPanel {
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Nro Diagnostico", "Diagnostico"
@@ -154,9 +151,7 @@ public class VerHistorialGatoView extends javax.swing.JPanel {
     public void reloadTable(List<Diagnostico> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
-        System.out.println("AB1");
         for (Diagnostico elem : elementos) {
-            //System.out.println("ABC "+elem.getId()+";;"+elem.getLocalizacion());
             model.addRow(new Object[]{elem.getId(),elem.getDiagnostico()});
         }
 

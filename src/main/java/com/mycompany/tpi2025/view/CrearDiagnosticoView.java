@@ -7,6 +7,9 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.model.Tratamiento;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +24,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
      */
     public CrearDiagnosticoView() {
         initComponents();
-        activarCreacion(false);
+        activarCreacion(true);
     }
 
     /**
@@ -38,8 +41,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tituloDiag = new javax.swing.JTextField();
-        descripcionDiag = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        scrollDescripcion = new javax.swing.JScrollPane();
+        descripcionTA = new javax.swing.JTextArea();
         crear = new javax.swing.JButton();
         volverHistorial = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -53,11 +56,11 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
 
         jLabel3.setText("Descripción estado del gato");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        descripcionDiag.setViewportView(jTextArea1);
+        descripcionTA.setColumns(20);
+        descripcionTA.setRows(5);
+        scrollDescripcion.setViewportView(descripcionTA);
 
-        crear.setText("Crear");
+        crear.setText("Crear Diagnóstico");
 
         volverHistorial.setText("Volver al Historial");
 
@@ -65,10 +68,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Nro Tratamiento", "Descripción"
@@ -96,45 +96,56 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(tituloDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(volverHistorial)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(aniadirTratamiento)
-                            .addGap(18, 18, 18)
-                            .addComponent(crear))
-                        .addComponent(descripcionDiag, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(300, 300, 300)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel1))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(volverHistorial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(aniadirTratamiento)
+                                .addGap(18, 18, 18)
+                                .addComponent(crear))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(tituloDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scrollDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(134, 134, 134))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tituloDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descripcionDiag, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tituloDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crear)
                     .addComponent(volverHistorial)
+                    .addComponent(crear)
                     .addComponent(aniadirTratamiento))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -153,14 +164,14 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aniadirTratamiento;
     private javax.swing.JButton crear;
-    private javax.swing.JScrollPane descripcionDiag;
+    private javax.swing.JTextArea descripcionTA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane scrollDescripcion;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JTextField tituloDiag;
     private javax.swing.JButton volverHistorial;
@@ -188,9 +199,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     public void reloadTable(List<Tratamiento> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
-        //System.out.println("AB1");
         for (Tratamiento elem : elementos) {
-            //System.out.println("ABC "+elem.getId()+";;"+elem.getLocalizacion());
             model.addRow(new Object[]{elem.getId(),elem.getDescripcion()});
         }
 
@@ -208,5 +217,19 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     public void activarCreacion(boolean valor){
         crear.setEnabled(valor);
     }
+
+    public String getDescripcionTA() {
+        return descripcionTA.getText();
+    }
+
+
+    public String getjTextArea1() {
+        return descripcionTA.getText();
+    }
+
+    public String getTituloDiag() {
+        return tituloDiag.getText();
+    }
+    
     
 }

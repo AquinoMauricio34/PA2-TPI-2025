@@ -229,7 +229,7 @@ public class AdministradorPrincipalController {
             if(verHistorialGatoController == null) verHistorialGatoController = new VerHistorialGatoController(panel, emf);
             panel.setAniadirListener(l -> {
                 //abrir el panel de crear y pasarle el diagnostico
-                mostrarCrearDiagnosticoView(verHistorialGatoController.getDiagnostico());
+                mostrarCrearDiagnosticoView(verHistorialGatoController.getGato());
             });
             
         } catch (Exception e) {
@@ -238,7 +238,7 @@ public class AdministradorPrincipalController {
         
     }
     
-    private void mostrarCrearDiagnosticoView(Diagnostico diagnostico){
+    private void mostrarCrearDiagnosticoView(Gato gato){
         view.mostrarPanel(PanelesAdministrador.CREAR_DIAGNOSTICO);
         try {
             CrearDiagnosticoView panel = view.getPanel(PanelesAdministrador.CREAR_DIAGNOSTICO, CrearDiagnosticoView.class);
@@ -246,7 +246,8 @@ public class AdministradorPrincipalController {
                     throw new Exception("No existe el panel");
             }
             if(crearDiagnosticoController == null) crearDiagnosticoController = new CrearDiagnosticoController(panel, emf);
-            crearDiagnosticoController.setDiagnostico(diagnostico);
+            
+            crearDiagnosticoController.setGato(gato);
         } catch (Exception e) {
             e.printStackTrace();
         }

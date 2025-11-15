@@ -66,7 +66,6 @@ public class Tpi2025 {
             daoZ.create(z2);
             daoZ.create(z3);
         } catch (Exception ex) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             ex.printStackTrace();
         }
 
@@ -78,8 +77,8 @@ public class Tpi2025 {
         
         Tratamiento t = new Tratamiento();
         t.setDescripcion("Desparasitación interna");
-        t.setFecha_inicio(LocalDate.now());
-        t.setFecha_fin(LocalDate.now().plusDays(3));
+        t.setFecha_inicio(LocalDate.now().toString());
+        t.setFecha_fin(LocalDate.now().plusDays(3).toString());
         t.setAbandono_tratamiento(false);
         
         try {
@@ -90,7 +89,6 @@ public class Tpi2025 {
             dao.create(usu4);
             //daoT.create(t);
         } catch (Exception ex) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             ex.printStackTrace();
         }
         
@@ -107,7 +105,6 @@ public class Tpi2025 {
         d2.setFecha_diagnostico(LocalDate.now());
         
         Zona zz1 = daoZ.findZona(2);
-        System.out.println(zz1);
         Gato g1 = new Gato("QR1", "michi1", "morado", null, "morado, manchas blancas y negras", EstadoSalud.SANO);
         g1.setHistorial();
         g1.getHistorial().addDiagnostico(d);
@@ -123,7 +120,6 @@ public class Tpi2025 {
             
             daoG.create(g1);
         } catch (Exception ex) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             ex.printStackTrace();
         }
 

@@ -170,9 +170,7 @@ public class ZonaView extends javax.swing.JFrame {
     
     public void reloadTable(List<Zona> elementos, String[] encabezados) {
         DefaultTableModel model = new DefaultTableModel(encabezados, 0);
-        System.out.println("AB1");
         for (Zona elem : elementos) {
-            System.out.println("ABC "+elem.getId()+";;"+elem.getLocalizacion());
             model.addRow(new Object[]{elem.getId(),elem.getLocalizacion()});
         }
 

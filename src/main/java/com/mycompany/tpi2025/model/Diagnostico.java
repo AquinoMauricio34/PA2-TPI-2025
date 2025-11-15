@@ -102,8 +102,11 @@ public class Diagnostico implements Serializable {
     }
     
     public void addTratamiento(Tratamiento tratamiento){
+        System.out.println("AB3");
         tratamiento.setDiagnostico(this);
+        System.out.println("AB4");
         tratamientos.add(tratamiento);
+        System.out.println("AB5");
     }
     
 }

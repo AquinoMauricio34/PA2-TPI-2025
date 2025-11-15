@@ -96,7 +96,6 @@ public class BuscarController<T extends Usuario> {
             if(indice != -1){
                 usuario = obtenerLista().get(indice);
                 view.activarAccion(true);
-                System.out.println("USUUUUUUUUUUU");
             }
         }
     }

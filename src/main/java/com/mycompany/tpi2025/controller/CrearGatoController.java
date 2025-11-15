@@ -68,12 +68,10 @@ public class CrearGatoController {
 
     private void guardar() {
         try {
-            System.out.println(view.getEstadoSalud());
             Gato gato = new Gato("QR2",view.getNombreGato(),view.getColorGato(),daoZ.findZona(zonaGato.getId()),view.getCaracteristicasGato(),EstadoSalud.valueOf(view.getEstadoSalud()));
             gato.setHistorial();
             dao.create(gato);
         } catch (Exception e) {
-            System.out.println("-------------------------------error--------------------------------------------------------------------------");
             e.printStackTrace();
         }
     }

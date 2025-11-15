@@ -394,7 +394,6 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
                 paneles.put(identificador, vista);
                 contenedor.add(vista, identificador.getTexto());
             } else {
-                System.out.println("No se pudo crear el panel para: " + identificador.getTexto());
                 return;
             }
         }

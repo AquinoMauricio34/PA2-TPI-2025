@@ -68,17 +68,13 @@ public class VerHistorialGatoController {
     }
     
     private void seleccionar() {
-        //System.out.println("AB2.2");
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
-            //System.out.println("AB3");
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceDiagnostico(Long.parseLong(id));
             if(indice != -1){
-                //System.out.println("AB14");
                 diagnostico = obtenerLista().get(indice);
                 view.activarSeleccion(true);
-                //System.out.println("USUUUUUUUUUUU");
             }
         }
     }

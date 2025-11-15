@@ -31,7 +31,6 @@ public class AMUsuarioController<T extends Usuario> {
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
         this.usuario = usuario;
-        System.out.println("Controller------------------------------------------------");
         iniciar(tipoAccion);
     }
     
@@ -61,7 +60,6 @@ public class AMUsuarioController<T extends Usuario> {
 
     public void guardarUsuario() {
         try {
-            System.out.println("DENTRO-----------------------");
             T usuario = tipoUsuario.getDeclaredConstructor().newInstance();
             usuario.setNombre(view.getNombre());
             usuario.setContrasenia(view.getContrasenia());

@@ -15,7 +15,6 @@ public class JPAUtil {
     public static void close(EntityManagerFactory emf) {
         if (emf != null && emf.isOpen()) {
             emf.close();
-            System.out.println("EntityManagerFactory cerrado correctamente.");
         }
     }
     

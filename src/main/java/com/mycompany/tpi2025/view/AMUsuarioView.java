@@ -19,7 +19,6 @@ public class AMUsuarioView extends javax.swing.JPanel {
      */
     public AMUsuarioView() {
         initComponents();
-        System.out.println("CrearUsuarioView creado------------------------------------------------");
     }
 
     /**
@@ -131,7 +130,6 @@ public class AMUsuarioView extends javax.swing.JPanel {
     }
 
     public void setAccionListener(ActionListener listener) {
-        System.out.println("Listener------------------------------------------------");
         accionBtn.addActionListener(listener);
     }
 

@@ -43,17 +43,13 @@ public class ZonaController {
     }
     
     private void seleccionar() {
-        System.out.println("AB2.2");
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
-            System.out.println("AB3");
             String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
             int indice = obtenerIndiceZona(Long.parseLong(id));
             if(indice != -1){
-                System.out.println("AB14");
                 zona = obtenerLista().get(indice);
                 view.activarSeleccion(true);
-                System.out.println("USUUUUUUUUUUU");
             }
         }
     }

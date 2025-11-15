@@ -36,7 +36,6 @@ public class VerGatoController {
     
     public void iniciarTabla(){
         List<Gato> lista = obtenerLista();
-        System.out.println(lista);
         view.reloadTable(lista);
     }
     
@@ -45,18 +44,14 @@ public class VerGatoController {
     }
     
     private void seleccionar() {
-        //System.out.println("AB2.2");
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
-            //System.out.println("AB3");
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceGato(Long.parseLong(id));
             if(indice != -1){
-                //System.out.println("AB14");
                 view.resaltarFila(indice);
                 gato = obtenerLista().get(indice);
                 view.activarSeleccion(true);
-                //System.out.println("USUUUUUUUUUUU");
             }
         }
     }

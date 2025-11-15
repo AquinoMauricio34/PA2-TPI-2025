@@ -5,11 +5,15 @@
 package com.mycompany.tpi2025.controller;
 
 import com.mycompany.tpi2025.DAOImpl.DiagnosticoJpaController;
+import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.DAOImpl.TratamientoJpaController;
 import com.mycompany.tpi2025.model.Diagnostico;
+import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Tratamiento;
 import com.mycompany.tpi2025.view.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.TratamientoView;
 import jakarta.persistence.EntityManagerFactory;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -18,16 +22,25 @@ import java.util.List;
  */
 public class CrearDiagnosticoController {
     private CrearDiagnosticoView view;
-    private Diagnostico diagnostico;
-    private TratamientoJpaController dao;
-    private Tratamiento tratamiento = null;
+    private Diagnostico diagnostico = null;
+    private TratamientoJpaController daoT;
+    private DiagnosticoJpaController dao;
+    private GatoJpaController daoG;
+    private Gato gato = null;
 
     public CrearDiagnosticoController(CrearDiagnosticoView view, EntityManagerFactory emf) {
         this.view = view;
-        this.dao = new TratamientoJpaController(emf);
+        this.daoT = new TratamientoJpaController(emf);
+        this.dao = new DiagnosticoJpaController(emf);
+        this.daoG = new GatoJpaController(emf);
+        diagnostico = new Diagnostico();
+        System.out.println("AB6");
+        //se crea y guarda el diagnostico para poder luego cargar los tratamientos
+        //dao.create(diagnostico);
         iniciar();
         view.setCreacionListener(l -> crear());
-        view.setSeleccionListaListener(l -> seleccionar());
+        //view.setSeleccionListaListener(l -> seleccionar());
+        view.setAniadirTratamientoListener(l -> mostrarTratamientoView());
     }
 
     private void iniciar() {//muestra la view
@@ -35,7 +48,16 @@ public class CrearDiagnosticoController {
     }
 
     private void crear() {//se crea y se envia al padre
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        diagnostico.setDiagnostico(view.getTituloDiag());
+        diagnostico.setDescripcion(view.getDescripcionTA());
+        diagnostico.setFecha_diagnostico(LocalDate.now());
+        gato.getHistorial().addDiagnostico(diagnostico);
+        try {
+            daoG.edit(gato);
+        } catch (Exception e) {
+            System.out.println("Error---------------------------------------------------");
+            e.printStackTrace();
+        }
     }
     
     public void iniciarTabla(){
@@ -47,21 +69,17 @@ public class CrearDiagnosticoController {
         return diagnostico.getTratamientos();
     }
     
-    private void seleccionar() {
-        //System.out.println("AB2.2");
-        int fila = view.obtenerIndiceFila();
-        if (fila != -1) {
-            //System.out.println("AB3");
-            String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
-            int indice = obtenerIndiceTratamiento(Long.parseLong(id));
-            if(indice != -1){
-                //System.out.println("AB14");
-                tratamiento = obtenerLista().get(indice);
-                view.activarCreacion(true);
-                //System.out.println("USUUUUUUUUUUU");
-            }
-        }
-    }
+//    private void seleccionar() {
+//        int fila = view.obtenerIndiceFila();
+//        if (fila != -1) {
+//            String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
+//            int indice = obtenerIndiceTratamiento(Long.parseLong(id));
+//            if(indice != -1){
+//                tratamiento = obtenerLista().get(indice);
+//                view.activarCreacion(true);
+//            }
+//        }
+//    }
     
     private int obtenerIndiceTratamiento(long idTratamiento){
         List<Tratamiento> lista = obtenerLista();
@@ -70,6 +88,27 @@ public class CrearDiagnosticoController {
 
     public void setDiagnostico(Diagnostico diagnostico) {
         this.diagnostico = diagnostico;
+    }
+
+    public void setGato(Gato gato) {
+        this.gato = gato;
+    }
+    
+    
+    
+    private void mostrarTratamientoView() {
+        System.out.println("AB0.1");
+        TratamientoView viewT = new TratamientoView();
+        TratamientoController controller = new TratamientoController(viewT);
+        viewT.setCrearListener(l -> {
+            controller.crear();
+            System.out.println("AB0.2");
+            this.diagnostico.addTratamiento(controller.getTratamiento());
+            System.out.println("AB0.3");
+            controller.cerrarView();
+            iniciarTabla();
+        });
+        
     }
     
     
