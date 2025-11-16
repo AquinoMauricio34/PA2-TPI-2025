@@ -140,6 +140,9 @@ public class LoginView extends javax.swing.JFrame {
     public void setCerrarListener(ActionListener action) {
         cerrarBtn.addActionListener(action);
     }
+    public void setRegistrarseListener(ActionListener action) {
+        signinBtn.addActionListener(action);
+    }
 
     public String getContraseniaUsuario() {
         return contraseniaUsuarioTf.getText();

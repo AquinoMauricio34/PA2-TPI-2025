@@ -5,10 +5,18 @@
 
 package com.mycompany.tpi2025.view.VoluntarioViews;
 
-import com.mycompany.tpi2025.view.LoginView;
+import com.mycompany.tpi2025.controller.enums.PanelesAdministrador;
+import com.mycompany.tpi2025.view.AMUsuarioView;
+import com.mycompany.tpi2025.view.BuscarView;
+import com.mycompany.tpi2025.view.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.CrearGatoView;
+import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
+import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import java.awt.CardLayout;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,35 +26,12 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VoluntarioPrincipalView.class.getName());
     private final CardLayout cl;
-    private LoginView login;
+    private final Map<PanelesVoluntario, JPanel> paneles = new HashMap<>();
     /** Creates new form PrincipalView */
     public VoluntarioPrincipalView() {
         initComponents();
-        
         cl = (CardLayout) contenedor.getLayout();
         
-        //como panel principal mostramos el login
-        mostrarLoginView();
-        
-        JMenu tpMenu = new JMenu("TP");
-        JMenuItem salirProgramaItem = new JMenuItem("Salir");
-        JMenuItem cerrarSesionProgramaItem = new JMenuItem("Cerrar Sesion");
-        tpMenu.add(salirProgramaItem);
-        tpMenu.add(cerrarSesionProgramaItem);
-        menuBar.add(tpMenu);
-        
-        
-        
-    }
-    
-    private void mostrarLoginView(){
-        //se verifica que no se haya creado el panel
-        if(login == null){
-            login = new LoginView();
-            contenedor.add(login,"LOGIN");
-        }
-        //muestra el panel
-        cl.show(contenedor, "LOGIN");
     }
 
     /** This method is called from within the constructor to
@@ -58,14 +43,45 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         contenedor = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
+        tpM = new javax.swing.JMenu();
+        cerrarSesionMI = new javax.swing.JMenuItem();
+        cerrarMI = new javax.swing.JMenuItem();
+        gatoHistorialMI = new javax.swing.JMenu();
+        crearGatoMI = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TPI");
         setResizable(false);
 
         contenedor.setLayout(new java.awt.CardLayout());
+
+        tpM.setText("TP");
+
+        cerrarSesionMI.setText("Cerrar Sesion");
+        tpM.add(cerrarSesionMI);
+
+        cerrarMI.setText("Cerrar Programa");
+        cerrarMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarMIActionPerformed(evt);
+            }
+        });
+        tpM.add(cerrarMI);
+
+        menuBar.add(tpM);
+
+        gatoHistorialMI.setText("Gatos");
+
+        crearGatoMI.setText("Crear");
+        gatoHistorialMI.add(crearGatoMI);
+
+        menuBar.add(gatoHistorialMI);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -76,11 +92,15 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarMIActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cerrarMIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,9 +128,73 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem cerrarMI;
+    private javax.swing.JMenuItem cerrarSesionMI;
     private javax.swing.JPanel contenedor;
+    private javax.swing.JMenuItem crearGatoMI;
+    private javax.swing.JMenu gatoHistorialMI;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu tpM;
     // End of variables declaration//GEN-END:variables
 
+    public void cargarDatosPrincipales(String titulo, String nombre, String telefono, String nombreUsuario) {
+        DatosPrincipalesPanelView panel = getPanel(PanelesVoluntario.DATOS_PRINCIPALES, DatosPrincipalesPanelView.class);
+        panel.setTitulo(titulo);
+        panel.setNombre(nombre);
+        panel.setTelefono(telefono);
+        panel.setUsuario(nombreUsuario);
+    }
+
+    public void setCerrarAplicacionListener(ActionListener listener) {
+        cerrarMI.addActionListener(listener);
+    }
+
+    public void setCerrarSesionListener(ActionListener listener) {
+        cerrarSesionMI.addActionListener(listener);
+    }
+    
+    //GATOS
+    
+    public void setCrearGatoListener(ActionListener l) {
+        crearGatoMI.addActionListener(l);
+    }
+    
+    //GESTION DE PANELES
+
+    public void mostrarPanel(PanelesVoluntario identificador) {
+        JPanel vista = paneles.get(identificador);
+
+        if (vista == null) {
+            vista = crearPanel(identificador);
+            if (vista != null) {
+                paneles.put(identificador, vista);
+                contenedor.add(vista, identificador.getTexto());
+            } else {
+                return;
+            }
+        }
+
+        cl.show(contenedor, identificador.getTexto());
+    }
+
+    private JPanel crearPanel(PanelesVoluntario identificador) {
+        return switch (identificador) {
+            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
+            case CREAR_GATO -> new CrearGatoView();
+            default -> null;
+        };
+    }
+
+    public <N extends JPanel> N getPanel(PanelesVoluntario identificador, Class<N> tipo) {
+        JPanel panel = paneles.get(identificador);
+        if (panel == null) {
+            return null;
+        }
+        if (tipo.isInstance(panel)) {
+            return tipo.cast(panel);
+        }
+        throw new IllegalArgumentException("El panel no es del tipo esperado: " + tipo.getSimpleName());
+    }
     
 }

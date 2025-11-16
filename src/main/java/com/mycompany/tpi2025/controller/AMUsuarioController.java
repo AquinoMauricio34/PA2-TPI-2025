@@ -6,6 +6,7 @@ package com.mycompany.tpi2025.controller;
 
 import com.mycompany.tpi2025.controller.enums.AccionUsuario;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
+import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import jakarta.persistence.EntityManagerFactory;
@@ -45,6 +46,9 @@ public class AMUsuarioController<T extends Usuario> {
             view.setContrasenia("---");
             view.estadoContrasenia(false);
         }
+        if(tipoUsuario == Hogar.class){
+            view.visibilizarTransitorio(true);
+        }
     }
 
     public void accion(AccionUsuario tipo) {
@@ -65,6 +69,9 @@ public class AMUsuarioController<T extends Usuario> {
             usuario.setContrasenia(view.getContrasenia());
             usuario.setTelefono(view.getTelefono());
             usuario.setNombreUsuario(view.getNombreDeUsuiario());
+            if(usuario instanceof Hogar hog){
+                hog.setTransitorio(view.isTransitorio());
+            }
             dao.create(usuario);
             view.mostrarMensaje("Usuario creado correctamente");
         } catch (Exception ex) {

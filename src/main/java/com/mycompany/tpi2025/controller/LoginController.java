@@ -13,6 +13,8 @@ import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
 import com.mycompany.tpi2025.view.LoginView;
+import com.mycompany.tpi2025.view.SignInView;
+import com.mycompany.tpi2025.view.VoluntarioViews.VoluntarioPrincipalView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -35,7 +37,7 @@ public class LoginController {
         iniciarView();
         login.setIniciarSesionListener(e -> iniciarSesion());
         login.setCerrarListener(e -> cerrarView());
-        
+        login.setRegistrarseListener(l -> registro());
         
         
     }
@@ -56,6 +58,8 @@ public class LoginController {
                         AdministradorPrincipalController contr = new AdministradorPrincipalController(view, admin, emf);
                     }
                     case Voluntario vol -> {
+                        VoluntarioPrincipalView view = new VoluntarioPrincipalView();
+                        VoluntarioPrincipalController contr = new VoluntarioPrincipalController(view, vol, emf);
                     }
                     case Veterinario vet -> {
                     }
@@ -86,6 +90,11 @@ public class LoginController {
     private void cerrarView() {
         view.dispose();
         view = null;
+    }
+
+    private void registro() {
+        SignInView vieww = new SignInView();
+        SignInController controller = new SignInController(vieww, emf);
     }
 
 }

@@ -5,12 +5,18 @@
 package com.mycompany.tpi2025.view.AdministradorViews;
 
 import com.mycompany.tpi2025.controller.enums.PanelesAdministrador;
+import static com.mycompany.tpi2025.controller.enums.PanelesAdministrador.ASIGNAR_GATO_HOGAR;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
 import com.mycompany.tpi2025.view.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.CrearGatoView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
+import com.mycompany.tpi2025.view.PostulacionView;
+import com.mycompany.tpi2025.view.ReporteView;
+import com.mycompany.tpi2025.view.TareaRealizadaView;
 import com.mycompany.tpi2025.view.VerHistorialGatoView;
+import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
+import com.mycompany.tpi2025.view.VerPostulacionHogarView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -54,29 +60,38 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         eliminarAdminMI = new javax.swing.JMenuItem();
         buscarAdminMI = new javax.swing.JMenuItem();
         modificarAdminMI = new javax.swing.JMenuItem();
+        reporteMI = new javax.swing.JMenuItem();
         vetM = new javax.swing.JMenu();
         crearVetMI = new javax.swing.JMenuItem();
         eliminarVetMI = new javax.swing.JMenuItem();
         buscarVetMI = new javax.swing.JMenuItem();
         modificarVetMI = new javax.swing.JMenuItem();
-        famM = new javax.swing.JMenu();
-        crearFamMI = new javax.swing.JMenuItem();
-        eliminarFamMI = new javax.swing.JMenuItem();
-        buscarFamMI = new javax.swing.JMenuItem();
-        modificarFamMI = new javax.swing.JMenuItem();
         volM = new javax.swing.JMenu();
         crearVolMI = new javax.swing.JMenuItem();
         eliminarVolMI = new javax.swing.JMenuItem();
         buscarVolMI = new javax.swing.JMenuItem();
         modificarVolMI = new javax.swing.JMenuItem();
+        tareaRealizadaMI = new javax.swing.JMenuItem();
+        famM = new javax.swing.JMenu();
+        crearFamMI = new javax.swing.JMenuItem();
+        eliminarFamMI = new javax.swing.JMenuItem();
+        buscarFamMI = new javax.swing.JMenuItem();
+        modificarFamMI = new javax.swing.JMenuItem();
+        emitirAptitudFamiliaMI = new javax.swing.JMenuItem();
+        asignacionFamiliaMI = new javax.swing.JMenuItem();
         hogarM = new javax.swing.JMenu();
         crearHogarMI = new javax.swing.JMenuItem();
         eliminarHogarMI = new javax.swing.JMenuItem();
         buscarHogarMI = new javax.swing.JMenuItem();
         modificarHogarMI = new javax.swing.JMenuItem();
+        emitirAptitudHogarMI = new javax.swing.JMenuItem();
+        asignacionHogarMI = new javax.swing.JMenuItem();
         gatoHistorialMI = new javax.swing.JMenu();
         crearGatoMI = new javax.swing.JMenuItem();
+        modificarGatoMI = new javax.swing.JMenuItem();
         historialMI = new javax.swing.JMenuItem();
+        verGatosMI = new javax.swing.JMenuItem();
+        postulacionMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -113,6 +128,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarAdminMI.setText("Modificar");
         adminM.add(modificarAdminMI);
 
+        reporteMI.setText("Reporte");
+        adminM.add(reporteMI);
+
         menuBar.add(adminM);
 
         vetM.setText("Veterinarios");
@@ -131,22 +149,6 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
         menuBar.add(vetM);
 
-        famM.setText("Familia");
-
-        crearFamMI.setText("Crear");
-        famM.add(crearFamMI);
-
-        eliminarFamMI.setText("Eliminar");
-        famM.add(eliminarFamMI);
-
-        buscarFamMI.setText("Buscar");
-        famM.add(buscarFamMI);
-
-        modificarFamMI.setText("Modificar");
-        famM.add(modificarFamMI);
-
-        menuBar.add(famM);
-
         volM.setText("Voluntarios");
 
         crearVolMI.setText("Crear");
@@ -161,7 +163,32 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarVolMI.setText("Modificar");
         volM.add(modificarVolMI);
 
+        tareaRealizadaMI.setText("Tarea Realizada");
+        volM.add(tareaRealizadaMI);
+
         menuBar.add(volM);
+
+        famM.setText("Familia");
+
+        crearFamMI.setText("Crear");
+        famM.add(crearFamMI);
+
+        eliminarFamMI.setText("Eliminar");
+        famM.add(eliminarFamMI);
+
+        buscarFamMI.setText("Buscar");
+        famM.add(buscarFamMI);
+
+        modificarFamMI.setText("Modificar");
+        famM.add(modificarFamMI);
+
+        emitirAptitudFamiliaMI.setText("Emitir Aptitud");
+        famM.add(emitirAptitudFamiliaMI);
+
+        asignacionFamiliaMI.setText("Asignar a Familia");
+        famM.add(asignacionFamiliaMI);
+
+        menuBar.add(famM);
 
         hogarM.setText("Hogares");
 
@@ -177,6 +204,12 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarHogarMI.setText("Modificar");
         hogarM.add(modificarHogarMI);
 
+        emitirAptitudHogarMI.setText("Emitir Aptitud");
+        hogarM.add(emitirAptitudHogarMI);
+
+        asignacionHogarMI.setText("Asignar a Hogar");
+        hogarM.add(asignacionHogarMI);
+
         menuBar.add(hogarM);
 
         gatoHistorialMI.setText("Gatos");
@@ -184,8 +217,17 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearGatoMI.setText("Crear");
         gatoHistorialMI.add(crearGatoMI);
 
+        modificarGatoMI.setText("Modificar");
+        gatoHistorialMI.add(modificarGatoMI);
+
         historialMI.setText("Historial");
         gatoHistorialMI.add(historialMI);
+
+        verGatosMI.setText("Ver Gatos");
+        gatoHistorialMI.add(verGatosMI);
+
+        postulacionMI.setText("Postulacion");
+        gatoHistorialMI.add(postulacionMI);
 
         menuBar.add(gatoHistorialMI);
 
@@ -236,6 +278,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu adminM;
+    private javax.swing.JMenuItem asignacionFamiliaMI;
+    private javax.swing.JMenuItem asignacionHogarMI;
     private javax.swing.JMenuItem buscarAdminMI;
     private javax.swing.JMenuItem buscarFamMI;
     private javax.swing.JMenuItem buscarHogarMI;
@@ -255,6 +299,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem eliminarHogarMI;
     private javax.swing.JMenuItem eliminarVetMI;
     private javax.swing.JMenuItem eliminarVolMI;
+    private javax.swing.JMenuItem emitirAptitudFamiliaMI;
+    private javax.swing.JMenuItem emitirAptitudHogarMI;
     private javax.swing.JMenu famM;
     private javax.swing.JMenu gatoHistorialMI;
     private javax.swing.JMenuItem historialMI;
@@ -262,10 +308,15 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem modificarAdminMI;
     private javax.swing.JMenuItem modificarFamMI;
+    private javax.swing.JMenuItem modificarGatoMI;
     private javax.swing.JMenuItem modificarHogarMI;
     private javax.swing.JMenuItem modificarVetMI;
     private javax.swing.JMenuItem modificarVolMI;
+    private javax.swing.JMenuItem postulacionMI;
+    private javax.swing.JMenuItem reporteMI;
+    private javax.swing.JMenuItem tareaRealizadaMI;
     private javax.swing.JMenu tpM;
+    private javax.swing.JMenuItem verGatosMI;
     private javax.swing.JMenu vetM;
     private javax.swing.JMenu volM;
     // End of variables declaration//GEN-END:variables
@@ -382,6 +433,45 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setHistorialGatoListener(ActionListener l) {
         historialMI.addActionListener(l);
     }
+    public void setModificarGatoListener(ActionListener l) {
+        modificarGatoMI.addActionListener(l);
+    }
+    
+    //EMISION CERTIFICADO DE APTITUD
+    
+    public void setEmitirAptitudFamiliaListener(ActionListener l) {
+        emitirAptitudFamiliaMI.addActionListener(l);
+    }
+    public void setEmitirAptitudHogarListener(ActionListener l) {
+        emitirAptitudHogarMI.addActionListener(l);
+    }
+    
+    //POSTULACION
+    
+    public void setPostulacionListener(ActionListener l) {
+        postulacionMI.addActionListener(l);
+    }
+    
+    //ASIGNACION
+    
+    public void setAsignacionFamiliaListener(ActionListener l) {
+        asignacionFamiliaMI.addActionListener(l);
+    }
+    public void setAsignacionHogarListener(ActionListener l) {
+        asignacionHogarMI.addActionListener(l);
+    }
+    
+    //TAREA REALIZADA
+    
+    public void setTareaRealizadaListener(ActionListener l) {
+        tareaRealizadaMI.addActionListener(l);
+    }
+    
+    //REPORTE
+    
+    public void setReporteListener(ActionListener l) {
+        reporteMI.addActionListener(l);
+    }
     
     //GESTION DE PANELES
 
@@ -407,10 +497,16 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
             case CREAR_ADMINISTRADOR, CREAR_FAMILIA, CREAR_VETERINARIO, CREAR_VOLUNTARIO, CREAR_HOGAR,
                 MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new AMUsuarioView();
             case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR,
-                ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR -> new BuscarView();
-            case CREAR_GATO -> new CrearGatoView();
+                ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR,
+                BUSCAR_FAMILIA_APTITUD, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_APTITUD, BUSCAR_HOGAR_ASIGNACION,BUSCAR_VOLUNTARIO_TAREA_REALIZADA-> new BuscarView();
+            case CREAR_GATO, MODIFICAR_GATO -> new CrearGatoView();
             case VER_HISTORIAL -> new VerHistorialGatoView();
             case CREAR_DIAGNOSTICO -> new CrearDiagnosticoView();
+            case POSTULARSE -> new PostulacionView();
+            case ASIGNAR_GATO_FAMILIA -> new VerPostulacionFamiliaView();
+            case ASIGNAR_GATO_HOGAR -> new VerPostulacionHogarView();
+            case TAREA_REALIZADA -> new TareaRealizadaView();
+            case REPORTE -> new ReporteView();
             default -> null;
         };
     }

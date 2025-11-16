@@ -10,6 +10,7 @@ import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Zona;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
 import com.mycompany.tpi2025.view.CrearGatoView;
+import com.mycompany.tpi2025.view.VerGatoView;
 import com.mycompany.tpi2025.view.ZonaView;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -35,13 +36,18 @@ public class CrearGatoController {
         this.gato = gato;
         dao = new GatoJpaController(emf);
         daoZ = new ZonaJpaController(emf);
+        view.setRegistrarText(tipoAccion);
         iniciarView();
         view.setSeleccionarZonaListener(l -> seleccion());
         view.setRegistrarListener(l -> accion(tipoAccion));
+        if("MODIFICAR".equals(tipoAccion)){
+            abrirSeleccion();
+        }
     }
     
     public void iniciarView(){
         view.setVisible(true);
+        
     }
     
     private void accion(String tipoAccion){
@@ -77,9 +83,37 @@ public class CrearGatoController {
     }
 
     private void modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(gato != null){
+            try {
+                gato.setNombre(view.getNombreGato());
+                gato.setCaracteristicas(view.getCaracteristicasGato());
+                gato.setColor(view.getColorGato());
+                gato.setEstadoSalud(EstadoSalud.valueOf(view.getEstadoSalud()));
+                gato.setZona(daoZ.findZona(zonaGato.getId()));
+                dao.edit(gato);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     
+    private void abrirSeleccion() {
+        VerGatoView vview = new VerGatoView();
+        VerGatoController controller = new VerGatoController(vview, emf);
+        vview.setSeleccionListener(l -> {
+            gato = controller.getGato();
+            vview.dispose();
+            cargarDatos();
+        });
+    }
+    
+    public void cargarDatos(){
+        view.setNombreGato(gato.getNombre());
+        view.setColorGato(gato.getColor());
+        view.setCaracteristicasGato(gato.getCaracteristicas());
+        view.setEstadoSalud(gato.getEstadoSalud());
+        view.setZonaElegida("Zona N° "+gato.getZona().getId());
+    }
     
     
     

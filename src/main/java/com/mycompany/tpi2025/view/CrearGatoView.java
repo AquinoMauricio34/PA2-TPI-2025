@@ -4,6 +4,7 @@
  */
 package com.mycompany.tpi2025.view;
 
+import com.mycompany.tpi2025.model.enums.EstadoSalud;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -56,7 +57,7 @@ public class CrearGatoView extends javax.swing.JPanel {
 
         jLabel5.setText("Características");
 
-        estadoSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMO", "SANO", "EN_TRATAMIENTO", "SANO" }));
+        estadoSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMO", "SANO", "EN_TRATAMIENTO", "ESTERILIZADO" }));
 
         zonaBtn.setText("Zona");
 
@@ -180,7 +181,26 @@ public class CrearGatoView extends javax.swing.JPanel {
     public String getNombreGato() {
         return nombreGato.getText();
     }
+
+    public void setCaracteristicasGato(String caracteristicasGato) {
+        this.caracteristicasGato.setText(caracteristicasGato);
+    }
+
+    public void setColorGato(String colorGato) {
+        this.colorGato.setText(colorGato);
+    }
+
+    public void setEstadoSalud(EstadoSalud estadoSalud) {
+        this.estadoSalud.setSelectedIndex(estadoSalud.ordinal());
+    }
+
+    public void setNombreGato(String nombreGato) {
+        this.nombreGato.setText(nombreGato);
+    }
     
+    public void setRegistrarText(String text){
+        registrarGato.setText(text);
+    }
     
     
 

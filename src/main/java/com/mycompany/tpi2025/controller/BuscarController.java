@@ -6,6 +6,8 @@ package com.mycompany.tpi2025.controller;
 
 import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
+import com.mycompany.tpi2025.model.Familia;
+import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.view.BuscarView;
 import jakarta.persistence.EntityManagerFactory;
@@ -46,6 +48,7 @@ public class BuscarController<T extends Usuario> {
         switch (tipo) {
             case DETALLES -> {}
             case ELIMINAR -> eliminar();
+            case ESTABLECER_APTITUD -> cambiarAptitud();
             default -> throw new AssertionError(tipo.name());
         }
     }
@@ -102,6 +105,25 @@ public class BuscarController<T extends Usuario> {
 
     public T getUsuario() {
         return tipoUsuario.cast(usuario);
+    }
+
+    private void cambiarAptitud() {
+        if(usuario != null){
+            try {
+                if (usuario instanceof Hogar hogar) {
+                    hogar.setAptoAdopcion(!hogar.isAptoAdopcion());
+                }else if(usuario instanceof Familia familia){
+                    familia.setAptoAdopcion(!familia.isAptoAdopcion());
+                }else
+                    throw new Exception("Error clase no es ni familia ni hogar.");
+                dao.edit(usuario);
+                iniciarTabla(encabezados);
+                view.activarAccion(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
     }
 
     

@@ -19,20 +19,20 @@ import java.util.Optional;
 @Entity
 public class Familia extends Usuario{
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Gato> gatos;
+    private List<Gato> gatos = new ArrayList<>();;
 
+    private boolean aptoAdopcion=false;
     //para que el hibernate funcione necesita de un constructor vacio
     public Familia() {super();}
     
     public Familia(String nombre, String contrasenia, String telefono, String usuario){
         super(nombre, contrasenia, telefono, usuario);
-        this.gatos = new ArrayList<>();
     }
 
     public void addGato(Gato gato) {
-        this.gatos.add(gato);
         //hacemos que la familia sea esta misma instancia
         gato.setUsuario(this);
+        this.gatos.add(gato);
     }
     
     public void removeGato(long id) throws Exception{
@@ -47,15 +47,30 @@ public class Familia extends Usuario{
     public List<Gato> getAllGatos(){
         return new ArrayList<>(gatos);
     }
+
+    public List<Gato> getGatos() {
+        return gatos;
+    }
     
     
-    /*
     
-        - regsitrarse (creo que esto es parte del login más que de la clase, la clase no puede crear a familia, se hace de forma externa)
-        - ver gatos
-        - postularse
-     
-     */
+    public boolean isAptoAdopcion() {
+        return aptoAdopcion;
+    }
+
+    public void setAptoAdopcion(boolean aptoAdopcion) {
+        this.aptoAdopcion = aptoAdopcion;
+    }
+    
+    @Override
+    public Object[] obtenerDatos() {
+        return new Object[] { this.getNombre(), this.getNombreUsuario(), this.getTelefono(), this.isAptoAdopcion()? "SI":"NO"};
+    }
+
+    @Override
+    public String toString() {
+        return getNombre()+"Familia{" + "gatos=" + gatos + ", aptoAdopcion=" + aptoAdopcion + '}';
+    }
     
     
 }

@@ -75,7 +75,7 @@ public class CrearDiagnosticoController {
 //            String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
 //            int indice = obtenerIndiceTratamiento(Long.parseLong(id));
 //            if(indice != -1){
-//                tratamiento = obtenerLista().get(indice);
+//                tratamientoSeleccionado = obtenerLista().get(indice);
 //                view.activarCreacion(true);
 //            }
 //        }

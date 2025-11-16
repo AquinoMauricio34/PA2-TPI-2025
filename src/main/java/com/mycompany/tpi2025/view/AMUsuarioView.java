@@ -5,6 +5,7 @@
 package com.mycompany.tpi2025.view;
 
 import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -19,6 +20,7 @@ public class AMUsuarioView extends javax.swing.JPanel {
      */
     public AMUsuarioView() {
         initComponents();
+        transitorio.setVisible(false);
     }
 
     /**
@@ -40,6 +42,7 @@ public class AMUsuarioView extends javax.swing.JPanel {
         contrasenia = new javax.swing.JTextField();
         accionBtn = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
+        transitorio = new javax.swing.JCheckBox();
 
         jLabel1.setText("Nombre");
 
@@ -53,35 +56,40 @@ public class AMUsuarioView extends javax.swing.JPanel {
 
         titulo.setText("-");
 
+        transitorio.setText("Transitorio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(447, Short.MAX_VALUE)
-                .addComponent(accionBtn)
-                .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titulo)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(nombreDeUsuiario, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(transitorio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(accionBtn)
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titulo)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nombreDeUsuiario, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(telefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(88, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -98,7 +106,9 @@ public class AMUsuarioView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(accionBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accionBtn)
+                    .addComponent(transitorio))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -115,6 +125,7 @@ public class AMUsuarioView extends javax.swing.JPanel {
     private javax.swing.JTextField nombreDeUsuiario;
     private javax.swing.JTextField telefono;
     private javax.swing.JLabel titulo;
+    private javax.swing.JCheckBox transitorio;
     // End of variables declaration//GEN-END:variables
 
     public String getContrasenia() {
@@ -163,6 +174,18 @@ public class AMUsuarioView extends javax.swing.JPanel {
 
     public void setTelefono(String telefono) {
         this.telefono.setText(telefono);
+    }
+
+    public boolean isTransitorio() {
+        return transitorio.isSelected();
+    }
+
+    public void setTransitorio(boolean estado) {
+        this.transitorio.setSelected(estado);
+    }
+    
+    public void visibilizarTransitorio(boolean estado){
+        this.transitorio.setVisible(estado);
     }
 
     public void estadoContrasenia(boolean b) {

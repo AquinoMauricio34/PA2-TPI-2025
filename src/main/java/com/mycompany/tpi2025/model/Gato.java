@@ -36,9 +36,6 @@ public class Gato implements Serializable {
     @JoinColumn(name = "historial_id")
     private HistorialGato historial=null;
     
-    @Enumerated(EnumType.STRING)
-    private EstadoAdopcion estadoAdopcion;//es el estado de adopcion actual del gato NO ADOPTADO / ADOPTADO TEMPORALMENTE / ADOPTADO PERMANENTEMENTE
-    
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario=null;
@@ -62,28 +59,14 @@ public class Gato implements Serializable {
         this.color = color;
         this.zona = zona;
         this.estadoSalud = estadoSalud;
-        this.estadoAdopcion = EstadoAdopcion.NO_ADOPTADO;
-        this.usuario = null;
-    }
-    
-    public Gato(String qr, String nombre, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion) {
-        
-        this.nombre = nombre;
-        this.color = color;
-        this.zona = zona;
-        this.estadoSalud = estadoSalud;
-        this.estadoAdopcion = estadoAdopcion;
         this.usuario = null;
     }
     
     //atributo nombre es opcional
     public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud){
-        this(qr,"",color,zona,caracteristicas,estadoSalud,EstadoAdopcion.NO_ADOPTADO);
+        this(qr,"",color,zona,caracteristicas,estadoSalud);
     }
     
-    public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud, EstadoAdopcion estadoAdopcion){
-        this(qr,"",color,zona,caracteristicas,estadoSalud,estadoAdopcion);
-    }
 
     public void setEstadoSalud(EstadoSalud estadoSalud) {
         this.estadoSalud = estadoSalud;
@@ -126,15 +109,7 @@ public class Gato implements Serializable {
     public void setQr(String qr) {
         this.qr = qr;
     }
-
-    public EstadoAdopcion getEstadoAdopcion() {
-        return estadoAdopcion;
-    }
-
-    public void setEstadoAdopcion(EstadoAdopcion estadoAdopcion) {
-        this.estadoAdopcion = estadoAdopcion;
-    }
-
+    
     public String getCaracteristicas() {
         return caracteristicas;
     }
@@ -170,11 +145,4 @@ public class Gato implements Serializable {
     public void setZona(Zona zona) {
         this.zona = zona;
     }
-
-    @Override
-    public String toString() {
-        return "Gato{" + "id=" + id + ", estadoSalud=" + estadoSalud + ", historial=" + historial + ", estadoAdopcion=" + estadoAdopcion + ", usuario=" + usuario + ", zona=" + zona + ", qr=" + qr + ", nombre=" + nombre + ", color=" + color + ", caracteristicas=" + caracteristicas + '}';
-    }
-    
-    
 }

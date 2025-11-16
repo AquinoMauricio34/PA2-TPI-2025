@@ -130,7 +130,7 @@
             <StringItem index="0" value="ENFERMO"/>
             <StringItem index="1" value="SANO"/>
             <StringItem index="2" value="EN_TRATAMIENTO"/>
-            <StringItem index="3" value="SANO"/>
+            <StringItem index="3" value="ESTERILIZADO"/>
           </StringArray>
         </Property>
       </Properties>
