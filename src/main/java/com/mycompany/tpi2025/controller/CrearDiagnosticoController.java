@@ -45,42 +45,32 @@ public class CrearDiagnosticoController {
 
     private void iniciar() {//muestra la view
         view.setVisible(true);
+        limpiar();
     }
 
     private void crear() {//se crea y se envia al padre
-        diagnostico.setDiagnostico(view.getTituloDiag());
-        diagnostico.setDescripcion(view.getDescripcionTA());
-        diagnostico.setFecha_diagnostico(LocalDate.now());
-        gato.getHistorial().addDiagnostico(diagnostico);
-        try {
-            daoG.edit(gato);
-        } catch (Exception e) {
-            System.out.println("Error---------------------------------------------------");
-            e.printStackTrace();
-        }
+            diagnostico.setDiagnostico(view.getTituloDiag());
+            diagnostico.setDescripcion(view.getDescripcionTA());
+            diagnostico.setFecha_diagnostico(LocalDate.now());
+            gato.getHistorial().addDiagnostico(diagnostico);
+            try {
+                daoG.edit(gato);
+                limpiar();
+            } catch (Exception e) {
+                System.out.println("Error---------------------------------------------------");
+                e.printStackTrace();
+            }
     }
     
     public void iniciarTabla(){
         List<Tratamiento> lista = obtenerLista();
+        System.out.println(lista);
         view.reloadTable(lista);
     }
     
     private List<Tratamiento> obtenerLista(){
         return diagnostico.getTratamientos();
     }
-    
-//    private void seleccionar() {
-//        int fila = view.obtenerIndiceFila();
-//        if (fila != -1) {
-//            String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
-//            int indice = obtenerIndiceTratamiento(Long.parseLong(id));
-//            if(indice != -1){
-//                tratamientoSeleccionado = obtenerLista().get(indice);
-//                view.activarCreacion(true);
-//            }
-//        }
-//    }
-    
     private int obtenerIndiceTratamiento(long idTratamiento){
         List<Tratamiento> lista = obtenerLista();
         return lista.indexOf(lista.stream().filter(v -> v.getId()==idTratamiento).findFirst().orElse(null));
@@ -93,8 +83,6 @@ public class CrearDiagnosticoController {
     public void setGato(Gato gato) {
         this.gato = gato;
     }
-    
-    
     
     private void mostrarTratamientoView() {
         System.out.println("AB0.1");
@@ -110,7 +98,8 @@ public class CrearDiagnosticoController {
         });
         
     }
-    
-    
-    
+
+    private void limpiar() {
+        view.limpiarComponentes();
+    }
 }

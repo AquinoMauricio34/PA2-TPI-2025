@@ -27,6 +27,7 @@ public class VerGatoController {
         iniciarTabla();
         view.setSeleccionListaListener(l -> seleccionar());
         view.setCerrarListener(l -> cerrar());
+        view.setEliminarListener(l -> eliminar());
     }
     
     public void iniciarView(){
@@ -68,6 +69,17 @@ public class VerGatoController {
 
     public Gato getGato() {
         return gato;
+    }
+
+    private void eliminar() {
+        if(gato != null){
+            try {
+                dao.destroy(gato.getId());
+                gato = null;
+                iniciarTabla();
+            } catch (Exception e) {
+            }
+        }
     }
     
     

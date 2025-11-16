@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package com.mycompany.tpi2025.controller.enums;
+package com.mycompany.tpi2025.view.AdministradorViews;
 
 /**
  *
@@ -10,7 +10,7 @@ package com.mycompany.tpi2025.controller.enums;
  */
 public enum PanelesAdministrador {
     DATOS_PRINCIPALES("DATOS_PRINCIPALES"),
-
+    MI_PERFIL("MI_PERFIL"),
     // Administrador
     CREAR_ADMINISTRADOR("CREAR_ADMINISTRADOR"),
     BUSCAR_ADMINISTRADOR("BUSCAR_ADMINISTRADOR"),
@@ -45,6 +45,7 @@ public enum PanelesAdministrador {
     MODIFICAR_GATO("MODIFICAR_GATOS"),
     VER_HISTORIAL("VER_HISTORIAL"),
     CREAR_DIAGNOSTICO("CREAR_DIAGNOSTICO"),
+    VER_DIAGNOSTICO("VER_DIAGNOSTICO"),
     POSTULARSE("POSTULARSE"),
     BUSCAR_FAMILIA_APTITUD("BUSCAR_FAMILIA_APTITUD"),
     BUSCAR_FAMILIA_ASIGNACION("BUSCAR_FAMILIA_ASIGNACION"),
@@ -54,7 +55,10 @@ public enum PanelesAdministrador {
     ASIGNAR_GATO_HOGAR("ASIGNAR_GATO_HOGAR"),
     BUSCAR_VOLUNTARIO_TAREA_REALIZADA("BUSCAR_VOLUNTARIO_TAREA_REALIZADA"),
     TAREA_REALIZADA("TAREA_REALIZADA"),
-    REPORTE("REPORTE");
+    REPORTE("REPORTE"),
+    VISITA("VISITA"),
+    GATOS_FAMILIA("GATOS_FAMILIA"),
+    GATOS_HOGAR("GATOS_HOGAR");
     
     private final String texto;
     

@@ -4,8 +4,8 @@
  */
 package com.mycompany.tpi2025.controller;
 
-import com.mycompany.tpi2025.controller.enums.AccionUsuario;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
+import com.mycompany.tpi2025.controller.enums.AccionUsuario;
 import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.view.AMUsuarioView;
@@ -23,19 +23,19 @@ public class AMUsuarioController<T extends Usuario> {
     private final Class<T> tipoUsuario;
     private T usuario;
 
-    public AMUsuarioController(AMUsuarioView view, Class<T> tipoUsuario, EntityManagerFactory emf, AccionUsuario tipoAccion) {
-        this(view,null,tipoUsuario, emf,tipoAccion);
+    public AMUsuarioController(AMUsuarioView view, Class<T> tipoUsuario, boolean mostrarContrasenia , EntityManagerFactory emf, AccionUsuario tipoAccion) {
+        this(view,null,tipoUsuario,mostrarContrasenia, emf,tipoAccion);
     }
     
-    public AMUsuarioController(AMUsuarioView view,T usuario, Class<T> tipoUsuario, EntityManagerFactory emf, AccionUsuario tipoAccion){
+    public AMUsuarioController(AMUsuarioView view,T usuario, Class<T> tipoUsuario,boolean mostrarContrasenia, EntityManagerFactory emf, AccionUsuario tipoAccion){
         this.view = view;
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
         this.usuario = usuario;
-        iniciar(tipoAccion);
+        iniciar(tipoAccion,mostrarContrasenia);
     }
     
-    private void iniciar(AccionUsuario tipoAccion){
+    private void iniciar(AccionUsuario tipoAccion,boolean mostrarContrasenia){
         view.setAccionListener(l -> accion(tipoAccion));
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
         view.setAccionTexto(tipoAccion.getTexto());
@@ -43,8 +43,10 @@ public class AMUsuarioController<T extends Usuario> {
             view.setNombre(usuario.getNombre());
             view.setNombreDeUsuiario(usuario.getNombreUsuario());
             view.setTelefono(usuario.getTelefono());
-            view.setContrasenia("---");
-            view.estadoContrasenia(false);
+            if(!mostrarContrasenia){
+                view.setContrasenia("---");
+                view.estadoContrasenia(false);
+            }
         }
         if(tipoUsuario == Hogar.class){
             view.visibilizarTransitorio(true);

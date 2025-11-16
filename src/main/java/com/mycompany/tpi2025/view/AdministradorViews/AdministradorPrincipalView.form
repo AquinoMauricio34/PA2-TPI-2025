@@ -9,6 +9,11 @@
             <Property name="text" type="java.lang.String" value="TP"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miPerfilMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mi Perfil"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="cerrarSesionMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
@@ -113,6 +118,11 @@
                 <Property name="text" type="java.lang.String" value="Tarea Realizada"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="registrarVisitaMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar Visita"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="famM">
@@ -148,6 +158,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="asignacionFamiliaMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Asignar a Familia"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="gatosFamiliaMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gatos Familia"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -187,6 +202,11 @@
                 <Property name="text" type="java.lang.String" value="Asignar a Hogar"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="gatosHogarMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gatos Hogar"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="gatoHistorialMI">
@@ -201,17 +221,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="modificarGatoMI">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar"/>
+                <Property name="text" type="java.lang.String" value="Ver/Modificar/Eliminar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="historialMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Historial"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="verGatosMI">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ver Gatos"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="postulacionMI">

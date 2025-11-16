@@ -46,10 +46,8 @@
                           <EmptySpace min="65" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="volverHistorial" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="aniadirTratamiento" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="crear" min="-2" max="-2" attributes="0"/>
@@ -94,7 +92,6 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="volverHistorial" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="crear" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="aniadirTratamiento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -139,11 +136,6 @@
         <Component class="javax.swing.JButton" name="crear">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Diagn&#xf3;stico"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="volverHistorial">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Volver al Historial"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">

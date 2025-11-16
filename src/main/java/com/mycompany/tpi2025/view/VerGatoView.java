@@ -24,6 +24,7 @@ public class VerGatoView extends javax.swing.JFrame {
         initComponents();
         activarSeleccion(false);
         activarPostulacion(false);
+        eliminar.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -42,6 +43,7 @@ public class VerGatoView extends javax.swing.JFrame {
         seleccionBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JButton();
         postulacionBtn = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,6 +92,8 @@ public class VerGatoView extends javax.swing.JFrame {
 
         postulacionBtn.setText("Postularse");
 
+        eliminar.setText("Eliminar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,7 +105,9 @@ public class VerGatoView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(cancelarBtn)
-                            .addGap(159, 159, 159)
+                            .addGap(64, 64, 64)
+                            .addComponent(eliminar)
+                            .addGap(18, 18, 18)
                             .addComponent(postulacionBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(seleccionBtn))
@@ -119,7 +125,8 @@ public class VerGatoView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seleccionBtn)
                     .addComponent(cancelarBtn)
-                    .addComponent(postulacionBtn))
+                    .addComponent(postulacionBtn)
+                    .addComponent(eliminar))
                 .addGap(25, 25, 25))
         );
 
@@ -164,6 +171,7 @@ public class VerGatoView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarBtn;
+    private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -177,6 +185,9 @@ public class VerGatoView extends javax.swing.JFrame {
     }
     public void setPostulacionListener(ActionListener l){
         postulacionBtn.addActionListener(l);
+    }
+    public void setEliminarListener(ActionListener l){
+        eliminar.addActionListener(l);
     }
     public void setCerrarListener(ActionListener l){
        cancelarBtn.addActionListener(l);
@@ -216,5 +227,8 @@ public class VerGatoView extends javax.swing.JFrame {
     }
     public void activarSeleccion(boolean valor){
         seleccionBtn.setEnabled(valor);
+    }
+    public void habilitarEliminar(boolean b){
+        eliminar.setEnabled(b);
     }
 }

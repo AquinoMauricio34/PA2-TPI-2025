@@ -6,10 +6,6 @@ package com.mycompany.tpi2025.view;
 
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
@@ -46,6 +42,7 @@ public class CrearGatoView extends javax.swing.JPanel {
         caracteristicasGato = new javax.swing.JTextArea();
         registrarGato = new javax.swing.JButton();
         zonaElegida = new javax.swing.JLabel();
+        modificar = new javax.swing.JButton();
 
         jLabel1.setText("Estado de Salud");
 
@@ -58,16 +55,27 @@ public class CrearGatoView extends javax.swing.JPanel {
         jLabel5.setText("Características");
 
         estadoSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMO", "SANO", "EN_TRATAMIENTO", "ESTERILIZADO" }));
+        estadoSalud.setEnabled(false);
+
+        nombreGato.setEnabled(false);
+
+        colorGato.setEnabled(false);
 
         zonaBtn.setText("Zona");
+        zonaBtn.setEnabled(false);
 
         caracteristicasGato.setColumns(20);
         caracteristicasGato.setRows(5);
+        caracteristicasGato.setEnabled(false);
         jScrollPane1.setViewportView(caracteristicasGato);
 
         registrarGato.setText("Registrar");
+        registrarGato.setEnabled(false);
 
         zonaElegida.setText("-");
+
+        modificar.setText("Modificar");
+        modificar.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,6 +111,8 @@ public class CrearGatoView extends javax.swing.JPanel {
                         .addGap(0, 72, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(modificar)
+                .addGap(18, 18, 18)
                 .addComponent(registrarGato)
                 .addGap(57, 57, 57))
         );
@@ -132,7 +142,9 @@ public class CrearGatoView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(estadoSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(registrarGato)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarGato)
+                    .addComponent(modificar))
                 .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -148,6 +160,7 @@ public class CrearGatoView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificar;
     private javax.swing.JTextField nombreGato;
     private javax.swing.JButton registrarGato;
     private javax.swing.JButton zonaBtn;
@@ -164,6 +177,9 @@ public class CrearGatoView extends javax.swing.JPanel {
     
     public void setRegistrarListener(ActionListener l){
         registrarGato.addActionListener(l);
+    }
+    public void setModificarListener(ActionListener l){
+        modificar.addActionListener(l);
     }
 
     public String getCaracteristicasGato() {
@@ -202,6 +218,21 @@ public class CrearGatoView extends javax.swing.JPanel {
         registrarGato.setText(text);
     }
     
+    public void activarRegistrar(boolean b){
+        registrarGato.setEnabled(b);
+    }
+
+    public void activarComponentes(boolean b) {
+        nombreGato.setEnabled(b);
+        colorGato.setEnabled(b);
+        caracteristicasGato.setEnabled(b);
+        zonaBtn.setEnabled(b);
+        estadoSalud.setEnabled(b);
+    }
+
+    public void activarModificar(boolean b) {
+        modificar.setEnabled(b);
+    }
     
 
 }

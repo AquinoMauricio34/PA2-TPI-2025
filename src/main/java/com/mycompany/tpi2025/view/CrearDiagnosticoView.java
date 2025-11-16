@@ -7,9 +7,6 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.model.Tratamiento;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,7 +41,6 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         scrollDescripcion = new javax.swing.JScrollPane();
         descripcionTA = new javax.swing.JTextArea();
         crear = new javax.swing.JButton();
-        volverHistorial = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
@@ -61,8 +57,6 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         scrollDescripcion.setViewportView(descripcionTA);
 
         crear.setText("Crear Diagnóstico");
-
-        volverHistorial.setText("Volver al Historial");
 
         jLabel4.setText("Tratamientos");
 
@@ -105,10 +99,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(volverHistorial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(aniadirTratamiento)
                                 .addGap(18, 18, 18)
                                 .addComponent(crear))
@@ -142,7 +134,6 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(volverHistorial)
                     .addComponent(crear)
                     .addComponent(aniadirTratamiento))
                 .addContainerGap(282, Short.MAX_VALUE))
@@ -174,7 +165,6 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollDescripcion;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JTextField tituloDiag;
-    private javax.swing.JButton volverHistorial;
     // End of variables declaration//GEN-END:variables
 
     public void setSeleccionListaListener(ListSelectionListener l){
@@ -199,8 +189,11 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     public void reloadTable(List<Tratamiento> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
-        for (Tratamiento elem : elementos) {
-            model.addRow(new Object[]{elem.getId(),elem.getDescripcion()});
+
+        if (elementos != null) {
+            for (Tratamiento elem : elementos) {
+                model.addRow(new Object[]{elem.getId(), elem.getDescripcion()});
+            }
         }
 
         tablaDatos.setModel(model);
@@ -229,6 +222,34 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
 
     public String getTituloDiag() {
         return tituloDiag.getText();
+    }
+    
+    public void activarComponentesCreacion(boolean b){
+        crear.setEnabled(b);
+        aniadirTratamiento.setEnabled(b);
+        crear.setVisible(b);
+        aniadirTratamiento.setVisible(b);
+    }
+
+    public void setDescripcionTA(String descripcionTA) {
+        this.descripcionTA.setText(descripcionTA);
+    }
+
+    public void setTituloDiag(String tituloDiag) {
+        this.tituloDiag.setText(tituloDiag);
+    }
+
+    public void limpiarComponentes() {
+        tituloDiag.setText("");
+        descripcionTA.setText("");
+        reloadTable(null);
+    }
+    
+    public void activarComponentes(boolean b){
+        tituloDiag.setEnabled(b);
+        descripcionTA.setEnabled(b);
+        aniadirTratamiento.setEnabled(b);
+        crear.setEnabled(b);
     }
     
     

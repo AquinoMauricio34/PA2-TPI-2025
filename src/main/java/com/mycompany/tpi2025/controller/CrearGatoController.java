@@ -36,11 +36,16 @@ public class CrearGatoController {
         this.gato = gato;
         dao = new GatoJpaController(emf);
         daoZ = new ZonaJpaController(emf);
-        view.setRegistrarText(tipoAccion);
+        view.setRegistrarText("Guardar");
         iniciarView();
         view.setSeleccionarZonaListener(l -> seleccion());
-        view.setRegistrarListener(l -> accion(tipoAccion));
-        if("MODIFICAR".equals(tipoAccion)){
+        view.setRegistrarListener(l -> accion("MODIFICAR"));
+        view.setModificarListener(l -> {
+            view.activarComponentes(true);
+            view.activarRegistrar(true);
+            view.activarModificar(false);
+        });
+        if("VER".equals(tipoAccion)){
             abrirSeleccion();
         }
     }
@@ -54,6 +59,7 @@ public class CrearGatoController {
         switch (tipoAccion) {
             case "GUARDAR" -> guardar();
             case "MODIFICAR" -> modificar();
+            case "VER" -> {}
             default ->
                 throw new AssertionError();
         }
@@ -100,10 +106,12 @@ public class CrearGatoController {
     private void abrirSeleccion() {
         VerGatoView vview = new VerGatoView();
         VerGatoController controller = new VerGatoController(vview, emf);
+        vview.habilitarEliminar(true);
         vview.setSeleccionListener(l -> {
             gato = controller.getGato();
             vview.dispose();
             cargarDatos();
+            view.activarModificar(true);
         });
     }
     
@@ -112,7 +120,11 @@ public class CrearGatoController {
         view.setColorGato(gato.getColor());
         view.setCaracteristicasGato(gato.getCaracteristicas());
         view.setEstadoSalud(gato.getEstadoSalud());
-        view.setZonaElegida("Zona N° "+gato.getZona().getId());
+        try {
+            view.setZonaElegida("Zona N° "+gato.getZona().getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

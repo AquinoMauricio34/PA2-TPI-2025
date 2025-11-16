@@ -5,7 +5,7 @@
 
 package com.mycompany.tpi2025.view.VoluntarioViews;
 
-import com.mycompany.tpi2025.controller.enums.PanelesAdministrador;
+import com.mycompany.tpi2025.view.AdministradorViews.PanelesAdministrador;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
 import com.mycompany.tpi2025.view.CrearDiagnosticoView;

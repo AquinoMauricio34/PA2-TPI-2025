@@ -194,7 +194,7 @@ public class Tpi2025 {
 
         PostulacionJpaController daoP = new PostulacionJpaController(emf);
         
-        Postulacion p = new Postulacion("b", 8);
+        Postulacion p = new Postulacion("famrodriguez", 8);
         Postulacion p1 = new Postulacion("c", 8);
         Postulacion p2 = new Postulacion("d", 8);
         Postulacion p3 = new Postulacion("hogsanjose", 8);

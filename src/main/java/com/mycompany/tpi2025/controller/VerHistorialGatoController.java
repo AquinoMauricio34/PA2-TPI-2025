@@ -8,6 +8,7 @@ import com.mycompany.tpi2025.DAOImpl.DiagnosticoJpaController;
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Gato;
+import com.mycompany.tpi2025.view.EstudiosView;
 import com.mycompany.tpi2025.view.VerGatoView;
 import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import jakarta.persistence.EntityManagerFactory;
@@ -34,6 +35,7 @@ public class VerHistorialGatoController {
         abrirSeleccion();
         view.setSeleccionListaListener(l -> seleccionar());
         view.setSeleccionarGatoListener(l -> abrirSeleccion());
+        view.setEstudiosListener(l -> abrirEstudios());
     }
     
     public void iniciarView(){
@@ -86,6 +88,11 @@ public class VerHistorialGatoController {
 
     public Diagnostico getDiagnostico() {
         return diagnostico;
+    }
+
+    private void abrirEstudios() {
+        EstudiosView eview = new EstudiosView();
+        EstudioController controller = new EstudioController(eview, gato, emf);
     }
     
     
