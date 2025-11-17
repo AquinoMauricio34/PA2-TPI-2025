@@ -8,7 +8,6 @@ import com.mycompany.tpi2025.JPAUtil;
 import com.mycompany.tpi2025.Tpi2025;
 import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.controller.enums.AccionUsuario;
-import com.mycompany.tpi2025.view.AdministradorViews.PanelesAdministrador;
 import com.mycompany.tpi2025.model.Administrador;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Gato;
@@ -18,6 +17,7 @@ import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
+import com.mycompany.tpi2025.view.AdministradorViews.PanelesAdministrador;
 import com.mycompany.tpi2025.view.BuscarView;
 import com.mycompany.tpi2025.view.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.CrearGatoView;
@@ -53,6 +53,7 @@ public class AdministradorPrincipalController {
     //CAMBIAR AMUsuarioController
     private final Map<JPanel, BuscarController> BuscarControllers = new HashMap<>();
     private CrearGatoController crearGatoController = null;
+    private CrearGatoController vmGatoController = null;
     private VerHistorialGatoController verHistorialGatoController = null;
     private CrearDiagnosticoController crearDiagnosticoController=null;
     private PostulacionController postulacionController=null;
@@ -102,7 +103,7 @@ public class AdministradorPrincipalController {
         //GATOS
         view.setCrearGatoListener(l -> mostrarCrearGatoView(PanelesAdministrador.CREAR_GATO,"GUARDAR"));
         view.setHistorialGatoListener(l -> establecerComunicacionHistorial_CrearDiagnosticoView());
-        view.setModificarGatoListener(l -> mostrarCrearGatoView(PanelesAdministrador.MODIFICAR_GATO,"VER"));
+        view.setModificarGatoListener(l -> mostrarVMGatoView(PanelesAdministrador.MODIFICAR_GATO,"MODIFICAR"));
         //EMISION APTITUD
         view.setEmitirAptitudFamiliaListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_FAMILIA_APTITUD, Familia.class,AccionBuscar.ESTABLECER_APTITUD,new String[]{"Nombre","Usuario","Telefono","Apta Adopción"}));
         view.setEmitirAptitudHogarListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_HOGAR_APTITUD, Hogar.class,AccionBuscar.ESTABLECER_APTITUD,new String[]{"Nombre","Usuario","Telefono","Apto Adopción"}));
@@ -224,7 +225,23 @@ public class AdministradorPrincipalController {
                     throw new Exception("No existe el panel");
             }
             if(crearGatoController == null) crearGatoController = new CrearGatoController(panel,tipoAccion, emf);
-            
+            if(!tipoAccion.equals("GUARDAR")){
+                crearGatoController.abrirSeleccion();
+            }
+        } catch (Exception e) {
+        }
+    }
+    private void mostrarVMGatoView(PanelesAdministrador identificador, String tipoAccion) {
+        view.mostrarPanel(identificador);
+        try {
+            CrearGatoView panel = view.getPanel(identificador, CrearGatoView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(vmGatoController == null) vmGatoController = new CrearGatoController(panel,tipoAccion, emf);
+            if(!tipoAccion.equals("GUARDAR")){
+                vmGatoController.abrirSeleccion();
+            }
         } catch (Exception e) {
         }
     }

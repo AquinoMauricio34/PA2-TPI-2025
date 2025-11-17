@@ -55,27 +55,18 @@ public class CrearGatoView extends javax.swing.JPanel {
         jLabel5.setText("Características");
 
         estadoSalud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMO", "SANO", "EN_TRATAMIENTO", "ESTERILIZADO" }));
-        estadoSalud.setEnabled(false);
-
-        nombreGato.setEnabled(false);
-
-        colorGato.setEnabled(false);
 
         zonaBtn.setText("Zona");
-        zonaBtn.setEnabled(false);
 
         caracteristicasGato.setColumns(20);
         caracteristicasGato.setRows(5);
-        caracteristicasGato.setEnabled(false);
         jScrollPane1.setViewportView(caracteristicasGato);
 
         registrarGato.setText("Registrar");
-        registrarGato.setEnabled(false);
 
         zonaElegida.setText("-");
 
         modificar.setText("Modificar");
-        modificar.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

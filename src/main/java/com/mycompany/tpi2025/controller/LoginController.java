@@ -12,8 +12,10 @@ import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
+import com.mycompany.tpi2025.view.FamiliaViews.FamiliaPrincipalView;
 import com.mycompany.tpi2025.view.LoginView;
 import com.mycompany.tpi2025.view.SignInView;
+import com.mycompany.tpi2025.view.VeterinarioViews.VeterinarioPrincipalView;
 import com.mycompany.tpi2025.view.VoluntarioViews.VoluntarioPrincipalView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
@@ -62,8 +64,12 @@ public class LoginController {
                         VoluntarioPrincipalController contr = new VoluntarioPrincipalController(view, vol, emf);
                     }
                     case Veterinario vet -> {
+                        VeterinarioPrincipalView view = new VeterinarioPrincipalView();
+                        VeterinarioPrincipalController contr = new VeterinarioPrincipalController(view, vet, emf);
                     }
                     case Familia fam -> {
+                        FamiliaPrincipalView view = new FamiliaPrincipalView();
+                        FamiliaPrincipalController contr = new FamiliaPrincipalController(view, fam, emf);
                     }
                     default -> {
                     }

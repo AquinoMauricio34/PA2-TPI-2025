@@ -2,17 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.tpi2025.view.VoluntarioViews;
+package com.mycompany.tpi2025.view.VeterinarioViews;
 
-import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
+import com.mycompany.tpi2025.view.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.CrearGatoView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
-import com.mycompany.tpi2025.view.PostulacionView;
-import com.mycompany.tpi2025.view.TareaRealizadaView;
-import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
-import com.mycompany.tpi2025.view.VerPostulacionHogarView;
-import com.mycompany.tpi2025.view.VisitaSeguimientoView;
+import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -23,13 +19,13 @@ import javax.swing.JPanel;
  *
  * @author aquin
  */
-public class VoluntarioPrincipalView extends javax.swing.JFrame {
+public class VeterinarioPrincipalView extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VoluntarioPrincipalView.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VeterinarioPrincipalView.class.getName());
     private final CardLayout cl;
-    private final Map<PanelesVoluntario, JPanel> paneles = new HashMap<>();
+    private final Map<PanelesVeterinario, JPanel> paneles = new HashMap<>();
 
-    public VoluntarioPrincipalView() {
+    public VeterinarioPrincipalView() {
         initComponents();
 
         cl = (CardLayout) contenedor.getLayout();
@@ -51,16 +47,13 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
         miPerfilMI = new javax.swing.JMenuItem();
         cerrarSesionMI = new javax.swing.JMenuItem();
         cerrarMI = new javax.swing.JMenuItem();
-        volM = new javax.swing.JMenu();
-        tareaRealizadaMI = new javax.swing.JMenuItem();
-        registrarVisitaMI = new javax.swing.JMenuItem();
         famM = new javax.swing.JMenu();
-        asignacionFamiliaMI = new javax.swing.JMenuItem();
+        emitirAptitudFamiliaMI = new javax.swing.JMenuItem();
         hogarM = new javax.swing.JMenu();
-        asignacionHogarMI = new javax.swing.JMenuItem();
+        emitirAptitudHogarMI = new javax.swing.JMenuItem();
         gatoHistorialMI = new javax.swing.JMenu();
-        crearGatoMI = new javax.swing.JMenuItem();
         modificarGatoMI = new javax.swing.JMenuItem();
+        historialMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -86,37 +79,27 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
 
         menuBar.add(tpM);
 
-        volM.setText("Voluntarios");
-
-        tareaRealizadaMI.setText("Tarea Realizada");
-        volM.add(tareaRealizadaMI);
-
-        registrarVisitaMI.setText("Registrar Visita");
-        volM.add(registrarVisitaMI);
-
-        menuBar.add(volM);
-
         famM.setText("Familia");
 
-        asignacionFamiliaMI.setText("Asignar a Familia");
-        famM.add(asignacionFamiliaMI);
+        emitirAptitudFamiliaMI.setText("Emitir Aptitud");
+        famM.add(emitirAptitudFamiliaMI);
 
         menuBar.add(famM);
 
         hogarM.setText("Hogares");
 
-        asignacionHogarMI.setText("Asignar a Hogar");
-        hogarM.add(asignacionHogarMI);
+        emitirAptitudHogarMI.setText("Emitir Aptitud");
+        hogarM.add(emitirAptitudHogarMI);
 
         menuBar.add(hogarM);
 
         gatoHistorialMI.setText("Gatos");
 
-        crearGatoMI.setText("Crear");
-        gatoHistorialMI.add(crearGatoMI);
-
         modificarGatoMI.setText("Ver/Modificar/Eliminar");
         gatoHistorialMI.add(modificarGatoMI);
+
+        historialMI.setText("Historial");
+        gatoHistorialMI.add(historialMI);
 
         menuBar.add(gatoHistorialMI);
 
@@ -162,30 +145,27 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VoluntarioPrincipalView().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VeterinarioPrincipalView().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem asignacionFamiliaMI;
-    private javax.swing.JMenuItem asignacionHogarMI;
     private javax.swing.JMenuItem cerrarMI;
     private javax.swing.JMenuItem cerrarSesionMI;
     private javax.swing.JPanel contenedor;
-    private javax.swing.JMenuItem crearGatoMI;
+    private javax.swing.JMenuItem emitirAptitudFamiliaMI;
+    private javax.swing.JMenuItem emitirAptitudHogarMI;
     private javax.swing.JMenu famM;
     private javax.swing.JMenu gatoHistorialMI;
+    private javax.swing.JMenuItem historialMI;
     private javax.swing.JMenu hogarM;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem miPerfilMI;
     private javax.swing.JMenuItem modificarGatoMI;
-    private javax.swing.JMenuItem registrarVisitaMI;
-    private javax.swing.JMenuItem tareaRealizadaMI;
     private javax.swing.JMenu tpM;
-    private javax.swing.JMenu volM;
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatosPrincipales(String titulo, String nombre, String telefono, String nombreUsuario) {
-        DatosPrincipalesPanelView panel = getPanel(PanelesVoluntario.DATOS_PRINCIPALES, DatosPrincipalesPanelView.class);
+        DatosPrincipalesPanelView panel = getPanel(PanelesVeterinario.DATOS_PRINCIPALES, DatosPrincipalesPanelView.class);
         panel.setTitulo(titulo);
         panel.setNombre(nombre);
         panel.setTelefono(telefono);
@@ -202,38 +182,26 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
     public void setCerrarSesionListener(ActionListener listener) {
         cerrarSesionMI.addActionListener(listener);
     }
-    //ASIGNACION
     
-    public void setAsignacionFamiliaListener(ActionListener l) {
-        asignacionFamiliaMI.addActionListener(l);
+    public void setHistorialGatoListener(ActionListener l) {
+        historialMI.addActionListener(l);
     }
-    public void setAsignacionHogarListener(ActionListener l) {
-        asignacionHogarMI.addActionListener(l);
-    }
-    
-    //TAREA REALIZADA
-    
-    public void setTareaRealizadaListener(ActionListener l) {
-        tareaRealizadaMI.addActionListener(l);
-    }
-    
-    
-    public void setVisitaListener(ActionListener l) {
-        registrarVisitaMI.addActionListener(l);
-    }
-    
-    public void setCrearGatoListener(ActionListener l) {
-        crearGatoMI.addActionListener(l);
-    }
-    
     public void setModificarGatoListener(ActionListener l) {
         modificarGatoMI.addActionListener(l);
     }
     
+    //EMISION CERTIFICADO DE APTITUD
+    
+    public void setEmitirAptitudFamiliaListener(ActionListener l) {
+        emitirAptitudFamiliaMI.addActionListener(l);
+    }
+    public void setEmitirAptitudHogarListener(ActionListener l) {
+        emitirAptitudHogarMI.addActionListener(l);
+    }
     
     //GESTION DE PANELES
 
-    public void mostrarPanel(PanelesVoluntario identificador) {
+    public void mostrarPanel(PanelesVeterinario identificador) {
         JPanel vista = paneles.get(identificador);
 
         if (vista == null) {
@@ -249,22 +217,17 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
         cl.show(contenedor, identificador.getTexto());
     }
 
-    private JPanel crearPanel(PanelesVoluntario identificador) {
+    private JPanel crearPanel(PanelesVeterinario identificador) {
         return switch (identificador) {
-            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
-            case MI_PERFIL -> new AMUsuarioView();
-            case CREAR_GATO, MODIFICAR_GATO -> new CrearGatoView();
-            case POSTULARSE -> new PostulacionView();
-            case ASIGNAR_GATO_FAMILIA -> new VerPostulacionFamiliaView();
-            case ASIGNAR_GATO_HOGAR -> new VerPostulacionHogarView();
-            case BUSCAR_VOLUNTARIO_TAREA_REALIZADA,BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_ASIGNACION -> new BuscarView();
-            case TAREA_REALIZADA -> new TareaRealizadaView();
-            case VISITA -> new VisitaSeguimientoView();
+            case VER_HISTORIAL -> new VerHistorialGatoView();
+            case CREAR_DIAGNOSTICO, VER_DIAGNOSTICO -> new CrearDiagnosticoView();
+            case BUSCAR_FAMILIA_APTITUD, BUSCAR_HOGAR_APTITUD -> new BuscarView();
+            case MODIFICAR_GATO -> new CrearGatoView();
             default -> null;
         };
     }
 
-    public <N extends JPanel> N getPanel(PanelesVoluntario identificador, Class<N> tipo) {
+    public <N extends JPanel> N getPanel(PanelesVeterinario identificador, Class<N> tipo) {
         JPanel panel = paneles.get(identificador);
         if (panel == null) {
             return null;
