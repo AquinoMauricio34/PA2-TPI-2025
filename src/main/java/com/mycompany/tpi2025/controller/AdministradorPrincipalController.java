@@ -183,7 +183,8 @@ public class AdministradorPrincipalController {
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if(!AMUsuarioControllers.containsKey(panel)){
                 AMUsuarioControllers.put(panel, new AMUsuarioController<T>(panel, usuario, tipoUsuario,false, emf,AccionUsuario.MODIFICAR));
-            }
+            }else
+                AMUsuarioControllers.get(panel).setUsuario(usuario);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -207,13 +208,15 @@ public class AdministradorPrincipalController {
     }
     
     private <T extends Usuario> void gestionModificacion(PanelesAdministrador identificadorBusqueda, PanelesAdministrador identificadorModificacion, Class<T> tipoUsuario, String[] encabezados){
-        mostrarBuscarView(identificadorBusqueda,tipoUsuario,AccionBuscar.DETALLES,encabezados);
+//      
+        mostrarBuscarView(identificadorBusqueda,tipoUsuario,AccionBuscar.SELECCION,encabezados);
         BuscarView panel = view.getPanel(identificadorBusqueda, BuscarView.class);
         //se obtiene el controller de la vista creada
         BuscarController<T> controller = BuscarControllers.get(panel);
         panel.setAccionListener(l -> {
             mostrarModificacionUsuarioView(identificadorModificacion,controller.getUsuario(), tipoUsuario);
         });
+        
         
     }
 
@@ -316,7 +319,7 @@ public class AdministradorPrincipalController {
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if(!BuscarControllers.containsKey(panel)){
                 System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Familia>(panel, Familia.class, AccionBuscar.DETALLES, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+                BuscarControllers.put(panel, new BuscarController<Familia>(panel, Familia.class, AccionBuscar.SELECCION, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Familia f = (Familia) BuscarControllers.get(panel).getUsuario();
                     if(f.isAptoAdopcion()){
@@ -362,7 +365,7 @@ public class AdministradorPrincipalController {
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if(!BuscarControllers.containsKey(panel)){
                 System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Hogar>(panel, Hogar.class, AccionBuscar.DETALLES, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+                BuscarControllers.put(panel, new BuscarController<Hogar>(panel, Hogar.class, AccionBuscar.SELECCION, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Hogar h = (Hogar) BuscarControllers.get(panel).getUsuario();
                     if(h.isAptoAdopcion()){
@@ -411,7 +414,7 @@ public class AdministradorPrincipalController {
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if(!BuscarControllers.containsKey(panel)){
                 System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Voluntario>(panel, Voluntario.class, AccionBuscar.DETALLES, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+                BuscarControllers.put(panel, new BuscarController<Voluntario>(panel, Voluntario.class, AccionBuscar.SELECCION, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Voluntario h = (Voluntario) BuscarControllers.get(panel).getUsuario();
                     mostrarTareaRealizadaView(h);

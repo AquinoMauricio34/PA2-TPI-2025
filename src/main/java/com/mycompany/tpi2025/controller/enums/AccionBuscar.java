@@ -11,7 +11,8 @@ package com.mycompany.tpi2025.controller.enums;
 public enum AccionBuscar {
     DETALLES("DETALLES"),
     ELIMINAR("ELIMINAR"),
-    ESTABLECER_APTITUD("ESTABLECER_APTITUD");
+    ESTABLECER_APTITUD("ESTABLECER_APTITUD"),
+    SELECCION("SELECCION");
     
     private final String texto;
     

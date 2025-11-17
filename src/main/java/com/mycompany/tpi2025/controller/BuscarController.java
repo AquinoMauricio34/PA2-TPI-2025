@@ -4,8 +4,8 @@
  */
 package com.mycompany.tpi2025.controller;
 
-import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.DAOImpl.UsuarioJpaController;
+import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
@@ -24,18 +24,24 @@ public class BuscarController<T extends Usuario> {
     private final Class<T> tipoUsuario;
     private Usuario usuario = null;
     private String[] encabezados;
+    private AccionBuscar tipoAccion;
     
      public BuscarController(BuscarView view, Class<T> tipoUsuario, AccionBuscar tipoAccion,String[] encabezados , EntityManagerFactory emf) {
         this.view = view;
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
         this.encabezados = encabezados;
+        this.tipoAccion = tipoAccion;
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
         view.setAccionTexto(tipoAccion.getTexto());
         iniciarTabla(encabezados);
         view.setAccionListener(l -> accion(tipoAccion));
         view.setBuscarListener(l -> buscarUsuario());
         view.setSeleccionTablaListener(l -> filaSeleccionada());
+        if(tipoAccion == AccionBuscar.DETALLES){
+            view.activarAccion(false);
+        }else
+            view.activarAccion(true);
     }
     
     public void iniciarTabla(String[] encabezados){
@@ -49,6 +55,7 @@ public class BuscarController<T extends Usuario> {
             case DETALLES -> {}
             case ELIMINAR -> eliminar();
             case ESTABLECER_APTITUD -> cambiarAptitud();
+            case SELECCION -> {}
             default -> throw new AssertionError(tipo.name());
         }
     }
@@ -98,7 +105,11 @@ public class BuscarController<T extends Usuario> {
             int indice = obtenerIndiceUsuario(nombre);
             if(indice != -1){
                 usuario = obtenerLista().get(indice);
-                view.activarAccion(true);
+                if(tipoAccion != AccionBuscar.DETALLES){
+                    view.activarAccion(true);
+                    System.out.println("sldajklñsdjklfsdklklsdfkasdfasdflñkasdfkkasdfñjklasdfñjklasdfafsdlñjklñsfadjklñasdfjklñ");
+                }else
+                    view.activarAccion(false);
             }
         }
     }

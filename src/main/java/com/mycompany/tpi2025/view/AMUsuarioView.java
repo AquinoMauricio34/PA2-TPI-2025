@@ -5,9 +5,7 @@
 package com.mycompany.tpi2025.view;
 
 import java.awt.event.ActionListener;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -192,5 +190,8 @@ public class AMUsuarioView extends javax.swing.JPanel {
         contrasenia.setEditable(b);
     }
     
+    public void activarAccion(boolean b){
+        accionBtn.setVisible(b);
+    }
     
 }

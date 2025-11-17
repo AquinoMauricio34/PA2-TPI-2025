@@ -84,6 +84,13 @@ public class Usuario implements Serializable,DatosTabla {
     public Object[] obtenerDatos() {
         return new Object[] { nombre, nombreUsuario, telefono };
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", tipoUsuario=" + tipoUsuario + ", nombreUsuario=" + nombreUsuario + '}';
+    }
+    
+    
     
     
     

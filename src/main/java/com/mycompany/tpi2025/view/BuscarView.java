@@ -9,10 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -129,8 +127,15 @@ public class BuscarView extends javax.swing.JPanel {
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
-    public void setAccionListener(ActionListener listener) {
-        accionBtn.addActionListener(listener);
+//    public void setAccionListener(ActionListener listener) {
+//        accionBtn.addActionListener(listener);
+//    }
+    
+    public void setAccionListener(ActionListener l) {
+        for (ActionListener al : accionBtn.getActionListeners()) {
+            accionBtn.removeActionListener(al);
+        }
+        accionBtn.addActionListener(l);
     }
 
     public void setBuscarListener(ActionListener listener) {

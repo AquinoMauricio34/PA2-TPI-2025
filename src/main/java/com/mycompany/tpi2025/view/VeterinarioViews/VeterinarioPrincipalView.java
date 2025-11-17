@@ -4,6 +4,7 @@
  */
 package com.mycompany.tpi2025.view.VeterinarioViews;
 
+import com.mycompany.tpi2025.view.AMUsuarioView;
 import com.mycompany.tpi2025.view.BuscarView;
 import com.mycompany.tpi2025.view.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.CrearGatoView;
@@ -219,6 +220,8 @@ public class VeterinarioPrincipalView extends javax.swing.JFrame {
 
     private JPanel crearPanel(PanelesVeterinario identificador) {
         return switch (identificador) {
+            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
+            case MI_PERFIL -> new AMUsuarioView();
             case VER_HISTORIAL -> new VerHistorialGatoView();
             case CREAR_DIAGNOSTICO, VER_DIAGNOSTICO -> new CrearDiagnosticoView();
             case BUSCAR_FAMILIA_APTITUD, BUSCAR_HOGAR_APTITUD -> new BuscarView();

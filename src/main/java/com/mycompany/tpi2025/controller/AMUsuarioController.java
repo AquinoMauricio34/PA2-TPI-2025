@@ -22,6 +22,7 @@ public class AMUsuarioController<T extends Usuario> {
     private final UsuarioJpaController dao;
     private final Class<T> tipoUsuario;
     private T usuario;
+    private AccionUsuario tipoAccion;
 
     public AMUsuarioController(AMUsuarioView view, Class<T> tipoUsuario, boolean mostrarContrasenia , EntityManagerFactory emf, AccionUsuario tipoAccion) {
         this(view,null,tipoUsuario,mostrarContrasenia, emf,tipoAccion);
@@ -32,6 +33,7 @@ public class AMUsuarioController<T extends Usuario> {
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
         this.usuario = usuario;
+        this.tipoAccion = tipoAccion;
         iniciar(tipoAccion,mostrarContrasenia);
     }
     
@@ -46,7 +48,8 @@ public class AMUsuarioController<T extends Usuario> {
             if(!mostrarContrasenia){
                 view.setContrasenia("---");
                 view.estadoContrasenia(false);
-            }
+            }else
+                view.setContrasenia(usuario.getContrasena());
         }
         if(tipoUsuario == Hogar.class){
             view.visibilizarTransitorio(true);
@@ -94,6 +97,11 @@ public class AMUsuarioController<T extends Usuario> {
             ex.printStackTrace();
             view.mostrarMensaje("Error al modificar usuario");
         }
+    }
+    
+    public void setUsuario(T usuario) {
+        this.usuario = usuario;
+        iniciar(tipoAccion, true);
     }
 
 }
