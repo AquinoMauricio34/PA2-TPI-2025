@@ -34,6 +34,10 @@ public class Familia extends Usuario{
         gato.setUsuario(this);
         this.gatos.add(gato);
     }
+
+    public void setGatos(List<Gato> gatos) {
+        this.gatos = gatos;
+    }
     
     public void removeGato(long id) throws Exception{
         //no no removio nada, devuelve falso, si !falso, lanza la exception

@@ -7,13 +7,15 @@ package com.mycompany.tpi2025.DAOImpl;
 import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
 import com.mycompany.tpi2025.DAOImpl.exceptions.PreexistingEntityException;
 import com.mycompany.tpi2025.model.Familia;
+import com.mycompany.tpi2025.model.Gato;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import java.io.Serializable;
-import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,11 +34,29 @@ public class FamiliaJpaController implements Serializable {
     }
 
     public void create(Familia familia) throws PreexistingEntityException, Exception {
+        if (familia.getGatos() == null) {
+            familia.setGatos(new ArrayList<Gato>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<Gato> attachedGatos = new ArrayList<Gato>();
+            for (Gato gatosGatoToAttach : familia.getGatos()) {
+                gatosGatoToAttach = em.getReference(gatosGatoToAttach.getClass(), gatosGatoToAttach.getId());
+                attachedGatos.add(gatosGatoToAttach);
+            }
+            familia.setGatos(attachedGatos);
             em.persist(familia);
+            for (Gato gatosGato : familia.getGatos()) {
+                com.mycompany.tpi2025.model.Familia oldUsuarioOfGatosGato = (Familia) gatosGato.getUsuario();
+                gatosGato.setUsuario(familia);
+                gatosGato = em.merge(gatosGato);
+                if (oldUsuarioOfGatosGato != null) {
+                    oldUsuarioOfGatosGato.getGatos().remove(gatosGato);
+                    oldUsuarioOfGatosGato = em.merge(oldUsuarioOfGatosGato);
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findFamilia(familia.getNombreUsuario()) != null) {
@@ -55,7 +75,34 @@ public class FamiliaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Familia persistentFamilia = em.find(Familia.class, familia.getNombreUsuario());
+            List<Gato> gatosOld = persistentFamilia.getGatos();
+            List<Gato> gatosNew = familia.getGatos();
+            List<Gato> attachedGatosNew = new ArrayList<Gato>();
+            for (Gato gatosNewGatoToAttach : gatosNew) {
+                gatosNewGatoToAttach = em.getReference(gatosNewGatoToAttach.getClass(), gatosNewGatoToAttach.getId());
+                attachedGatosNew.add(gatosNewGatoToAttach);
+            }
+            gatosNew = attachedGatosNew;
+            familia.setGatos(gatosNew);
             familia = em.merge(familia);
+            for (Gato gatosOldGato : gatosOld) {
+                if (!gatosNew.contains(gatosOldGato)) {
+                    gatosOldGato.setUsuario(null);
+                    gatosOldGato = em.merge(gatosOldGato);
+                }
+            }
+            for (Gato gatosNewGato : gatosNew) {
+                if (!gatosOld.contains(gatosNewGato)) {
+                    Familia oldUsuarioOfGatosNewGato = (Familia) gatosNewGato.getUsuario();
+                    gatosNewGato.setUsuario(familia);
+                    gatosNewGato = em.merge(gatosNewGato);
+                    if (oldUsuarioOfGatosNewGato != null && !oldUsuarioOfGatosNewGato.equals(familia)) {
+                        oldUsuarioOfGatosNewGato.getGatos().remove(gatosNewGato);
+                        oldUsuarioOfGatosNewGato = em.merge(oldUsuarioOfGatosNewGato);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -84,6 +131,11 @@ public class FamiliaJpaController implements Serializable {
                 familia.getNombreUsuario();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The familia with id " + id + " no longer exists.", enfe);
+            }
+            List<Gato> gatos = familia.getGatos();
+            for (Gato gatosGato : gatos) {
+                gatosGato.setUsuario(null);
+                gatosGato = em.merge(gatosGato);
             }
             em.remove(familia);
             em.getTransaction().commit();

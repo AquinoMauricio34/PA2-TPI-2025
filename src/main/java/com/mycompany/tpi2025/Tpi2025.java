@@ -247,7 +247,7 @@ public class Tpi2025 {
                 new Postulacion("elenacast", 24),
                 new Postulacion("msuarezv", 26),
                 new Postulacion("gatofeliz", 27),
-                new Postulacion("hogpatitas", 29),
+                new Postulacion("hogpatitas", 19),
                 new Postulacion("famrios", 30),
                 new Postulacion("anamtz", 33)
         );

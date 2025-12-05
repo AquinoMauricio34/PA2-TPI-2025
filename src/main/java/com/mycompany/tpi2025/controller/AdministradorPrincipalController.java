@@ -57,6 +57,7 @@ public class AdministradorPrincipalController {
     private VerHistorialGatoController verHistorialGatoController = null;
     private CrearDiagnosticoController crearDiagnosticoController=null;
     private PostulacionController postulacionController=null;
+    private PostulacionHogarController postulacionHogarController=null;
     private VerPostulacionFamiliaController verPostulacionFamiliaController = null;
     private VerPostulacionHogarController verPostulacionHogarController = null;
     private TareaRealizadaController tareaRealizadaController = null;
@@ -95,11 +96,11 @@ public class AdministradorPrincipalController {
         view.setEliminarFamListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_FAMILIA, Familia.class,AccionBuscar.ELIMINAR,encabezados));
         view.setEliminarHogarListener(l -> mostrarBuscarView(PanelesAdministrador.ELIMINAR_HOGAR, Hogar.class,AccionBuscar.ELIMINAR,encabezados));
         //MODIFICACION
-        view.setModificarAdminListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_ADMINISTRADOR,PanelesAdministrador.MODIFICAR_ADMINISTRADOR, Administrador.class,encabezados));
-        view.setModificarVetListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_VETERINARIO,PanelesAdministrador.MODIFICAR_VETERINARIO, Veterinario.class,encabezados));
-        view.setModificarVolListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_VOLUNTARIO,PanelesAdministrador.MODIFICAR_VOLUNTARIO, Voluntario.class,encabezados));
-        view.setModificarFamListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_FAMILIA,PanelesAdministrador.MODIFICAR_FAMILIA, Familia.class,encabezados));
-        view.setModificarHogarListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_HOGAR,PanelesAdministrador.MODIFICAR_HOGAR, Hogar.class,encabezados));
+        view.setModificarAdminListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_ADMINISTRADOR_MODIFICAR,PanelesAdministrador.MODIFICAR_ADMINISTRADOR, Administrador.class,encabezados));
+        view.setModificarVetListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_VETERINARIO_MODIFICAR,PanelesAdministrador.MODIFICAR_VETERINARIO, Veterinario.class,encabezados));
+        view.setModificarVolListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_VOLUNTARIO_MODIFICAR,PanelesAdministrador.MODIFICAR_VOLUNTARIO, Voluntario.class,encabezados));
+        view.setModificarFamListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_FAMILIA_MODIFICAR,PanelesAdministrador.MODIFICAR_FAMILIA, Familia.class,encabezados));
+        view.setModificarHogarListener(l -> gestionModificacion(PanelesAdministrador.BUSCAR_HOGAR_MODIFICAR,PanelesAdministrador.MODIFICAR_HOGAR, Hogar.class,encabezados));
         //GATOS
         view.setCrearGatoListener(l -> mostrarCrearGatoView(PanelesAdministrador.CREAR_GATO,"GUARDAR"));
         view.setHistorialGatoListener(l -> establecerComunicacionHistorial_CrearDiagnosticoView());
@@ -109,6 +110,7 @@ public class AdministradorPrincipalController {
         view.setEmitirAptitudHogarListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_HOGAR_APTITUD, Hogar.class,AccionBuscar.ESTABLECER_APTITUD,new String[]{"Nombre","Usuario","Telefono","Apto Adopción"}));
         //POSTULACION
         view.setPostulacionListener(l -> mostrarPostulacionView(PanelesAdministrador.POSTULARSE));
+        view.setPostulacionHogarListener(l -> mostrarPostulacionHogarView(PanelesAdministrador.POSTULAR_HOGAR));
         //ASIGNACION GATO
         view.setAsignacionFamiliaListener(l -> establecerComunicacionBuscarView_VerPostulacion());
         view.setAsignacionHogarListener(l -> establecerComunicacionBuscarHogarView_VerPostulacion());
@@ -305,6 +307,20 @@ public class AdministradorPrincipalController {
                 postulacionController = new PostulacionController(panel,miUsu.getNombreUsuario(), emf);
             }else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
                 postulacionController.iniciarTabla();
+        } catch (Exception e) {
+        }
+    }
+    private void mostrarPostulacionHogarView(PanelesAdministrador identificador) {
+        view.mostrarPanel(identificador);
+        try {
+            PostulacionView panel = view.getPanel(identificador, PostulacionView.class);
+            if (panel == null) {
+                    throw new Exception("No existe el panel");
+            }
+            if(postulacionHogarController == null){
+                postulacionHogarController = new PostulacionHogarController(panel, emf);
+            }else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
+                postulacionHogarController.abrirSeleccion();
         } catch (Exception e) {
         }
     }

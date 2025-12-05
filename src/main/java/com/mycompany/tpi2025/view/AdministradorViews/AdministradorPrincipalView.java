@@ -95,6 +95,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarGatoMI = new javax.swing.JMenuItem();
         historialMI = new javax.swing.JMenuItem();
         postulacionMI = new javax.swing.JMenuItem();
+        postulacionHogarMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -241,6 +242,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         postulacionMI.setText("Postulacion");
         gatoHistorialMI.add(postulacionMI);
 
+        postulacionHogarMI.setText("Postulacion de Hogar");
+        gatoHistorialMI.add(postulacionHogarMI);
+
         menuBar.add(gatoHistorialMI);
 
         setJMenuBar(menuBar);
@@ -327,6 +331,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem modificarHogarMI;
     private javax.swing.JMenuItem modificarVetMI;
     private javax.swing.JMenuItem modificarVolMI;
+    private javax.swing.JMenuItem postulacionHogarMI;
     private javax.swing.JMenuItem postulacionMI;
     private javax.swing.JMenuItem registrarVisitaMI;
     private javax.swing.JMenuItem reporteMI;
@@ -469,6 +474,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setPostulacionListener(ActionListener l) {
         postulacionMI.addActionListener(l);
     }
+    public void setPostulacionHogarListener(ActionListener l) {
+        postulacionHogarMI.addActionListener(l);
+    }
     
     //ASIGNACION
     
@@ -526,11 +534,12 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
                 MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new AMUsuarioView();
             case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR,
                 ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR,
-                BUSCAR_FAMILIA_APTITUD, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_APTITUD, BUSCAR_HOGAR_ASIGNACION,BUSCAR_VOLUNTARIO_TAREA_REALIZADA-> new BuscarView();
+                BUSCAR_FAMILIA_APTITUD, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_APTITUD, BUSCAR_HOGAR_ASIGNACION,BUSCAR_VOLUNTARIO_TAREA_REALIZADA,
+                BUSCAR_FAMILIA_MODIFICAR, BUSCAR_HOGAR_MODIFICAR, BUSCAR_ADMINISTRADOR_MODIFICAR, BUSCAR_VETERINARIO_MODIFICAR, BUSCAR_VOLUNTARIO_MODIFICAR-> new BuscarView();
             case CREAR_GATO, MODIFICAR_GATO -> new CrearGatoView();
             case VER_HISTORIAL -> new VerHistorialGatoView();
             case CREAR_DIAGNOSTICO,VER_DIAGNOSTICO -> new CrearDiagnosticoView();
-            case POSTULARSE -> new PostulacionView();
+            case POSTULARSE,POSTULAR_HOGAR -> new PostulacionView();
             case ASIGNAR_GATO_FAMILIA -> new VerPostulacionFamiliaView();
             case ASIGNAR_GATO_HOGAR -> new VerPostulacionHogarView();
             case TAREA_REALIZADA -> new TareaRealizadaView();

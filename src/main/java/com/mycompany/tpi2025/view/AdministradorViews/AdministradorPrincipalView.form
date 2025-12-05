@@ -234,6 +234,11 @@
                 <Property name="text" type="java.lang.String" value="Postulacion"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="postulacionHogarMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Postulacion de Hogar"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

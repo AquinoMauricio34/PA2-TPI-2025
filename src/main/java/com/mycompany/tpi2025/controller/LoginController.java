@@ -58,23 +58,28 @@ public class LoginController {
                     case Administrador admin -> {
                         AdministradorPrincipalView view = new AdministradorPrincipalView();
                         AdministradorPrincipalController contr = new AdministradorPrincipalController(view, admin, emf);
+                        cerrarView();
                     }
                     case Voluntario vol -> {
                         VoluntarioPrincipalView view = new VoluntarioPrincipalView();
                         VoluntarioPrincipalController contr = new VoluntarioPrincipalController(view, vol, emf);
+                        cerrarView();
                     }
                     case Veterinario vet -> {
                         VeterinarioPrincipalView view = new VeterinarioPrincipalView();
                         VeterinarioPrincipalController contr = new VeterinarioPrincipalController(view, vet, emf);
+                        cerrarView();
                     }
                     case Familia fam -> {
                         FamiliaPrincipalView view = new FamiliaPrincipalView();
                         FamiliaPrincipalController contr = new FamiliaPrincipalController(view, fam, emf);
+                        cerrarView();
                     }
                     default -> {
+                        
                     }
                 }
-                cerrarView();
+                
             }
         }
         
