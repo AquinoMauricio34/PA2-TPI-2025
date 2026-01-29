@@ -107,7 +107,7 @@ public class BuscarController<T extends Usuario> {
                 usuario = obtenerLista().get(indice);
                 if(tipoAccion != AccionBuscar.DETALLES){
                     view.activarAccion(true);
-                    System.out.println("sldajklñsdjklfsdklklsdfkasdfasdflñkasdfkkasdfñjklasdfñjklasdfafsdlñjklñsfadjklñasdfjklñ");
+                    //System.out.println("sldajklñsdjklfsdklklsdfkasdfasdflñkasdfkkasdfñjklasdfñjklasdfafsdlñjklñsfadjklñasdfjklñ");
                 }else
                     view.activarAccion(false);
             }

@@ -102,7 +102,7 @@ public class CrearGatoController {
 
     private void modificar() {
         if(gato != null){
-            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkm");
+            //System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkm");
             try {
                 gato.setNombre(view.getNombreGato());
                 gato.setCaracteristicas(view.getCaracteristicasGato());
@@ -113,8 +113,8 @@ public class CrearGatoController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else
-            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+        }
+            //System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     }
     
     public void abrirSeleccion() {

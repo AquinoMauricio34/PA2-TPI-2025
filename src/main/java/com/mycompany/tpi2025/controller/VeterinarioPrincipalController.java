@@ -156,11 +156,11 @@ public class VeterinarioPrincipalController {
                 verHistorialGatoController = new VerHistorialGatoController(panel, emf);
                 panel.setAniadirListener(l -> {
                     //abrir el panel de crear y pasarle el diagnostico
-                    System.out.println("F01");
+                    //System.out.println("F01");
                     mostrarCrearDiagnosticoView(PanelesVeterinario.CREAR_DIAGNOSTICO,verHistorialGatoController.getGato());
                 });
                 panel.setSeleccionListener(l -> {
-                    System.out.println("F1");
+                    //System.out.println("F1");
                     mostrarCrearDiagnosticoView(PanelesVeterinario.VER_DIAGNOSTICO,verHistorialGatoController.getGato());
                 });
             }
@@ -192,19 +192,19 @@ public class VeterinarioPrincipalController {
     private void mostrarMiPerfil(){
         view.mostrarPanel(PanelesVeterinario.MI_PERFIL);
         try {
-            System.out.println("MM0.001-------------------------------------------");
+            //System.out.println("MM0.001-------------------------------------------");
             AMUsuarioView panel = view.getPanel(PanelesVeterinario.MI_PERFIL, AMUsuarioView.class);
-            System.out.println("MM0.01-------------------------------------------");
+            //System.out.println("MM0.01-------------------------------------------");
             if (panel == null) {
                     throw new Exception("No existe el panel");
             }
             if(miPerfilController == null){
-                System.out.println("MM0.1-------------------------------------------");
+                //System.out.println("MM0.1-------------------------------------------");
                 miPerfilController = new AMUsuarioController(panel, miUsu, miUsu.getClass(),true, emf, AccionUsuario.MODIFICAR);
             }
-            System.out.println("MM0.2-------------------------------------------");
+            //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
-            System.out.println("MMm1-------------------------------------------");
+            //System.out.println("MMm1-------------------------------------------");
         }
     }
 }

@@ -27,23 +27,23 @@ public class PostulacionHogarController {
     private EntityManagerFactory emf;
 
     public PostulacionHogarController(PostulacionView view, EntityManagerFactory emf) {
-        System.out.println("ggggggggggggggg1");
+        //System.out.println("ggggggggggggggg1");
         this.view = view;
         this.dao = new GatoJpaController(emf);
         this.daoP = new PostulacionJpaController(emf);
         this.emf = emf;
         abrirSeleccion();
-        System.out.println("ggggggggggggggg2");
+        //System.out.println("ggggggggggggggg2");
         
-        System.out.println("ggggggggggggggg3");
+        //System.out.println("ggggggggggggggg3");
         
-        System.out.println("ggggggggggggggg4");
+        //System.out.println("ggggggggggggggg4");
         view.setSeleccionListaListener(l -> seleccionar());
         view.setPostulacionListener(l -> postular());
     }
     
     private void postular(){
-        System.out.println("ggggggggggggggg5");
+        //System.out.println("ggggggggggggggg5");
         Postulacion p = new Postulacion(nombreUsuario, gato.getId());
         try {
             daoP.create(p);
@@ -57,29 +57,29 @@ public class PostulacionHogarController {
     }
     
     public void iniciarTabla(){
-        System.out.println("ggggggggggggggg6");
+        //System.out.println("ggggggggggggggg6");
         List<Gato> lista = obtenerLista();
-        System.out.println(lista);
-        System.out.println("ggggggggggggggg7");
+        //System.out.println(lista);
+        //System.out.println("ggggggggggggggg7");
         view.reloadTable(lista);
-        System.out.println("ggggggggggggggg8");
+        //System.out.println("ggggggggggggggg8");
     }
     
     private List<Gato> obtenerLista() {
         List<Gato> listaGatos = dao.findGatoEntities();
-        System.out.println(listaGatos);
+        //System.out.println(listaGatos);
         //se quitan los gatos que ya tienen duenio
         listaGatos = listaGatos.stream()
             .filter(g -> g.getUsuario() == null)
             .collect(Collectors.toList());
-        System.out.println(listaGatos);
+        //System.out.println(listaGatos);
         List<Postulacion> listaPostulaciones = daoP.findPostulacionesByPostulante(nombreUsuario);
-        System.out.println(listaPostulaciones);
+        //System.out.println(listaPostulaciones);
         //obtener los idGato de cada postulacion
         List<Long> idsPostulados = listaPostulaciones.stream()
                 .map(Postulacion::getIdGato)
                 .collect(Collectors.toList());
-        System.out.println(listaPostulaciones);
+        //System.out.println(listaPostulaciones);
         //filtrar los gatos que NO tengan el mismo id que idsPostulados
         return listaGatos.stream()
                 .filter(g -> !idsPostulados.contains(g.getId()))

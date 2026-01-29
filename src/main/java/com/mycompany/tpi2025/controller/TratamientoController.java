@@ -16,7 +16,7 @@ public class TratamientoController {
     private Tratamiento tratamiento;
 
     public TratamientoController(TratamientoView view) {
-        System.out.println("AB1");
+        //System.out.println("AB1");
         this.view = view;
         iniciarView();
     }

@@ -119,19 +119,19 @@ public class FamiliaPrincipalController {
     private void mostrarMiPerfil(){
         view.mostrarPanel(PanelesFamilia.MI_PERFIL);
         try {
-            System.out.println("MM0.001-------------------------------------------");
+            //System.out.println("MM0.001-------------------------------------------");
             AMUsuarioView panel = view.getPanel(PanelesFamilia.MI_PERFIL, AMUsuarioView.class);
-            System.out.println("MM0.01-------------------------------------------");
+            //System.out.println("MM0.01-------------------------------------------");
             if (panel == null) {
                     throw new Exception("No existe el panel");
             }
             if(miPerfilController == null){
-                System.out.println("MM0.1-------------------------------------------");
+                //System.out.println("MM0.1-------------------------------------------");
                 miPerfilController = new AMUsuarioController(panel, miUsu, miUsu.getClass(),true, emf, AccionUsuario.MODIFICAR);
             }
-            System.out.println("MM0.2-------------------------------------------");
+            //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
-            System.out.println("MMm1-------------------------------------------");
+            //System.out.println("MMm1-------------------------------------------");
         }
     }
     

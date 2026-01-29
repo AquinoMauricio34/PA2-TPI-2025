@@ -47,7 +47,7 @@ public class Tpi2025 {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            System.out.println("error con el look and feel");
+            //System.out.println("error con el look and feel");
         }
 
 

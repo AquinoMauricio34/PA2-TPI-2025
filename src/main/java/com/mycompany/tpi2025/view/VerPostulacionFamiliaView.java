@@ -22,7 +22,7 @@ public class VerPostulacionFamiliaView extends javax.swing.JPanel {
     public VerPostulacionFamiliaView() {
         initComponents();
         activarAsignacion(false);
-        System.out.println("view.........------------------------------------------------------------------------");
+        //System.out.println("view.........------------------------------------------------------------------------");
     }
 
     /**
@@ -113,9 +113,9 @@ public class VerPostulacionFamiliaView extends javax.swing.JPanel {
         for (Postulacion elem : elementos) {
             model.addRow(new Object[]{elem.getId(),elem.getIdGato(),elem.getPostulante()});
         }
-        System.out.println("MM22-------------------------------------------");
+        //System.out.println("MM22-------------------------------------------");
         tablaDatos.setModel(model);
-        System.out.println("MM223-------------------------------------------");
+        //System.out.println("MM223-------------------------------------------");
     }
     
     public int obtenerIndiceFila(){

@@ -34,7 +34,7 @@ public class CrearDiagnosticoController {
         this.dao = new DiagnosticoJpaController(emf);
         this.daoG = new GatoJpaController(emf);
         diagnostico = new Diagnostico();
-        System.out.println("AB6");
+        //System.out.println("AB6");
         //se crea y guarda el diagnostico para poder luego cargar los tratamientos
         //dao.create(diagnostico);
         iniciar();
@@ -57,14 +57,14 @@ public class CrearDiagnosticoController {
                 daoG.edit(gato);
                 limpiar();
             } catch (Exception e) {
-                System.out.println("Error---------------------------------------------------");
+                //System.out.println("Error---------------------------------------------------");
                 e.printStackTrace();
             }
     }
     
     public void iniciarTabla(){
         List<Tratamiento> lista = obtenerLista();
-        System.out.println(lista);
+        //System.out.println(lista);
         view.reloadTable(lista);
     }
     
@@ -85,14 +85,14 @@ public class CrearDiagnosticoController {
     }
     
     private void mostrarTratamientoView() {
-        System.out.println("AB0.1");
+        //System.out.println("AB0.1");
         TratamientoView viewT = new TratamientoView();
         TratamientoController controller = new TratamientoController(viewT);
         viewT.setCrearListener(l -> {
             controller.crear();
-            System.out.println("AB0.2");
+            //System.out.println("AB0.2");
             this.diagnostico.addTratamiento(controller.getTratamiento());
-            System.out.println("AB0.3");
+            //System.out.println("AB0.3");
             controller.cerrarView();
             iniciarTabla();
         });

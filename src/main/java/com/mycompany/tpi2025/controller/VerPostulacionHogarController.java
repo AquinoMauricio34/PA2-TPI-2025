@@ -28,17 +28,17 @@ public class VerPostulacionHogarController {
     private long idGatoAsignar;
 
     public VerPostulacionHogarController(VerPostulacionHogarView view, Hogar familia, EntityManagerFactory emf) {
-        System.out.println("MM11-------------------------------------------");
+        //System.out.println("MM11-------------------------------------------");
         this.view = view;
         this.daoP = new PostulacionJpaController(emf);
         this.daoF = new HogarJpaController(emf);
         this.daoG = new GatoJpaController(emf);
         this.familia = familia;
-        System.out.println("MM112-------------------------------------------");
+        //System.out.println("MM112-------------------------------------------");
         iniciarView();
-        System.out.println("MM113-------------------------------------------");
+        //System.out.println("MM113-------------------------------------------");
         iniciarTabla();
-        System.out.println("MM-------------------------------------------");
+        //System.out.println("MM-------------------------------------------");
         view.setTitulo("Hogar: "+familia.getNombre());
         view.setSeleccionListaListener(l -> seleccionar());
         view.setAsignarListener(l -> asignar());
@@ -50,8 +50,8 @@ public class VerPostulacionHogarController {
     
     public void iniciarTabla(){
         List<Postulacion> lista = obtenerLista();
-        System.out.println("MM114-------------------------------------------");
-        System.out.println(lista);
+        //System.out.println("MM114-------------------------------------------");
+        //System.out.println(lista);
         view.reloadTable(lista);
     }
     
@@ -61,7 +61,7 @@ public class VerPostulacionHogarController {
             return lista;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("asdflkjaskljasdfjklasdfjklñ");
+            //System.out.println("asdflkjaskljasdfjklasdfjklñ");
         }
         return null;
     }

@@ -22,32 +22,32 @@ public class VerHogarController {
     public VerHogarController(VerHogarView view, EntityManagerFactory emf) {
         this.view = view;
         this.dao = new HogarJpaController(emf);
-        System.out.println("Q1-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q1-----------------------------------------------------------------------------------------------------");
         iniciarView();
-        System.out.println("Q2-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q2-----------------------------------------------------------------------------------------------------");
         iniciarTabla();
-        System.out.println("Q3-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q3-----------------------------------------------------------------------------------------------------");
         view.setSeleccionListaListener(l -> seleccionar());
         view.setCerrarListener(l -> cerrar());
     }
     
     public void iniciarView(){
-        System.out.println("Q4-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q4-----------------------------------------------------------------------------------------------------");
         view.setVisible(true);
         view.setLocationRelativeTo(null);
     }
     
     public void iniciarTabla(){
-        System.out.println("Q5-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q5-----------------------------------------------------------------------------------------------------");
         List<Hogar> lista = obtenerLista();
-        System.out.println("Q6-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q6-----------------------------------------------------------------------------------------------------");
         view.reloadTable(lista);
-        System.out.println("Q7-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q7-----------------------------------------------------------------------------------------------------");
     }
     
     private List<Hogar> obtenerLista(){
         List<Hogar> fam;
-        System.out.println("Q8-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q8-----------------------------------------------------------------------------------------------------");
         try {
              fam = dao.findHogarEntities();
             return fam;
@@ -55,7 +55,7 @@ public class VerHogarController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Q81-----------------------------------------------------------------------------------------------------");
+        //System.out.println("Q81-----------------------------------------------------------------------------------------------------");
         return null;
     }
     
@@ -65,7 +65,7 @@ public class VerHogarController {
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceHogar(id);
             if(indice != -1){
-                System.out.println("Q9-----------------------------------------------------------------------------------------------------");
+                //System.out.println("Q9-----------------------------------------------------------------------------------------------------");
                 view.resaltarFila(indice);
                 hogar = obtenerLista().get(indice);
                 view.activarSeleccion(true);
