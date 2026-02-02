@@ -8,6 +8,7 @@ import com.mycompany.tpi2025.JPAUtil;
 import com.mycompany.tpi2025.Tpi2025;
 import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.controller.enums.AccionUsuario;
+import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Hogar;
@@ -45,6 +46,7 @@ public class VeterinarioPrincipalController {
     private CrearGatoController vmGatoController = null;
     private VerHistorialGatoController verHistorialGatoController = null;
     private CrearDiagnosticoController crearDiagnosticoController=null;
+    private CrearDiagnosticoController verDiagnosticoController = null;
     private PostulacionController postulacionController=null;
     private VerPostulacionFamiliaController verPostulacionFamiliaController = null;
     private VerPostulacionHogarController verPostulacionHogarController = null;
@@ -89,7 +91,7 @@ public class VeterinarioPrincipalController {
     }
 
     public void iniciarView() {
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
         view.addWindowListener(new WindowAdapter() {
             @Override
@@ -145,45 +147,87 @@ public class VeterinarioPrincipalController {
     }
     
     
-    private void establecerComunicacionHistorial_CrearDiagnosticoView(){
+    private void establecerComunicacionHistorial_CrearDiagnosticoView() {
         view.mostrarPanel(PanelesVeterinario.VER_HISTORIAL);
         try {
             VerHistorialGatoView panel = view.getPanel(PanelesVeterinario.VER_HISTORIAL, VerHistorialGatoView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(verHistorialGatoController == null){
+            if (verHistorialGatoController == null) {
                 verHistorialGatoController = new VerHistorialGatoController(panel, emf);
                 panel.setAniadirListener(l -> {
                     //abrir el panel de crear y pasarle el diagnostico
                     //System.out.println("F01");
-                    mostrarCrearDiagnosticoView(PanelesVeterinario.CREAR_DIAGNOSTICO,verHistorialGatoController.getGato());
+                    mostrarCrearDiagnosticoView(PanelesVeterinario.CREAR_DIAGNOSTICO, verHistorialGatoController.getGato(), null);
                 });
                 panel.setSeleccionListener(l -> {
                     //System.out.println("F1");
-                    mostrarCrearDiagnosticoView(PanelesVeterinario.VER_DIAGNOSTICO,verHistorialGatoController.getGato());
+                    mostrarVerDiagnosticoView(PanelesVeterinario.VER_DIAGNOSTICO, verHistorialGatoController.getGato(), verHistorialGatoController.getDiagnostico());
                 });
-            }
+            }else
+                verHistorialGatoController.iniciarTabla();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
     
-    private void mostrarCrearDiagnosticoView(PanelesVeterinario identificador,Gato gato){
+    private void mostrarCrearDiagnosticoView(PanelesVeterinario identificador, Gato gato, Diagnostico diagnostico) {
         view.mostrarPanel(identificador);
         try {
             CrearDiagnosticoView panel = view.getPanel(identificador, CrearDiagnosticoView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(crearDiagnosticoController == null) crearDiagnosticoController = new CrearDiagnosticoController(panel, emf);
+            if (crearDiagnosticoController == null) {
+                crearDiagnosticoController = new CrearDiagnosticoController(panel, diagnostico, emf);
+            } else {
+                if (diagnostico != null) {
+                    crearDiagnosticoController.setDiagnostico(diagnostico);
+                    crearDiagnosticoController.cargarCampos();
+                }else{
+                    crearDiagnosticoController.setDiagnostico(new Diagnostico());
+                }
+            }
             crearDiagnosticoController.setGato(gato);
-            if(identificador==PanelesVeterinario.VER_DIAGNOSTICO){
+            if (identificador == PanelesVeterinario.VER_DIAGNOSTICO) {
                 panel.activarComponentes(false);
-                
-            }else
+            } else {
                 panel.activarComponentes(true);
+                //crearDiagnosticoController.setDiagnostico(null);
+                //crearDiagnosticoController.iniciar();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void mostrarVerDiagnosticoView(PanelesVeterinario identificador, Gato gato, Diagnostico diagnostico) {
+        view.mostrarPanel(identificador);
+        try {
+            CrearDiagnosticoView panel = view.getPanel(identificador, CrearDiagnosticoView.class);
+            if (panel == null) {
+                throw new Exception("No existe el panel");
+            }
+            if (verDiagnosticoController == null) {
+                verDiagnosticoController = new CrearDiagnosticoController(panel, diagnostico, emf);
+            } else {
+                if (diagnostico != null) {
+                    verDiagnosticoController.setDiagnostico(diagnostico);
+                    verDiagnosticoController.cargarCampos();
+                }else{
+                    verDiagnosticoController.setDiagnostico(new Diagnostico());
+                }
+            }
+            verDiagnosticoController.setGato(gato);
+            if (identificador == PanelesVeterinario.VER_DIAGNOSTICO) {
+                panel.activarComponentes(false);
+            } else {
+                panel.activarComponentes(true);
+                //crearDiagnosticoController.setDiagnostico(null);
+                //crearDiagnosticoController.iniciar();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

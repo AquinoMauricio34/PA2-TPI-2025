@@ -23,7 +23,7 @@ public class ZonaController {
 
     public ZonaController(ZonaView view, CrearGatoController padre, EntityManagerFactory emf) {
         this.view = view;
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
         this.dao = new ZonaJpaController(emf);
         this.padre = padre;

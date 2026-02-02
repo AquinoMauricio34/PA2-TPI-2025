@@ -87,7 +87,7 @@ public class LoginController {
     }
 
     private void iniciarView() {
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
         view.addWindowListener(new WindowAdapter() {
             @Override

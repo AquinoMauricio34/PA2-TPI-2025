@@ -12,8 +12,8 @@ import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Postulacion;
 import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
 import jakarta.persistence.EntityManagerFactory;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,13 +39,14 @@ public class VerPostulacionFamiliaController {
         //System.out.println("MM113-------------------------------------------");
         iniciarTabla();
         //System.out.println("MM-------------------------------------------");
-        view.setTitulo("Familia: "+familia.getNombre());
+        
         view.setSeleccionListaListener(l -> seleccionar());
         view.setAsignarListener(l -> asignar());
     }
     
     public void iniciarView(){
         view.setVisible(true);
+        view.setTitulo("Familia: "+familia.getNombre());
     }
     
     public void iniciarTabla(){
@@ -88,8 +89,11 @@ public class VerPostulacionFamiliaController {
     
     private void asignar(){
         try {
+            if(!familia.isAptoAdopcion()) throw new Exception("La familia no es apta para adoptar.\nSolicitar emisión de adopción al veterinario.");
             Gato g = daoG.findGato(idGatoAsignar);
             familia.addGato(g);
+            daoG.edit(g);
+            familia.setAptoAdopcion(false);
             daoF.edit(familia);
             //eliminar todas las postulaciones con el idGato
             List<Postulacion> lista = daoP.findPostulacionesByIdGato(idGatoAsignar);
@@ -98,6 +102,12 @@ public class VerPostulacionFamiliaController {
             }
             iniciarTabla();
         } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(view, e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void setFamilia(Familia f){
+        this.familia = f;
     }
 }

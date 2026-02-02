@@ -94,7 +94,7 @@ public class VoluntarioPrincipalController {
     }
 
     public void iniciarView() {
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
         view.addWindowListener(new WindowAdapter() {
             @Override
@@ -133,31 +133,33 @@ public class VoluntarioPrincipalController {
     
     
     
-    private void establecerComunicacionBuscarView_VerPostulacion(){
+    private void establecerComunicacionBuscarView_VerPostulacion() {
         view.mostrarPanel(PanelesVoluntario.BUSCAR_FAMILIA_ASIGNACION);
         try {
             BuscarView panel = view.getPanel(PanelesVoluntario.BUSCAR_FAMILIA_ASIGNACION, BuscarView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
-            if(!BuscarControllers.containsKey(panel)){
+            if (!BuscarControllers.containsKey(panel)) {
                 //System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Familia>(panel, Familia.class, AccionBuscar.SELECCION, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+                BuscarControllers.put(panel, new BuscarController<Familia>(panel, Familia.class, AccionBuscar.SELECCION, new String[]{"Nombre", "Nombre de Usuario", "Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Familia f = (Familia) BuscarControllers.get(panel).getUsuario();
-                    if(f.isAptoAdopcion()){
+                    System.out.println("familia nombre: " + f.getNombre());
+                    if (f.isAptoAdopcion()) {
                         mostrarVerPostulacionFamiliaView(f);
-                    }else
-                        JOptionPane.showMessageDialog(panel, "El usuario \""+f.getNombreUsuario()+"\" no tiene emitido la aptitud para la adopción.");
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "El usuario \"" + f.getNombreUsuario() + "\" no tiene emitido la aptitud para la adopción.");
+                    }
                 });
-            }else
-                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre","Nombre de Usuario","Telefono"});//siempre que se muestra, se actualiza la tabla
-            
+            } else {
+                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre", "Nombre de Usuario", "Telefono"});//siempre que se muestra, se actualiza la tabla
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
     
     private void mostrarVerPostulacionFamiliaView(Familia familia) {
@@ -167,61 +169,69 @@ public class VoluntarioPrincipalController {
             VerPostulacionFamiliaView panel = view.getPanel(PanelesVoluntario.ASIGNAR_GATO_FAMILIA, VerPostulacionFamiliaView.class);
             //System.out.println("MM0.01-------------------------------------------");
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(verPostulacionFamiliaController == null){
+            if (verPostulacionFamiliaController == null) {
                 //System.out.println("MM0.1-------------------------------------------");
-                verPostulacionFamiliaController = new VerPostulacionFamiliaController(panel,familia, emf);
-            }else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
+                verPostulacionFamiliaController = new VerPostulacionFamiliaController(panel, familia, emf);
+            } else {// esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
+                verPostulacionFamiliaController.setFamilia(familia);
+                verPostulacionFamiliaController.iniciarView();
                 verPostulacionFamiliaController.iniciarTabla();
+            }
             //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
             //System.out.println("MMm1-------------------------------------------");
         }
     }
-    private void establecerComunicacionBuscarHogarView_VerPostulacion(){
+    private void establecerComunicacionBuscarHogarView_VerPostulacion() {
         view.mostrarPanel(PanelesVoluntario.BUSCAR_HOGAR_ASIGNACION);
         try {
             BuscarView panel = view.getPanel(PanelesVoluntario.BUSCAR_HOGAR_ASIGNACION, BuscarView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
-            if(!BuscarControllers.containsKey(panel)){
+            if (!BuscarControllers.containsKey(panel)) {
                 //System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Hogar>(panel, Hogar.class, AccionBuscar.DETALLES, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+                BuscarControllers.put(panel, new BuscarController<Hogar>(panel, Hogar.class, AccionBuscar.SELECCION, new String[]{"Nombre", "Nombre de Usuario", "Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Hogar h = (Hogar) BuscarControllers.get(panel).getUsuario();
-                    if(h.isAptoAdopcion()){
+                    if (h.isAptoAdopcion()) {
                         mostrarVerPostulacionHogarView(h);
-                    }else
-                        JOptionPane.showMessageDialog(panel, "El usuario \""+h.getNombreUsuario()+"\" no tiene emitido la aptitud para la adopción.");
+                    } else {
+                        JOptionPane.showMessageDialog(panel, "El usuario \"" + h.getNombreUsuario() + "\" no tiene emitido la aptitud para la adopción.");
+                    }
                 });
-            }else
-                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre","Nombre de Usuario","Telefono"});//siempre que se muestra, se actualiza la tabla
-            
+            } else {
+                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre", "Nombre de Usuario", "Telefono"});//siempre que se muestra, se actualiza la tabla
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
     
     private void mostrarVerPostulacionHogarView(Hogar hogar) {
         //System.out.println(hogar);
         view.mostrarPanel(PanelesVoluntario.ASIGNAR_GATO_HOGAR);
-            //System.out.println("MM0.0001-------------------------------------------");
+        //System.out.println("MM0.0001-------------------------------------------");
         try {
             //System.out.println("MM0.001-------------------------------------------");
             VerPostulacionHogarView panel = view.getPanel(PanelesVoluntario.ASIGNAR_GATO_HOGAR, VerPostulacionHogarView.class);
             //System.out.println("MM0.01-------------------------------------------");
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(verPostulacionHogarController == null){
+            if (verPostulacionHogarController == null) {
                 //System.out.println("MM0.1-------------------------------------------");
-                verPostulacionHogarController = new VerPostulacionHogarController(panel,hogar, emf);
-            }else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
-                verPostulacionHogarController.iniciarTabla();
+                verPostulacionHogarController = new VerPostulacionHogarController(panel, hogar, emf);
+            } else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
+            {
+                verPostulacionHogarController.setHogar(hogar);
+            }
+            verPostulacionHogarController.iniciarView();
+            verPostulacionHogarController.iniciarTabla();
             //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
             //System.out.println("MMm1-------------------------------------------");

@@ -26,6 +26,10 @@ public class GatoDeFamiliaController {
         this.view = view;
         this.dao = new GatoJpaController(emf);
         this.emf = emf;
+        iniciar();
+    }
+    
+    public void iniciar(){
         abrirSeleccion();
     }
     

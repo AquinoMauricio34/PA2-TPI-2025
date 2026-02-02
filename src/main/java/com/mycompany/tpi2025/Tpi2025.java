@@ -16,7 +16,6 @@ import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Postulacion;
-import com.mycompany.tpi2025.model.Tratamiento;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
@@ -49,7 +48,6 @@ public class Tpi2025 {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             //System.out.println("error con el look and feel");
         }
-
 
         UsuarioJpaController dao = new UsuarioJpaController(emf);
         GatoJpaController daoG = new GatoJpaController(emf);
@@ -90,7 +88,7 @@ public class Tpi2025 {
         );
 
         List<Usuario> vets = Arrays.asList(
-                new Veterinario("Dra. Sofia Ramirez", "vetanimal", "3764123456", "sofiveter"),
+                new Veterinario("Dra. Sofia Ramirez", "v", "3764123456", "v"),
                 new Veterinario("Dr. Jorge Silva", "jorgevet", "3764234567", "jorgesilva"),
                 new Veterinario("Dra. Maria Torres", "mvetcare", "3764345678", "mariatorres"),
                 new Veterinario("Dr. Luis Fernandez", "luisvet", "3764456789", "luisfern"),
@@ -99,7 +97,7 @@ public class Tpi2025 {
         );
 
         List<Usuario> vols = Arrays.asList(
-                new Voluntario("Juan Perez", "juanvol", "3764567890", "juanperezv"),
+                new Voluntario("Juan Perez", "vo", "3764567890", "vo"),
                 new Voluntario("Maria Garcia", "mvolunteer", "3764678901", "mariagarc"),
                 new Voluntario("Roberto Diaz", "robvol", "3764789012", "robertodz"),
                 new Voluntario("Elena Castro", "elenavol", "3764890123", "elenacast"),
@@ -109,7 +107,7 @@ public class Tpi2025 {
         );
 
         List<Usuario> familias = Arrays.asList(
-                new Familia("Familia Rodriguez", "famrodri", "3764901234", "famrodriguez"),
+                new Familia("Familia Rodriguez", "f", "3764901234", "f"),
                 new Familia("Familia Herrera", "famherrera", "3764012345", "famherrera"),
                 new Familia("Familia Morales", "fammorales", "3764123450", "fammorales"),
                 new Familia("Familia Rios", "famrios", "3764234501", "famrios"),
@@ -118,12 +116,12 @@ public class Tpi2025 {
         );
 
         List<Usuario> hogares = Arrays.asList(
-                new Hogar("Hogar San José", "hogsanjose", "3764123456", "hogsanjose", false),
+                new Hogar("Hogar San José", "h", "3764123456", "h", false),
                 new Hogar("Hogar Santa María", "hogstmaria", "3764234567", "hogstmaria", false),
                 new Hogar("Hogar Esperanza", "hogesperanza", "3764345678", "hogesperanza", false),
-                new Hogar("Hogar Nuevo Amanecer", "hogamanecer", "3764456789", "hogamanecer", false),
+                new Hogar("Hogar Nuevo Amanecer", "hogamanecer", "3764456789", "hogamanecer", true),
                 new Hogar("Hogar Los Patitas", "hogpatitas", "3764567899", "hogpatitas", false),
-                new Hogar("Hogar Refugio Gato Feliz", "gatofeliz", "3764678909", "gatofeliz", false)
+                new Hogar("Hogar Refugio Gato Feliz", "gatofeliz", "3764678909", "gatofeliz", true)
         );
 
         for (Usuario u : admins) try {
@@ -146,21 +144,6 @@ public class Tpi2025 {
         for (Usuario u : hogares) try {
             dao.create(u);
         } catch (Exception ignored) {
-        }
-
-        List<Tratamiento> tratamientosBase = Arrays.asList(
-                new Tratamiento("Desparasitación interna", LocalDate.now().toString(), LocalDate.now().plusDays(3).toString()),
-                new Tratamiento("Antibióticos por infección", LocalDate.now().minusDays(1).toString(), LocalDate.now().plusDays(6).toString()),
-                new Tratamiento("Curación de heridas", LocalDate.now().minusDays(2).toString(), LocalDate.now().plusDays(4).toString()),
-                new Tratamiento("Tratamiento antipulgas", LocalDate.now().toString(), LocalDate.now().plusDays(1).toString()),
-                new Tratamiento("Suero por deshidratación", LocalDate.now().toString(), LocalDate.now().plusDays(2).toString())
-        );
-
-        for (Tratamiento t : tratamientosBase) {
-            try {
-                daoT.create(t);
-            } catch (Exception ignored) {
-            }
         }
 
         List<Diagnostico> diagnosticosBase = Arrays.asList(
@@ -215,15 +198,22 @@ public class Tpi2025 {
             g.setZona(zonas.get(i % zonas.size())); // para que tengan zona
             g.setHistorial();                       // crear historial
 
-            Diagnostico d = diagnosticosBase.get(i); // diagnóstico correspondiente
-
-            g.getHistorial().addDiagnostico(d);
-
             try {
                 daoG.create(g);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
+            Diagnostico d = diagnosticosBase.get(i); // diagnóstico correspondiente
+
+            g.getHistorial().addDiagnostico(d);
+            
+            try {
+                daoD.create(d);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
         List<Postulacion> postulaciones = Arrays.asList(
@@ -231,25 +221,25 @@ public class Tpi2025 {
                 new Postulacion("a", 3),
                 new Postulacion("carlosr", 5),
                 new Postulacion("sofiveter", 7),
-                new Postulacion("juanperezv", 8),
+                new Postulacion("juanperezv", 11),
                 new Postulacion("famherrera", 9),
                 new Postulacion("famrios", 10),
                 new Postulacion("hogsanjose", 11),
                 new Postulacion("gatofeliz", 12),
                 new Postulacion("hogpatitas", 13),
                 new Postulacion("famcabrera", 14),
-                new Postulacion("famrodriguez", 18),
+                new Postulacion("famrodriguez", 5),
                 new Postulacion("msuarezv", 19),
                 new Postulacion("lgvol", 20),
-                new Postulacion("fambenitez", 21),
-                new Postulacion("mariagarc", 22),
-                new Postulacion("robertodz", 23),
-                new Postulacion("elenacast", 24),
-                new Postulacion("msuarezv", 26),
-                new Postulacion("gatofeliz", 27),
-                new Postulacion("hogpatitas", 19),
-                new Postulacion("famrios", 30),
-                new Postulacion("anamtz", 33)
+                new Postulacion("fambenitez", 5),
+                new Postulacion("famherrera", 1), // Cambiado de 22 a 1
+                new Postulacion("robertodz", 2), // Cambiado de 23 a 2
+                new Postulacion("elenacast", 3), // Cambiado de 24 a 3
+                new Postulacion("famherrera", 4), // Cambiado de 26 a 4
+                new Postulacion("gatofeliz", 5), // Cambiado de 27 a 5
+                new Postulacion("hogpatitas", 11),
+                new Postulacion("famrios", 6), // Cambiado de 30 a 6
+                new Postulacion("anamtz", 5)
         );
 
         for (Postulacion px : postulaciones) {

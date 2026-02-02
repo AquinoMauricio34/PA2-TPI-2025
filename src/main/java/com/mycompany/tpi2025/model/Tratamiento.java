@@ -22,7 +22,7 @@ public class Tratamiento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "diagnostico_id")
     private Diagnostico diagnostico=null;
 

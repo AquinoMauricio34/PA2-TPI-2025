@@ -19,6 +19,7 @@ public class AMUsuarioView extends javax.swing.JPanel {
     public AMUsuarioView() {
         initComponents();
         transitorio.setVisible(false);
+        estadoNombreUsuario(true);
     }
 
     /**
@@ -186,6 +187,9 @@ public class AMUsuarioView extends javax.swing.JPanel {
         this.transitorio.setVisible(estado);
     }
 
+    public void estadoNombreUsuario(boolean b) {
+        nombreDeUsuiario.setEditable(b);
+    }
     public void estadoContrasenia(boolean b) {
         contrasenia.setEditable(b);
     }

@@ -33,7 +33,7 @@ public class VerHogarController {
     
     public void iniciarView(){
         //System.out.println("Q4-----------------------------------------------------------------------------------------------------");
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
     }
     

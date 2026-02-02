@@ -6,15 +6,15 @@ package com.mycompany.tpi2025.DAOImpl;
 
 import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
 import com.mycompany.tpi2025.model.Diagnostico;
-import java.io.Serializable;
-import jakarta.persistence.Query;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import com.mycompany.tpi2025.model.HistorialGato;
 import com.mycompany.tpi2025.model.Tratamiento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,39 +33,67 @@ public class DiagnosticoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
+//    public void create(Diagnostico diagnostico) {
+//        if (diagnostico.getTratamientos() == null) {
+//            diagnostico.setTratamientos(new ArrayList<Tratamiento>());
+//        }
+//        EntityManager em = null;
+//        try {
+//            em = getEntityManager();
+//            em.getTransaction().begin();
+//            HistorialGato historial = diagnostico.getHistorial();
+//            if (historial != null) {
+//                historial = em.getReference(historial.getClass(), historial.getId());
+//                diagnostico.setHistorial(historial);
+//            }
+//            List<Tratamiento> attachedTratamientos = new ArrayList<Tratamiento>();
+//            for (Tratamiento tratamientosTratamientoToAttach : diagnostico.getTratamientos()) {
+//                tratamientosTratamientoToAttach = em.getReference(tratamientosTratamientoToAttach.getClass(), tratamientosTratamientoToAttach.getId());
+//                attachedTratamientos.add(tratamientosTratamientoToAttach);
+//            }
+//            diagnostico.setTratamientos(attachedTratamientos);
+//            em.persist(diagnostico);
+//            if (historial != null) {
+//                historial.getDiagnosticos().add(diagnostico);
+//                historial = em.merge(historial);
+//            }
+//            for (Tratamiento tratamientosTratamiento : diagnostico.getTratamientos()) {
+//                Diagnostico oldDiagnosticoOfTratamientosTratamiento = tratamientosTratamiento.getDiagnostico();
+//                tratamientosTratamiento.setDiagnostico(diagnostico);
+//                tratamientosTratamiento = em.merge(tratamientosTratamiento);
+//                if (oldDiagnosticoOfTratamientosTratamiento != null) {
+//                    oldDiagnosticoOfTratamientosTratamiento.getTratamientos().remove(tratamientosTratamiento);
+//                    oldDiagnosticoOfTratamientosTratamiento = em.merge(oldDiagnosticoOfTratamientosTratamiento);
+//                }
+//            }
+//            em.getTransaction().commit();
+//        } finally {
+//            if (em != null) {
+//                em.close();
+//            }
+//        }
+//    }
     public void create(Diagnostico diagnostico) {
-        if (diagnostico.getTratamientos() == null) {
-            diagnostico.setTratamientos(new ArrayList<Tratamiento>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+
+            // Historial EXISTENTE → referencia válida
             HistorialGato historial = diagnostico.getHistorial();
             if (historial != null) {
-                historial = em.getReference(historial.getClass(), historial.getId());
+                historial = em.find(HistorialGato.class, historial.getId());
                 diagnostico.setHistorial(historial);
             }
-            List<Tratamiento> attachedTratamientos = new ArrayList<Tratamiento>();
-            for (Tratamiento tratamientosTratamientoToAttach : diagnostico.getTratamientos()) {
-                tratamientosTratamientoToAttach = em.getReference(tratamientosTratamientoToAttach.getClass(), tratamientosTratamientoToAttach.getId());
-                attachedTratamientos.add(tratamientosTratamientoToAttach);
+
+            // Setear relación en memoria (CLAVE)
+            for (Tratamiento t : diagnostico.getTratamientos()) {
+                t.setDiagnostico(diagnostico);
             }
-            diagnostico.setTratamientos(attachedTratamientos);
+
+            // Persistir SOLO el padre
             em.persist(diagnostico);
-            if (historial != null) {
-                historial.getDiagnosticos().add(diagnostico);
-                historial = em.merge(historial);
-            }
-            for (Tratamiento tratamientosTratamiento : diagnostico.getTratamientos()) {
-                Diagnostico oldDiagnosticoOfTratamientosTratamiento = tratamientosTratamiento.getDiagnostico();
-                tratamientosTratamiento.setDiagnostico(diagnostico);
-                tratamientosTratamiento = em.merge(tratamientosTratamiento);
-                if (oldDiagnosticoOfTratamientosTratamiento != null) {
-                    oldDiagnosticoOfTratamientosTratamiento.getTratamientos().remove(tratamientosTratamiento);
-                    oldDiagnosticoOfTratamientosTratamiento = em.merge(oldDiagnosticoOfTratamientosTratamiento);
-                }
-            }
+
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -214,5 +242,5 @@ public class DiagnosticoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

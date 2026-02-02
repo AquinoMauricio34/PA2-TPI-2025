@@ -33,7 +33,8 @@ public class VerFamiliaController {
     
     public void iniciarView(){
         //System.out.println("Q4-----------------------------------------------------------------------------------------------------");
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
+        view.toFront();
         view.setLocationRelativeTo(null);
     }
     

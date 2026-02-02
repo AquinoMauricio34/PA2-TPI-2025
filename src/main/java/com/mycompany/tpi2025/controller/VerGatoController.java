@@ -31,7 +31,7 @@ public class VerGatoController {
     }
     
     public void iniciarView(){
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
     }
     

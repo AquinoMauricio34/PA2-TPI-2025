@@ -37,7 +37,7 @@ public class SignInController {
     }
 
     private void iniciarView() {
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
     }
 

@@ -4,7 +4,6 @@
  */
 package com.mycompany.tpi2025.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class HistorialGato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "historial", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "historial", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Diagnostico> diagnosticos = new ArrayList<>();
 
 

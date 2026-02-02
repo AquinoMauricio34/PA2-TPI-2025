@@ -26,7 +26,7 @@ public class GatoDeHogarController {
         this.view = view;
         this.dao = new GatoJpaController(emf);
         this.emf = emf;
-        abrirSeleccion();
+        iniciar();
     }
     
     public void iniciarTabla(){
@@ -46,6 +46,10 @@ public class GatoDeHogarController {
             vview.dispose();
             iniciarTabla();
         });
+    }
+
+    void iniciar() {
+        abrirSeleccion();
     }
     
     

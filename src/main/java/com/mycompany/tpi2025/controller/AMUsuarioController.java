@@ -39,6 +39,7 @@ public class AMUsuarioController<T extends Usuario> {
     
     private void iniciar(AccionUsuario tipoAccion,boolean mostrarContrasenia){
         view.setAccionListener(l -> accion(tipoAccion));
+        view.estadoNombreUsuario(false);
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
         view.setAccionTexto(tipoAccion.getTexto());
         if(tipoAccion == AccionUsuario.MODIFICAR){
@@ -88,9 +89,11 @@ public class AMUsuarioController<T extends Usuario> {
     private void modificarUsuario() {
         try {
             usuario.setNombre(view.getNombre());
-            usuario.setContrasenia(view.getContrasenia());
             usuario.setTelefono(view.getTelefono());
             usuario.setNombreUsuario(view.getNombreDeUsuiario());
+            if(usuario instanceof Hogar hog){
+                hog.setTransitorio(view.isTransitorio());
+            }
             dao.edit(usuario);
             view.mostrarMensaje("Usuario modificado correctamente");
         } catch (Exception ex) {

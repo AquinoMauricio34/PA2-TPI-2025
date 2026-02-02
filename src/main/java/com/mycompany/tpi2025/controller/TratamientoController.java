@@ -19,15 +19,17 @@ public class TratamientoController {
         //System.out.println("AB1");
         this.view = view;
         iniciarView();
+        view.setCancelarListener(l -> cerrarView());
     }
     
     public void iniciarView(){
-        view.setVisible(true);
+        view.setVisible(true);view.toFront();
         view.setLocationRelativeTo(null);
     }
     
     public void crear(){
         tratamiento = new Tratamiento(view.getDescripcion(), view.getFechaInicio(), view.getFechaFin());
+        tratamiento.setAbandono_tratamiento(view.getAbandono());
     }
 
     public Tratamiento getTratamiento() {
@@ -37,6 +39,10 @@ public class TratamientoController {
     public void cerrarView(){
         view.dispose();
         view = null;
+    }
+    
+    public void setTratamiento(Tratamiento t){
+        this.tratamiento = t;
     }
     
     

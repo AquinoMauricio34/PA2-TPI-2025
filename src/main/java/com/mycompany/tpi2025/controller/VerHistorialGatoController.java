@@ -33,7 +33,9 @@ public class VerHistorialGatoController {
         this.emf = emf;
         iniciarView();
         abrirSeleccion();
+        //listener para detectar si se selecciona una fila de diagnostico
         view.setSeleccionListaListener(l -> seleccionar());
+        //seleccionar gato para mostrar su historia
         view.setSeleccionarGatoListener(l -> abrirSeleccion());
         view.setEstudiosListener(l -> abrirEstudios());
     }
@@ -70,10 +72,12 @@ public class VerHistorialGatoController {
     }
     
     private void seleccionar() {
+                System.out.println("seleeccionarrrrrrr");
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceDiagnostico(Long.parseLong(id));
+                System.out.println("indice: "+indice);
             if(indice != -1){
                 diagnostico = obtenerLista().get(indice);
                 view.activarSeleccion(true);

@@ -19,7 +19,7 @@ import java.util.Optional;
 @Entity
 public class Familia extends Usuario{
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Gato> gatos = new ArrayList<>();;
+    private List<Gato> gatos = new ArrayList<>();
 
     private boolean aptoAdopcion=false;
     //para que el hibernate funcione necesita de un constructor vacio

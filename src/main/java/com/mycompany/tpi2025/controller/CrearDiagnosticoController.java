@@ -21,6 +21,7 @@ import java.util.List;
  * @author aquin
  */
 public class CrearDiagnosticoController {
+
     private CrearDiagnosticoView view;
     private Diagnostico diagnostico = null;
     private TratamientoJpaController daoT;
@@ -28,52 +29,75 @@ public class CrearDiagnosticoController {
     private GatoJpaController daoG;
     private Gato gato = null;
 
-    public CrearDiagnosticoController(CrearDiagnosticoView view, EntityManagerFactory emf) {
+    public CrearDiagnosticoController(CrearDiagnosticoView view, Diagnostico diagnostico, EntityManagerFactory emf) {
         this.view = view;
         this.daoT = new TratamientoJpaController(emf);
         this.dao = new DiagnosticoJpaController(emf);
         this.daoG = new GatoJpaController(emf);
-        diagnostico = new Diagnostico();
+        iniciar();
+        if (diagnostico == null) {
+            this.diagnostico = new Diagnostico();
+        }else if (diagnostico != null) {
+            this.diagnostico = diagnostico;
+            cargarCampos();
+        }
         //System.out.println("AB6");
         //se crea y guarda el diagnostico para poder luego cargar los tratamientos
         //dao.create(diagnostico);
-        iniciar();
         view.setCreacionListener(l -> crear());
         //view.setSeleccionListaListener(l -> seleccionar());
         view.setAniadirTratamientoListener(l -> mostrarTratamientoView());
     }
 
-    private void iniciar() {//muestra la view
+    public void iniciar() {//muestra la view
         view.setVisible(true);
         limpiar();
     }
 
-    private void crear() {//se crea y se envia al padre
-            diagnostico.setDiagnostico(view.getTituloDiag());
-            diagnostico.setDescripcion(view.getDescripcionTA());
-            diagnostico.setFecha_diagnostico(LocalDate.now());
-            gato.getHistorial().addDiagnostico(diagnostico);
-            try {
-                daoG.edit(gato);
-                limpiar();
-            } catch (Exception e) {
-                //System.out.println("Error---------------------------------------------------");
-                e.printStackTrace();
-            }
+    public void cargarCampos() {
+        view.setDescripcionTA(diagnostico.getDescripcion());
+        view.setTituloDiag(diagnostico.getDiagnostico());
+        iniciarTabla();
     }
-    
-    public void iniciarTabla(){
+
+    private void crear() {//se crea y se envia al padre
+        System.out.println("titulo diag crear: "+view.getTituloDiag());
+        diagnostico.setDiagnostico(view.getTituloDiag());
+        diagnostico.setDescripcion(view.getDescripcionTA());
+        diagnostico.setFecha_diagnostico(LocalDate.now());
+        //se setea el historial del diagnostico antes de persistir el diag
+        gato.getHistorial().addDiagnostico(diagnostico);
+        try {
+            System.out.println("TRYcreate diag-----------------------------------------------------------------------");
+            dao.create(diagnostico);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("TRYedit-----------------------------------------------------------------------");
+            daoG.edit(gato);
+            diagnostico = null;
+            diagnostico = new Diagnostico();
+            iniciar();
+        } catch (Exception e) {
+            //System.out.println("Error---------------------------------------------------");
+            e.printStackTrace();
+        }
+    }
+
+    public void iniciarTabla() {
         List<Tratamiento> lista = obtenerLista();
         //System.out.println(lista);
         view.reloadTable(lista);
     }
-    
-    private List<Tratamiento> obtenerLista(){
+
+    private List<Tratamiento> obtenerLista() {
         return diagnostico.getTratamientos();
     }
-    private int obtenerIndiceTratamiento(long idTratamiento){
+
+    private int obtenerIndiceTratamiento(long idTratamiento) {
         List<Tratamiento> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId()==idTratamiento).findFirst().orElse(null));
+        return lista.indexOf(lista.stream().filter(v -> v.getId() == idTratamiento).findFirst().orElse(null));
     }
 
     public void setDiagnostico(Diagnostico diagnostico) {
@@ -83,7 +107,7 @@ public class CrearDiagnosticoController {
     public void setGato(Gato gato) {
         this.gato = gato;
     }
-    
+
     private void mostrarTratamientoView() {
         //System.out.println("AB0.1");
         TratamientoView viewT = new TratamientoView();
@@ -92,11 +116,12 @@ public class CrearDiagnosticoController {
             controller.crear();
             //System.out.println("AB0.2");
             this.diagnostico.addTratamiento(controller.getTratamiento());
+            controller.setTratamiento(null);
             //System.out.println("AB0.3");
             controller.cerrarView();
             iniciarTabla();
         });
-        
+
     }
 
     private void limpiar() {
