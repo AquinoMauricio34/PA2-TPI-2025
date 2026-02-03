@@ -10,7 +10,7 @@ import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.view.EstudiosView;
 import com.mycompany.tpi2025.view.VerGatoView;
-import com.mycompany.tpi2025.view.VerHistorialGatoView;
+import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 

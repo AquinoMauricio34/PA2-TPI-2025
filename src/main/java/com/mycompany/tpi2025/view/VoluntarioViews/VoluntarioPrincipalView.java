@@ -4,15 +4,15 @@
  */
 package com.mycompany.tpi2025.view.VoluntarioViews;
 
-import com.mycompany.tpi2025.view.AMUsuarioView;
-import com.mycompany.tpi2025.view.BuscarView;
-import com.mycompany.tpi2025.view.CrearGatoView;
+import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
+import com.mycompany.tpi2025.view.JPanels.BuscarView;
+import com.mycompany.tpi2025.view.JPanels.CrearGatoView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
-import com.mycompany.tpi2025.view.PostulacionView;
-import com.mycompany.tpi2025.view.TareaRealizadaView;
-import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
-import com.mycompany.tpi2025.view.VerPostulacionHogarView;
-import com.mycompany.tpi2025.view.VisitaSeguimientoView;
+import com.mycompany.tpi2025.view.JPanels.PostulacionView;
+import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
+import com.mycompany.tpi2025.view.JPanels.VerPostulacionFamiliaView;
+import com.mycompany.tpi2025.view.JPanels.VerPostulacionHogarView;
+import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;

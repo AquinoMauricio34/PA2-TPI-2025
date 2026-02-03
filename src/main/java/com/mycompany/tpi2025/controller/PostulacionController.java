@@ -8,7 +8,7 @@ import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.DAOImpl.PostulacionJpaController;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Postulacion;
-import com.mycompany.tpi2025.view.PostulacionView;
+import com.mycompany.tpi2025.view.JPanels.PostulacionView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -10,7 +10,7 @@ import com.mycompany.tpi2025.DAOImpl.TratamientoJpaController;
 import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Tratamiento;
-import com.mycompany.tpi2025.view.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.JPanels.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.TratamientoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.time.LocalDate;

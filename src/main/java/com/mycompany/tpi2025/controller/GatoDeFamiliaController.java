@@ -7,7 +7,7 @@ package com.mycompany.tpi2025.controller;
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Gato;
-import com.mycompany.tpi2025.view.GatosDeFamiliaView;
+import com.mycompany.tpi2025.view.JPanels.GatosDeFamiliaView;
 import com.mycompany.tpi2025.view.VerFamiliaView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;

@@ -5,6 +5,7 @@
 
 package com.mycompany.tpi2025.view;
 
+import com.mycompany.tpi2025.view.JPanels.QRPanel;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 

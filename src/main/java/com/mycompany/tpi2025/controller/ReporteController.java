@@ -9,7 +9,7 @@ import com.mycompany.tpi2025.DAOImpl.ZonaJpaController;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Zona;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
-import com.mycompany.tpi2025.view.ReporteView;
+import com.mycompany.tpi2025.view.JPanels.ReporteView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;

@@ -4,12 +4,12 @@
  */
 package com.mycompany.tpi2025.view.VeterinarioViews;
 
-import com.mycompany.tpi2025.view.AMUsuarioView;
-import com.mycompany.tpi2025.view.BuscarView;
-import com.mycompany.tpi2025.view.CrearDiagnosticoView;
-import com.mycompany.tpi2025.view.CrearGatoView;
+import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
+import com.mycompany.tpi2025.view.JPanels.BuscarView;
+import com.mycompany.tpi2025.view.JPanels.CrearDiagnosticoView;
+import com.mycompany.tpi2025.view.JPanels.CrearGatoView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
-import com.mycompany.tpi2025.view.VerHistorialGatoView;
+import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;

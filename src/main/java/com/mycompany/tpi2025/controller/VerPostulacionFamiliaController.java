@@ -10,7 +10,7 @@ import com.mycompany.tpi2025.DAOImpl.PostulacionJpaController;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Postulacion;
-import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
+import com.mycompany.tpi2025.view.JPanels.VerPostulacionFamiliaView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 import javax.swing.JOptionPane;

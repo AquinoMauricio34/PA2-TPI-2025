@@ -9,7 +9,7 @@ import com.mycompany.tpi2025.controller.enums.AccionBuscar;
 import com.mycompany.tpi2025.model.Familia;
 import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
-import com.mycompany.tpi2025.view.BuscarView;
+import com.mycompany.tpi2025.view.JPanels.BuscarView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 import javax.swing.JOptionPane;

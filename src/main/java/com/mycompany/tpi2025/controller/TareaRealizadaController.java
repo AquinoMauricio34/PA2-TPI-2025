@@ -7,7 +7,7 @@ package com.mycompany.tpi2025.controller;
 import com.mycompany.tpi2025.DAOImpl.TareaJpaController;
 import com.mycompany.tpi2025.model.Tarea;
 import com.mycompany.tpi2025.model.Voluntario;
-import com.mycompany.tpi2025.view.TareaRealizadaView;
+import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
 import jakarta.persistence.EntityManagerFactory;
 import java.time.LocalDate;
 import java.time.LocalTime;

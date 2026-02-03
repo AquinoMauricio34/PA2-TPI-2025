@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.tpi2025.view;
+package com.mycompany.tpi2025.view.JPanels;
 
 import com.mycompany.tpi2025.model.Postulacion;
 import java.awt.event.ActionListener;
@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author aquin
  */
-public class VerPostulacionHogarView extends javax.swing.JPanel {
+public class VerPostulacionFamiliaView extends javax.swing.JPanel {
 
     /**
-     * Creates new form VerPostulacionHogarView
+     * Creates new form VerPostulacionFamiliaView
      */
-    public VerPostulacionHogarView() {
+    public VerPostulacionFamiliaView() {
         initComponents();
         activarAsignacion(false);
         //System.out.println("view.........------------------------------------------------------------------------");

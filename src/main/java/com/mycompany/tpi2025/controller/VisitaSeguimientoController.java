@@ -8,7 +8,7 @@ import com.mycompany.tpi2025.DAOImpl.VisitaSeguimientoJpaController;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.VisitaSeguimiento;
 import com.mycompany.tpi2025.view.VerGatoView;
-import com.mycompany.tpi2025.view.VisitaSeguimientoView;
+import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

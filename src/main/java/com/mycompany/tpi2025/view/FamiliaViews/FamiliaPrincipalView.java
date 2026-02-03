@@ -4,9 +4,9 @@
  */
 package com.mycompany.tpi2025.view.FamiliaViews;
 
-import com.mycompany.tpi2025.view.AMUsuarioView;
+import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
 import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
-import com.mycompany.tpi2025.view.PostulacionView;
+import com.mycompany.tpi2025.view.JPanels.PostulacionView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
