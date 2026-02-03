@@ -8,7 +8,7 @@ import com.google.zxing.WriterException;
 import com.mycompany.tpi2025.Utils;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.view.VerGatoView;
-import com.mycompany.tpi2025.view.VerQRGatoView;
+import com.mycompany.tpi2025.view.QRGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 public class VerQRGatoController {
 
-    private VerQRGatoView view;
+    private QRGatoView view;
 
     public VerQRGatoController(EntityManagerFactory emf) {
         abrirSeleccion(emf);
@@ -42,7 +42,7 @@ public class VerQRGatoController {
             ex.printStackTrace();
         }
 
-        view = new VerQRGatoView();
+        view = new QRGatoView();
         view.setQRImage(qrImage);
         view.setCerrarListener(l -> cerrarView());
         view.setVisible(true);

@@ -30,7 +30,7 @@ import com.mycompany.tpi2025.view.TareaRealizadaView;
 import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
 import com.mycompany.tpi2025.view.VerPostulacionHogarView;
-import com.mycompany.tpi2025.view.VerQRGatoView;
+import com.mycompany.tpi2025.view.QRGatoView;
 import com.mycompany.tpi2025.view.VisitaSeguimientoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
@@ -635,7 +635,7 @@ public class AdministradorPrincipalController {
     }
     
     private void mostrarQRGato() {
-        VerQRGatoView qrView = new VerQRGatoView();
+        QRGatoView qrView = new QRGatoView();
         VerQRGatoController verQRGatoController = new VerQRGatoController(emf);
     }
     
