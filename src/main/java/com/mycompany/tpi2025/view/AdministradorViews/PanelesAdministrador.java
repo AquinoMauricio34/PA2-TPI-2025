@@ -63,6 +63,7 @@ public enum PanelesAdministrador {
     TAREA_REALIZADA("TAREA_REALIZADA"),
     REPORTE("REPORTE"),
     VISITA("VISITA"),
+    VER_QR_GATO("VER_QR_GATO"),
     GATOS_FAMILIA("GATOS_FAMILIA"),
     GATOS_HOGAR("GATOS_HOGAR");
     

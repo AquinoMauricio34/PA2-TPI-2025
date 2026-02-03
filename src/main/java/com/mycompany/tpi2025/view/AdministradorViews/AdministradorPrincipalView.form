@@ -239,6 +239,11 @@
                 <Property name="text" type="java.lang.String" value="Postulacion de Hogar"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="qrGatoMI">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="QR de Gato"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

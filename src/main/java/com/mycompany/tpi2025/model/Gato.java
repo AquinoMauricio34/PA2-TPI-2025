@@ -4,7 +4,6 @@
  */
 package com.mycompany.tpi2025.model;
 
-import com.mycompany.tpi2025.model.enums.EstadoAdopcion;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -145,4 +144,16 @@ public class Gato implements Serializable {
     public void setZona(Zona zona) {
         this.zona = zona;
     }
+
+    @Override
+    public String toString() {
+        String usu;
+        if(this.usuario!=null){
+            usu = this.usuario.getNombreUsuario();
+        }else
+            usu = "---";
+        return "Gato:\n\t* id=" + id + ",\n\t* estadoSalud=" + estadoSalud + ",\n\t* usuario=" + usu + ",\n\t* zona=" + zona.getLocalizacion() + ",\n\t* nombre=" + nombre + ",\n\t* color=" + color + ",\n\t* caracteristicas=" + caracteristicas;
+    }
+    
+    
 }

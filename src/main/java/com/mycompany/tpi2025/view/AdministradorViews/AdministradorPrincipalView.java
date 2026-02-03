@@ -96,6 +96,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         historialMI = new javax.swing.JMenuItem();
         postulacionMI = new javax.swing.JMenuItem();
         postulacionHogarMI = new javax.swing.JMenuItem();
+        qrGatoMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -245,6 +246,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         postulacionHogarMI.setText("Postulacion de Hogar");
         gatoHistorialMI.add(postulacionHogarMI);
 
+        qrGatoMI.setText("QR de Gato");
+        gatoHistorialMI.add(qrGatoMI);
+
         menuBar.add(gatoHistorialMI);
 
         setJMenuBar(menuBar);
@@ -333,6 +337,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem modificarVolMI;
     private javax.swing.JMenuItem postulacionHogarMI;
     private javax.swing.JMenuItem postulacionMI;
+    private javax.swing.JMenuItem qrGatoMI;
     private javax.swing.JMenuItem registrarVisitaMI;
     private javax.swing.JMenuItem reporteMI;
     private javax.swing.JMenuItem tareaRealizadaMI;
@@ -508,6 +513,11 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setGatosHogarListener(ActionListener l) {
         gatosHogarMI.addActionListener(l);
     }
+    public void setQRGatoListener(ActionListener l) {
+        qrGatoMI.addActionListener(l);
+    }
+    
+    
     
     //GESTION DE PANELES
 

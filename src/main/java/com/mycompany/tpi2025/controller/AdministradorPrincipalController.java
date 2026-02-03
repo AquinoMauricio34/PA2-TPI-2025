@@ -30,6 +30,7 @@ import com.mycompany.tpi2025.view.TareaRealizadaView;
 import com.mycompany.tpi2025.view.VerHistorialGatoView;
 import com.mycompany.tpi2025.view.VerPostulacionFamiliaView;
 import com.mycompany.tpi2025.view.VerPostulacionHogarView;
+import com.mycompany.tpi2025.view.VerQRGatoView;
 import com.mycompany.tpi2025.view.VisitaSeguimientoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
@@ -121,6 +122,7 @@ public class AdministradorPrincipalController {
         //REPORTE
         view.setReporteListener(l -> mostrarReporte());
         view.setVisitaListener(l -> mostrarVisita());
+        view.setQRGatoListener(l -> mostrarQRGato());
         view.setGatosFamiliaListener(l -> mostrarGatosDeFamilia());
         view.setGatosHogarListener(l -> mostrarGatosDeHogar());
 
@@ -631,5 +633,10 @@ public class AdministradorPrincipalController {
             //System.out.println("MMm1-------------------------------------------");
         }
     }
-
+    
+    private void mostrarQRGato() {
+        VerQRGatoView qrView = new VerQRGatoView();
+        VerQRGatoController verQRGatoController = new VerQRGatoController(emf);
+    }
+    
 }
