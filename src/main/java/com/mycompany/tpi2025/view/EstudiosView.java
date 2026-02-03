@@ -8,6 +8,7 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.model.Estudio;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -275,6 +276,25 @@ public class EstudiosView extends javax.swing.JFrame {
     public void limpiarComponentes() {
         titulo.setText("");
         descripcion.setText("");
+    }
+    
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public boolean mostrarMensajeConfirmacion(String s){
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                s,
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+        return confirmacion == JOptionPane.YES_OPTION ? true : false;
+        
     }
     
 }

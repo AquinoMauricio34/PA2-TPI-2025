@@ -6,6 +6,7 @@ package com.mycompany.tpi2025.controller;
 
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.DAOImpl.ZonaJpaController;
+import com.mycompany.tpi2025.Utils;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Zona;
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
@@ -19,17 +20,18 @@ import jakarta.persistence.EntityManagerFactory;
  * @author aquin
  */
 public class CrearGatoController {
+
     private CrearGatoView view;
     private GatoJpaController dao;
     private ZonaJpaController daoZ;
-    private Zona zonaGato=null;
+    private Zona zonaGato = null;
     private EntityManagerFactory emf;
     private Gato gato = null;
 
     public CrearGatoController(CrearGatoView view, String tipoAccion, EntityManagerFactory emf) {
-        this(view,null,tipoAccion,emf);
+        this(view, null, tipoAccion, emf);
     }
-    
+
     public CrearGatoController(CrearGatoView view, Gato gato, String tipoAccion, EntityManagerFactory emf) {
         this.view = view;
         this.emf = emf;
@@ -46,30 +48,25 @@ public class CrearGatoController {
             view.activarRegistrar(true);
             view.activarModificar(false);
         });
-        if("VER".equals(tipoAccion)){
-            abrirSeleccion();
-            view.activarComponentes(false);
-            view.activarRegistrar(false);
-            view.activarModificar(true);
-        }
-        if("MODIFICAR".equals(tipoAccion)){
-            abrirSeleccion();
+        if ("MODIFICAR".equals(tipoAccion)) {
+            //abrirSeleccion();
             view.activarComponentes(false);
             view.activarRegistrar(false);
             view.activarModificar(true);
         }
     }
-    
-    public void iniciarView(){
+
+    public void iniciarView() {
         view.setVisible(true);
-        
+
     }
-    
-    private void accion(String tipoAccion){
+
+    private void accion(String tipoAccion) {
         switch (tipoAccion) {
-            case "GUARDAR" -> guardar();
-            case "MODIFICAR" -> modificar();
-            case "VER" -> {}
+            case "GUARDAR" ->
+                guardar();
+            case "MODIFICAR" ->
+                modificar();
             default ->
                 throw new AssertionError();
         }
@@ -83,40 +80,110 @@ public class CrearGatoController {
         ZonaView zview = new ZonaView();
         ZonaController controller = new ZonaController(zview, this, emf);
     }
-    
-    public void setZonaElegidaTexto(String texto){
+
+    public void setZonaElegidaTexto(String texto) {
         view.setZonaElegida(texto);
     }
 
     private void guardar() {
+        String nombre = view.getNombreGato().trim();
+        String color = view.getColorGato().trim();
+        String caracteristicas = view.getCaracteristicasGato().trim();
+        String estadoSalud = view.getEstadoSalud();
+
         try {
-            Gato gato = new Gato("",view.getNombreGato(),view.getColorGato(),daoZ.findZona(zonaGato.getId()),view.getCaracteristicasGato(),EstadoSalud.valueOf(view.getEstadoSalud()));
+            // Validar campos vacíos
+            if (Utils.hayVacios(nombre, color, caracteristicas)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+
+            // Validar zona seleccionada
+            if (zonaGato == null) {
+                throw new Exception("Debe seleccionar una zona.");
+            }
+
+            // Convertir estado de salud
+            EstadoSalud estado = EstadoSalud.valueOf(estadoSalud);
+
+            // Obtener zona completa
+            Zona zona = daoZ.findZona(zonaGato.getId());
+            if (zona == null) {
+                throw new Exception("La zona seleccionada no existe.");
+            }
+
+            // Crear y guardar gato
+            Gato gato = new Gato("", nombre, color, zona, caracteristicas, estado);
             gato.setHistorial();
             dao.create(gato);
-            gato.setQr("QR "+gato.getId());
+
+            // Actualizar con QR
+            gato.setQr("QR " + gato.getId());
             dao.edit(gato);
+
+            // Mensaje de éxito
+            view.mostrarInfoMensaje("Gato registrado exitosamente.");
+            // cerrar(); // Descomenta si tienes este método
+
         } catch (Exception e) {
             e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
         }
     }
 
     private void modificar() {
-        if(gato != null){
-            //System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkm");
-            try {
-                gato.setNombre(view.getNombreGato());
-                gato.setCaracteristicas(view.getCaracteristicasGato());
-                gato.setColor(view.getColorGato());
-                gato.setEstadoSalud(EstadoSalud.valueOf(view.getEstadoSalud()));
-                gato.setZona(daoZ.findZona(zonaGato.getId()));
-                dao.edit(gato);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (gato == null) {
+            view.mostrarErrorMensaje("No hay gato seleccionado para modificar.");
+            return;
         }
-            //System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+
+        String nombre = view.getNombreGato().trim();
+        String color = view.getColorGato().trim();
+        String caracteristicas = view.getCaracteristicasGato().trim();
+        String estadoSalud = view.getEstadoSalud();
+
+        try {
+            // Validar campos vacíos
+            if (Utils.hayVacios(nombre, color, caracteristicas, estadoSalud)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+
+            // Validar zona seleccionada
+            if (zonaGato == null) {
+                throw new Exception("Debe seleccionar una zona.");
+            }
+
+            // Convertir y validar estado de salud
+            EstadoSalud estado;
+            try {
+                estado = EstadoSalud.valueOf(estadoSalud);
+            } catch (Exception e) {
+                throw new Exception("Estado de salud inválido");
+            }
+
+            // Obtener zona completa
+            Zona zona = daoZ.findZona(zonaGato.getId());
+            if (zona == null) {
+                throw new Exception("La zona seleccionada no existe.");
+            }
+
+            // Actualizar gato
+            gato.setNombre(nombre);
+            gato.setCaracteristicas(caracteristicas);
+            gato.setColor(color);
+            gato.setEstadoSalud(estado);
+            gato.setZona(zona);
+
+            dao.edit(gato);
+
+            view.mostrarInfoMensaje("Gato modificado exitosamente.");
+            // cerrar(); // Descomenta si tienes este método
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
+        }
     }
-    
+
     public void abrirSeleccion() {
         VerGatoView vview = new VerGatoView();
         VerGatoController controller = new VerGatoController(vview, emf);
@@ -128,20 +195,18 @@ public class CrearGatoController {
             view.activarModificar(true);
         });
     }
-    
-    public void cargarDatos(){
+
+    public void cargarDatos() {
         view.setNombreGato(gato.getNombre());
         view.setColorGato(gato.getColor());
         view.setCaracteristicasGato(gato.getCaracteristicas());
         view.setEstadoSalud(gato.getEstadoSalud());
         zonaGato = gato.getZona();
         try {
-            view.setZonaElegida("Zona N° "+gato.getZona().getId());
+            view.setZonaElegida("Zona N° " + gato.getZona().getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
-    
+
 }

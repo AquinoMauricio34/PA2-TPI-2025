@@ -36,11 +36,15 @@ public class TareaRealizadaController {
     }
 
     private void registrar() {
+        String ubicacion = view.getUbicacion().trim();
         try {
-            Tarea t = new Tarea(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), voluntario.getNombreUsuario(), view.getUbicacion(),view.getTareaRealizada());
+            if(ubicacion.isBlank()) throw new Exception("Se debe indicar la ubicacion.");
+            Tarea t = new Tarea(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), voluntario.getNombreUsuario(),ubicacion,view.getTareaRealizada());
             dao.create(t);
+            view.mostrarInfoMensaje("Tarea realizada registrada exitosamente.");
         } catch (Exception e) {
             e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
         }
     }
     

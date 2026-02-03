@@ -5,6 +5,7 @@
 package com.mycompany.tpi2025.view.JPanels;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,5 +110,11 @@ public class TareaRealizadaView extends javax.swing.JPanel {
         registrarBtn.addActionListener(l);
     }
     
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }

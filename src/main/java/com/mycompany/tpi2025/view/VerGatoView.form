@@ -47,8 +47,6 @@
                               <Component id="cancelarBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                               <Component id="eliminar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="postulacionBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="seleccionBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -70,7 +68,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="seleccionBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="postulacionBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -135,11 +132,6 @@
         <Component class="javax.swing.JButton" name="cancelarBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="postulacionBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Postularse"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="eliminar">

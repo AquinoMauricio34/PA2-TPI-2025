@@ -29,11 +29,6 @@ public class GatoDeHogarController {
         iniciar();
     }
     
-    public void iniciarTabla(){
-        List<Gato> lista = obtenerLista();
-        view.reloadTable(lista);
-    }
-    
     private List<Gato> obtenerLista(){
         return hogar.getAllGatos();
     }
@@ -43,8 +38,16 @@ public class GatoDeHogarController {
         VerHogarController controller = new VerHogarController(vview, emf);
         vview.setSeleccionListener(l -> {
             hogar = controller.getHogar();
+            try {
+                List<Gato> lista = obtenerLista();
+                if (lista.isEmpty()) {
+                    throw new Exception("El hogar no tiene gatos asignados.");
+                }
             vview.dispose();
-            iniciarTabla();
+                view.reloadTable(lista);
+            } catch (Exception e) {
+                vview.mostrarInfoMensaje(e.getMessage());
+            }
         });
     }
 

@@ -40,8 +40,7 @@ public class LoginController {
         login.setIniciarSesionListener(e -> iniciarSesion());
         login.setCerrarListener(e -> cerrarView());
         login.setRegistrarseListener(l -> registro());
-        
-        
+
     }
 
     private void iniciarSesion() {
@@ -49,9 +48,7 @@ public class LoginController {
         String contrasenia = view.getContraseniaUsuario();
 
         Usuario usu = usuarioDao.findUsuario(usuario);
-        if (usu == null) {
-            JOptionPane.showMessageDialog(view, "NO EXISTE EL USUARIO.");
-        } else {
+        if (usu != null) {
             if (usu.getContrasena().equals(contrasenia)) {
                 //asignar a como usuario principal
                 switch (usu) {
@@ -76,18 +73,22 @@ public class LoginController {
                         cerrarView();
                     }
                     default -> {
-                        
                     }
                 }
-                
+
+            } else {
+                JOptionPane.showMessageDialog(view, "Usuario o contrasenia incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+        } else {
+            JOptionPane.showMessageDialog(view, "Usuario o contrasenia incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
 
     }
 
     private void iniciarView() {
-        view.setVisible(true);view.toFront();
+        view.setVisible(true);
+        view.toFront();
         view.setLocationRelativeTo(null);
         view.addWindowListener(new WindowAdapter() {
             @Override

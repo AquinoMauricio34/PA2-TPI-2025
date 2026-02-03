@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 package com.mycompany.tpi2025.view;
 
 import com.mycompany.tpi2025.view.JPanels.QRPanel;
@@ -38,6 +37,7 @@ public class QRGatoView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,7 +104,8 @@ public class QRGatoView extends javax.swing.JFrame {
     private javax.swing.JButton cerrarBtn;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
-public void setCerrarListener(ActionListener l) {
+    
+    public void setCerrarListener(ActionListener l) {
         cerrarBtn.addActionListener(l);
     }
 }

@@ -17,6 +17,7 @@ import java.util.List;
  * @author aquin
  */
 public class GatoDeFamiliaController {
+
     private GatosDeFamiliaView view;
     private GatoJpaController dao;
     private Familia familia = null;
@@ -28,29 +29,35 @@ public class GatoDeFamiliaController {
         this.emf = emf;
         iniciar();
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         abrirSeleccion();
     }
-    
-    public void iniciarTabla(){
-        List<Gato> lista = obtenerLista();
-        view.reloadTable(lista);
+
+    public void iniciarTabla() {
+
     }
-    
-    private List<Gato> obtenerLista(){
+
+    private List<Gato> obtenerLista() {
         return familia.getAllGatos();
     }
-    
+
     private void abrirSeleccion() {
         VerFamiliaView vview = new VerFamiliaView();
         VerFamiliaController controller = new VerFamiliaController(vview, emf);
         vview.setSeleccionListener(l -> {
             familia = controller.getFamilia();
+            try {
+                List<Gato> lista = obtenerLista();
+                if (lista.isEmpty()) {
+                    throw new Exception("La familia no tiene gatos asignados.");
+                }
             vview.dispose();
-            iniciarTabla();
+                view.reloadTable(lista);
+            } catch (Exception e) {
+                vview.mostrarInfoMensaje(e.getMessage());
+            }
         });
     }
-    
-    
+
 }

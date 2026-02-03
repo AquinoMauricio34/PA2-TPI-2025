@@ -6,6 +6,7 @@ package com.mycompany.tpi2025.view.JPanels;
 
 import com.mycompany.tpi2025.model.enums.EstadoSalud;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -225,5 +226,11 @@ public class CrearGatoView extends javax.swing.JPanel {
         modificar.setEnabled(b);
     }
     
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
 
 }

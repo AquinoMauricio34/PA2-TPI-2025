@@ -8,6 +8,7 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.model.Gato;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,7 +24,6 @@ public class VerGatoView extends javax.swing.JFrame {
     public VerGatoView() {
         initComponents();
         activarSeleccion(false);
-        activarPostulacion(false);
         eliminar.setEnabled(false);
     }
 
@@ -42,7 +42,6 @@ public class VerGatoView extends javax.swing.JFrame {
         tablaDatos = new javax.swing.JTable();
         seleccionBtn = new javax.swing.JButton();
         cancelarBtn = new javax.swing.JButton();
-        postulacionBtn = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,8 +89,6 @@ public class VerGatoView extends javax.swing.JFrame {
 
         cancelarBtn.setText("Cancelar");
 
-        postulacionBtn.setText("Postularse");
-
         eliminar.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -107,8 +104,6 @@ public class VerGatoView extends javax.swing.JFrame {
                             .addComponent(cancelarBtn)
                             .addGap(64, 64, 64)
                             .addComponent(eliminar)
-                            .addGap(18, 18, 18)
-                            .addComponent(postulacionBtn)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(seleccionBtn))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -125,7 +120,6 @@ public class VerGatoView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seleccionBtn)
                     .addComponent(cancelarBtn)
-                    .addComponent(postulacionBtn)
                     .addComponent(eliminar))
                 .addGap(25, 25, 25))
         );
@@ -175,7 +169,6 @@ public class VerGatoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton postulacionBtn;
     private javax.swing.JButton seleccionBtn;
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
@@ -183,9 +176,7 @@ public class VerGatoView extends javax.swing.JFrame {
     public void setSeleccionListener(ActionListener l){
         seleccionBtn.addActionListener(l);
     }
-    public void setPostulacionListener(ActionListener l){
-        postulacionBtn.addActionListener(l);
-    }
+    
     public void setEliminarListener(ActionListener l){
         eliminar.addActionListener(l);
     }
@@ -222,13 +213,18 @@ public class VerGatoView extends javax.swing.JFrame {
         return tablaDatos.getValueAt(fila, columna).toString();
     }
     
-    public void activarPostulacion(boolean valor){
-        postulacionBtn.setEnabled(valor);
-    }
     public void activarSeleccion(boolean valor){
         seleccionBtn.setEnabled(valor);
     }
     public void habilitarEliminar(boolean b){
+        eliminar.setVisible(b);
         eliminar.setEnabled(b);
+    }
+    
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
     }
 }

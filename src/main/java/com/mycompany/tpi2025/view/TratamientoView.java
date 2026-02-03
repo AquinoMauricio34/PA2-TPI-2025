@@ -6,6 +6,7 @@
 package com.mycompany.tpi2025.view;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -217,5 +218,12 @@ public class TratamientoView extends javax.swing.JFrame {
 
     public String getDescripcion() {
         return descripcionTA.getText();
+    }
+    
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
     }
 }

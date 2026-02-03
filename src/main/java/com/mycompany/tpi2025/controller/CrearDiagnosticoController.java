@@ -7,6 +7,7 @@ package com.mycompany.tpi2025.controller;
 import com.mycompany.tpi2025.DAOImpl.DiagnosticoJpaController;
 import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.DAOImpl.TratamientoJpaController;
+import com.mycompany.tpi2025.Utils;
 import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Tratamiento;
@@ -37,7 +38,7 @@ public class CrearDiagnosticoController {
         iniciar();
         if (diagnostico == null) {
             this.diagnostico = new Diagnostico();
-        }else if (diagnostico != null) {
+        } else if (diagnostico != null) {
             this.diagnostico = diagnostico;
             cargarCampos();
         }
@@ -60,28 +61,57 @@ public class CrearDiagnosticoController {
         iniciarTabla();
     }
 
-    private void crear() {//se crea y se envia al padre
-        System.out.println("titulo diag crear: "+view.getTituloDiag());
-        diagnostico.setDiagnostico(view.getTituloDiag());
-        diagnostico.setDescripcion(view.getDescripcionTA());
-        diagnostico.setFecha_diagnostico(LocalDate.now());
-        //se setea el historial del diagnostico antes de persistir el diag
-        gato.getHistorial().addDiagnostico(diagnostico);
+    private void crear() {
+        String titulo = view.getTituloDiag().trim();
+        String descripcion = view.getDescripcionTA().trim();
+
         try {
-            System.out.println("TRYcreate diag-----------------------------------------------------------------------");
-            dao.create(diagnostico);
+            // Validar campos vacíos
+            if (Utils.hayVacios(titulo, descripcion)) {
+                throw new Exception("El título y descripción son obligatorios.");
+            }
+
+            // Validar que haya un gato seleccionado
+            if (gato == null) {
+                throw new Exception("No hay gato seleccionado.");
+            }
+
+            // Validar que haya un historial
+            if (gato.getHistorial() == null) {
+                throw new Exception("El gato no tiene historial médico.");
+            }
+
+            // Configurar diagnóstico
+            diagnostico.setDiagnostico(titulo);
+            diagnostico.setDescripcion(descripcion);
+            diagnostico.setFecha_diagnostico(LocalDate.now());
+
+            // Agregar diagnóstico al historial del gato
+            gato.getHistorial().addDiagnostico(diagnostico);
+
+            try {
+                // Persistir diagnóstico
+                dao.create(diagnostico);
+
+                // Actualizar gato
+                daoG.edit(gato);
+
+                // Resetear diagnóstico para nuevo uso
+                diagnostico = new Diagnostico();
+
+                // Reiniciar vista
+                iniciar();
+
+                // Mensaje de éxito
+                view.mostrarInfoMensaje("Diagnóstico creado exitosamente.");
+
+            } catch (Exception e) {
+                throw new Exception("Error al guardar en la base de datos: " + e.getMessage(), e);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        try {
-            System.out.println("TRYedit-----------------------------------------------------------------------");
-            daoG.edit(gato);
-            diagnostico = null;
-            diagnostico = new Diagnostico();
-            iniciar();
-        } catch (Exception e) {
-            //System.out.println("Error---------------------------------------------------");
-            e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
         }
     }
 
@@ -95,11 +125,10 @@ public class CrearDiagnosticoController {
         return diagnostico.getTratamientos();
     }
 
-    private int obtenerIndiceTratamiento(long idTratamiento) {
-        List<Tratamiento> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId() == idTratamiento).findFirst().orElse(null));
-    }
-
+//    private int obtenerIndiceTratamiento(long idTratamiento) {
+//        List<Tratamiento> lista = obtenerLista();
+//        return lista.indexOf(lista.stream().filter(v -> v.getId() == idTratamiento).findFirst().orElse(null));
+//    }
     public void setDiagnostico(Diagnostico diagnostico) {
         this.diagnostico = diagnostico;
     }

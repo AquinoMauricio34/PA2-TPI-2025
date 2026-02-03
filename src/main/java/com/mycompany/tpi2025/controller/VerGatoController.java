@@ -77,7 +77,10 @@ public class VerGatoController {
                 dao.destroy(gato.getId());
                 gato = null;
                 iniciarTabla();
+                view.mostrarInfoMensaje("El gato ha sido eliminado exitosamente.");
             } catch (Exception e) {
+                e.printStackTrace();
+                view.mostrarErrorMensaje("No se puedo eliminar al gato.");
             }
         }
     }

@@ -5,13 +5,12 @@
 package com.mycompany.tpi2025.controller;
 
 import com.mycompany.tpi2025.DAOImpl.VisitaSeguimientoJpaController;
+import com.mycompany.tpi2025.Utils;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.VisitaSeguimiento;
-import com.mycompany.tpi2025.view.VerGatoView;
 import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
+import com.mycompany.tpi2025.view.VerGatoView;
 import jakarta.persistence.EntityManagerFactory;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -47,11 +46,17 @@ public class VisitaSeguimientoController {
     }
 
     private void registrar(String nombreUsuario) {
+        String fecha = view.getFecha().trim();
+        String descripcion = view.getDescripcion().trim();
         try {
-            VisitaSeguimiento v = new VisitaSeguimiento(nombreUsuario, gato.getId(), LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), view.getDescripcion());
+            if(Utils.hayVacios(fecha,descripcion)) throw new Exception("Todos los campos deben ser rellenados.");
+            if(!Utils.isFechaValida(fecha)) throw new Exception("La fecha debe tener el formato dd/mm/yyyy.");
+            VisitaSeguimiento v = new VisitaSeguimiento(nombreUsuario, gato.getId(), fecha, descripcion);
             daoG.create(v);
+            view.mostrarInfoMensaje("Visita de seguimiento registrada exitosamente.");
         } catch (Exception e) {
             e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
         }
     }
 

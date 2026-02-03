@@ -6,6 +6,7 @@ package com.mycompany.tpi2025.view.JPanels;
 
 import com.mycompany.tpi2025.model.Gato;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -80,5 +81,12 @@ public class GatosDeHogarView extends javax.swing.JPanel {
         }
 
         tablaDatos.setModel(model);
+    }
+    
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
     }
 }

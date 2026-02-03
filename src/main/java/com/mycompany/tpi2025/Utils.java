@@ -18,6 +18,7 @@ import java.time.format.ResolverStyle;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 
 public class Utils {
@@ -93,6 +94,10 @@ public class Utils {
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+    
+    public static boolean hayVacios(String... campos){
+        return Stream.of(campos).anyMatch(String::isBlank);
     }
 
 }

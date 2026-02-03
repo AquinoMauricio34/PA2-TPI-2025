@@ -16,9 +16,9 @@ import com.mycompany.tpi2025.model.Hogar;
 import com.mycompany.tpi2025.model.Usuario;
 import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
-import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
 import com.mycompany.tpi2025.view.AdministradorViews.PanelesAdministrador;
+import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
 import com.mycompany.tpi2025.view.JPanels.BuscarView;
 import com.mycompany.tpi2025.view.JPanels.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.JPanels.CrearGatoView;
@@ -30,8 +30,8 @@ import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
 import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionFamiliaView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionHogarView;
-import com.mycompany.tpi2025.view.QRGatoView;
 import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
+import com.mycompany.tpi2025.view.QRGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -260,6 +260,7 @@ public class AdministradorPrincipalController {
                 vmGatoController.abrirSeleccion();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

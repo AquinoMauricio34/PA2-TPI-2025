@@ -8,6 +8,7 @@ package com.mycompany.tpi2025.view;
 import com.mycompany.tpi2025.model.Familia;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
@@ -172,5 +173,10 @@ public class VerFamiliaView extends javax.swing.JFrame {
     public void activarSeleccion(boolean valor){
         seleccionBtn.setEnabled(valor);
     }
-    
+    public void mostrarErrorMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    public void mostrarInfoMensaje(String m){
+        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
 }
