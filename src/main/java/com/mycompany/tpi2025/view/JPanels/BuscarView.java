@@ -24,6 +24,7 @@ public class BuscarView extends javax.swing.JPanel {
     public BuscarView() {
         initComponents();
         activarAccion(false);
+        
     }
 
     /**
@@ -69,6 +70,7 @@ public class BuscarView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablaDatos.setColumnSelectionAllowed(true);
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane.setViewportView(tablaDatos);
         tablaDatos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);

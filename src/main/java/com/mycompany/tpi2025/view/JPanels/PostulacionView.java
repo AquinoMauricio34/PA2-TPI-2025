@@ -49,7 +49,7 @@ public class PostulacionView extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Nro Zona", "Nombre", "Características"
+                "ID Gato", "Nombre", "Características"
             }
         ) {
             Class[] types = new Class [] {
@@ -70,6 +70,7 @@ public class PostulacionView extends javax.swing.JPanel {
         tablaDatos.setColumnSelectionAllowed(true);
         tablaDatos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaDatos);
+        tablaDatos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         postulacionBtn.setText("Postularse");
 

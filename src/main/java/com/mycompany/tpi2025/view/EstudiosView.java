@@ -66,6 +66,10 @@ public class EstudiosView extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tablaDatos);
+        if (tablaDatos.getColumnModel().getColumnCount() > 0) {
+            tablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            tablaDatos.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         aniadir.setText("Añadir Estudio");
 

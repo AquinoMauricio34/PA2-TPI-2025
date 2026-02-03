@@ -6,7 +6,6 @@ package com.mycompany.tpi2025.view.JPanels;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +34,7 @@ public class ReporteView extends javax.swing.JPanel {
         tablaDatos = new javax.swing.JTable();
         gatosAdoptados = new javax.swing.JLabel();
         gatosEsterilizados = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,23 +62,30 @@ public class ReporteView extends javax.swing.JPanel {
 
         gatosEsterilizados.setText("-");
 
+        jLabel1.setText("Reporte");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gatosAdoptados)
-                    .addComponent(gatosEsterilizados))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gatosAdoptados)
+                            .addComponent(gatosEsterilizados))))
                 .addContainerGap(192, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(gatosAdoptados)
@@ -93,6 +100,7 @@ public class ReporteView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gatosAdoptados;
     private javax.swing.JLabel gatosEsterilizados;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables

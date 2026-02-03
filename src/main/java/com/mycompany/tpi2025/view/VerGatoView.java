@@ -56,7 +56,7 @@ public class VerGatoView extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nro Zona", "Nombre", "Características"
+                "ID", "Nombre", "Características"
             }
         ) {
             Class[] types = new Class [] {

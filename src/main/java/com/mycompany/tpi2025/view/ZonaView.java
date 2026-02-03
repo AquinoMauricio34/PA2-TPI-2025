@@ -5,7 +5,6 @@
 
 package com.mycompany.tpi2025.view;
 
-import com.mycompany.tpi2025.controller.DatosTabla;
 import com.mycompany.tpi2025.model.Zona;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -44,7 +43,7 @@ public class ZonaView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Zona");
+        jLabel1.setText("Zonas");
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
