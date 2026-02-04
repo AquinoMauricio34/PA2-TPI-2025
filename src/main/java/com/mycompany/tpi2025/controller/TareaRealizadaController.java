@@ -27,12 +27,17 @@ public class TareaRealizadaController {
         this.dao = new TareaJpaController(emf);
         this.voluntario = voluntario;
         iniciarView();
-        view.setTitulo("Voluntario: "+voluntario.getNombre());
+        
         view.setRegistrarListener(l -> registrar());
     }
     
-    private void iniciarView(){
+    public void iniciarView(){
         view.setVisible(true);
+        view.setTitulo("Voluntario: "+voluntario.getNombre());
+    }
+
+    public void setVoluntario(Voluntario voluntario) {
+        this.voluntario = voluntario;
     }
 
     private void registrar() {

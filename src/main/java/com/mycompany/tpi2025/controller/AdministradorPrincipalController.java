@@ -31,6 +31,9 @@ import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
 import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionFamiliaView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionHogarView;
+import com.mycompany.tpi2025.view.JPanels.VerPostulacionesView;
+import com.mycompany.tpi2025.view.JPanels.VerTareasRealizadasView;
+import com.mycompany.tpi2025.view.JPanels.VerVisitasSeguimientoView;
 import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
 import com.mycompany.tpi2025.view.QRGatoView;
 import jakarta.persistence.EntityManagerFactory;
@@ -71,6 +74,9 @@ public class AdministradorPrincipalController {
     private GatoDeFamiliaController gatoDeFamiliaController = null;
     private GatoDeHogarController gatoDeHogarController = null;
     private CrearZonaController zonaController = null;
+    private VerTareasRealizadaController verTareasRealizadaController = null;
+    private VerVisitasSeguimientoController verVisitasSeguimientoController = null;
+    private VerPostulacionesController verPostulacionesController = null;
 
     public AdministradorPrincipalController(AdministradorPrincipalView principal, Administrador administrador, EntityManagerFactory emf) {
         this.view = principal;
@@ -115,15 +121,18 @@ public class AdministradorPrincipalController {
         view.setEmitirAptitudHogarListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_HOGAR_APTITUD, Hogar.class, AccionBuscar.ESTABLECER_APTITUD, new String[]{"Nombre", "Usuario", "Telefono", "Apto Adopción"}));
         //POSTULACION
         view.setPostulacionListener(l -> mostrarPostulacionView(PanelesAdministrador.POSTULARSE));
+        view.setVerPostulacionesListener(l -> mostrarVerPostulaciones());
         view.setPostulacionHogarListener(l -> mostrarPostulacionHogarView(PanelesAdministrador.POSTULAR_HOGAR));
         //ASIGNACION GATO
         view.setAsignacionFamiliaListener(l -> establecerComunicacionBuscarView_VerPostulacion());
         view.setAsignacionHogarListener(l -> establecerComunicacionBuscarHogarView_VerPostulacion());
         //TAREA REALIZADA
         view.setTareaRealizadaListener(l -> establecerComunicacionBuscarVoluntarioView_TareaRealizada());
+        view.setVerTareaRealizadaListener(l -> mostrarTareasRealizadas());
         //REPORTE
         view.setReporteListener(l -> mostrarReporte());
         view.setVisitaListener(l -> mostrarVisita());
+        view.setVerVisitasListener(l -> mostrarVerVisitas());
         view.setQRGatoListener(l -> mostrarQRGato());
         view.setGatosFamiliaListener(l -> mostrarGatosDeFamilia());
         view.setGatosHogarListener(l -> mostrarGatosDeHogar());
@@ -528,6 +537,9 @@ public class AdministradorPrincipalController {
             if (tareaRealizadaController == null) {
                 //System.out.println("MM0.1-------------------------------------------");
                 tareaRealizadaController = new TareaRealizadaController(panel, h, emf);
+            }else{
+                tareaRealizadaController.setVoluntario(h);
+                tareaRealizadaController.iniciarView();
             }
             //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
@@ -657,6 +669,65 @@ public class AdministradorPrincipalController {
                 zonaController = new CrearZonaController(panel, emf);
             }
             zonaController.iniciarTabla();
+            System.out.println("MM0.2-------------------------------------------");
+        } catch (Exception e) {
+            //System.out.println("MMm1-------------------------------------------");
+        }
+    }
+
+    private void mostrarTareasRealizadas() {
+        view.mostrarPanel(PanelesAdministrador.VER_TAREA_REALIZADA);
+        try {
+            System.out.println("MM0.001-------------------------------------------");
+            VerTareasRealizadasView panel = view.getPanel(PanelesAdministrador.VER_TAREA_REALIZADA, VerTareasRealizadasView.class);
+            System.out.println("MM0.01-------------------------------------------");
+            if (panel == null) {
+                throw new Exception("No existe el panel");
+            }
+            if (verTareasRealizadaController == null) {
+                System.out.println("MM0.1-------------------------------------------");
+                verTareasRealizadaController = new VerTareasRealizadaController(panel, emf);
+            }
+            verTareasRealizadaController.iniciarTabla();
+            System.out.println("MM0.2-------------------------------------------");
+        } catch (Exception e) {
+            //System.out.println("MMm1-------------------------------------------");
+        }
+    }
+
+    private void mostrarVerVisitas() {
+        view.mostrarPanel(PanelesAdministrador.VER_VISITAS);
+        try {
+            System.out.println("MM0.001-------------------------------------------");
+            VerVisitasSeguimientoView panel = view.getPanel(PanelesAdministrador.VER_VISITAS, VerVisitasSeguimientoView.class);
+            System.out.println("MM0.01-------------------------------------------");
+            if (panel == null) {
+                throw new Exception("No existe el panel");
+            }
+            if (verVisitasSeguimientoController == null) {
+                System.out.println("MM0.1-------------------------------------------");
+                verVisitasSeguimientoController = new VerVisitasSeguimientoController(panel, emf);
+            }
+            verVisitasSeguimientoController.iniciarTabla();
+            System.out.println("MM0.2-------------------------------------------");
+        } catch (Exception e) {
+            //System.out.println("MMm1-------------------------------------------");
+        }
+    }
+    private void mostrarVerPostulaciones() {
+        view.mostrarPanel(PanelesAdministrador.VER_POSTULACIONES);
+        try {
+            System.out.println("MM0.001-------------------------------------------");
+            VerPostulacionesView panel = view.getPanel(PanelesAdministrador.VER_POSTULACIONES, VerPostulacionesView.class);
+            System.out.println("MM0.01-------------------------------------------");
+            if (panel == null) {
+                throw new Exception("No existe el panel");
+            }
+            if (verPostulacionesController == null) {
+                System.out.println("MM0.1-------------------------------------------");
+                verPostulacionesController = new VerPostulacionesController(panel, emf);
+            }
+            verPostulacionesController.iniciarTabla();
             System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {
             //System.out.println("MMm1-------------------------------------------");

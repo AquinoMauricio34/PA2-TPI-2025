@@ -279,17 +279,20 @@ public class VoluntarioPrincipalController {
 
     private void mostrarTareaRealizadaView(Voluntario h) {
         view.mostrarPanel(PanelesVoluntario.TAREA_REALIZADA);
-            //System.out.println("MM0.0001-------------------------------------------");
+        //System.out.println("MM0.0001-------------------------------------------");
         try {
             //System.out.println("MM0.001-------------------------------------------");
             TareaRealizadaView panel = view.getPanel(PanelesVoluntario.TAREA_REALIZADA, TareaRealizadaView.class);
             //System.out.println("MM0.01-------------------------------------------");
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(tareaRealizadaController == null){
+            if (tareaRealizadaController == null) {
                 //System.out.println("MM0.1-------------------------------------------");
-                tareaRealizadaController = new TareaRealizadaController(panel,h, emf);
+                tareaRealizadaController = new TareaRealizadaController(panel, h, emf);
+            }else{
+                tareaRealizadaController.setVoluntario(h);
+                tareaRealizadaController.iniciarView();
             }
             //System.out.println("MM0.2-------------------------------------------");
         } catch (Exception e) {

@@ -118,16 +118,40 @@
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="tareaRealizadaMI">
+            <Menu class="javax.swing.JMenu" name="jMenu2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tarea Realizada"/>
+                <Property name="text" type="java.lang.String" value="Visitas de seguimiento"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="registrarVisitaMI">
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="registrarVisitaMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Registrar"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="verVisitasMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ver o Eliminar"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Visita"/>
+                <Property name="text" type="java.lang.String" value="Tareas Realizadas"/>
               </Properties>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="tareaRealizadaMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Registrar"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="verTareaRealizadaMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ver o Eliminar"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="famM">
@@ -234,16 +258,28 @@
                 <Property name="text" type="java.lang.String" value="Historial"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="postulacionMI">
+            <Menu class="javax.swing.JMenu" name="jMenu3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Postulacion"/>
+                <Property name="text" type="java.lang.String" value="Postulaciones"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="postulacionHogarMI">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Postulacion de Hogar"/>
-              </Properties>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="postulacionMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Postularse"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="postulacionHogarMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Postulacion de Hogar"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="verPostulacioesMI">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ver o Eliminar"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="qrGatoMI">
               <Properties>
                 <Property name="text" type="java.lang.String" value="QR de Gato"/>

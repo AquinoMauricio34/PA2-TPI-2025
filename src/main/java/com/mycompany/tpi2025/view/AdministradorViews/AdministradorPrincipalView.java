@@ -18,6 +18,9 @@ import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
 import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionFamiliaView;
 import com.mycompany.tpi2025.view.JPanels.VerPostulacionHogarView;
+import com.mycompany.tpi2025.view.JPanels.VerPostulacionesView;
+import com.mycompany.tpi2025.view.JPanels.VerTareasRealizadasView;
+import com.mycompany.tpi2025.view.JPanels.VerVisitasSeguimientoView;
 import com.mycompany.tpi2025.view.JPanels.VisitaSeguimientoView;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
@@ -74,8 +77,12 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         eliminarVolMI = new javax.swing.JMenuItem();
         buscarVolMI = new javax.swing.JMenuItem();
         modificarVolMI = new javax.swing.JMenuItem();
-        tareaRealizadaMI = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         registrarVisitaMI = new javax.swing.JMenuItem();
+        verVisitasMI = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        tareaRealizadaMI = new javax.swing.JMenuItem();
+        verTareaRealizadaMI = new javax.swing.JMenuItem();
         famM = new javax.swing.JMenu();
         crearFamMI = new javax.swing.JMenuItem();
         eliminarFamMI = new javax.swing.JMenuItem();
@@ -96,8 +103,10 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         crearGatoMI = new javax.swing.JMenuItem();
         modificarGatoMI = new javax.swing.JMenuItem();
         historialMI = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         postulacionMI = new javax.swing.JMenuItem();
         postulacionHogarMI = new javax.swing.JMenuItem();
+        verPostulacioesMI = new javax.swing.JMenuItem();
         qrGatoMI = new javax.swing.JMenuItem();
         zonasM = new javax.swing.JMenu();
         verZonasMI = new javax.swing.JMenuItem();
@@ -177,11 +186,25 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         modificarVolMI.setText("Modificar");
         volM.add(modificarVolMI);
 
-        tareaRealizadaMI.setText("Tarea Realizada");
-        volM.add(tareaRealizadaMI);
+        jMenu2.setText("Visitas de seguimiento");
 
-        registrarVisitaMI.setText("Registrar Visita");
-        volM.add(registrarVisitaMI);
+        registrarVisitaMI.setText("Registrar");
+        jMenu2.add(registrarVisitaMI);
+
+        verVisitasMI.setText("Ver o Eliminar");
+        jMenu2.add(verVisitasMI);
+
+        volM.add(jMenu2);
+
+        jMenu1.setText("Tareas Realizadas");
+
+        tareaRealizadaMI.setText("Registrar");
+        jMenu1.add(tareaRealizadaMI);
+
+        verTareaRealizadaMI.setText("Ver o Eliminar");
+        jMenu1.add(verTareaRealizadaMI);
+
+        volM.add(jMenu1);
 
         menuBar.add(volM);
 
@@ -246,11 +269,18 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         historialMI.setText("Historial");
         gatoHistorialMI.add(historialMI);
 
-        postulacionMI.setText("Postulacion");
-        gatoHistorialMI.add(postulacionMI);
+        jMenu3.setText("Postulaciones");
+
+        postulacionMI.setText("Postularse");
+        jMenu3.add(postulacionMI);
 
         postulacionHogarMI.setText("Postulacion de Hogar");
-        gatoHistorialMI.add(postulacionHogarMI);
+        jMenu3.add(postulacionHogarMI);
+
+        verPostulacioesMI.setText("Ver o Eliminar");
+        jMenu3.add(verPostulacioesMI);
+
+        gatoHistorialMI.add(jMenu3);
 
         qrGatoMI.setText("QR de Gato");
         gatoHistorialMI.add(qrGatoMI);
@@ -340,6 +370,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem gatosHogarMI;
     private javax.swing.JMenuItem historialMI;
     private javax.swing.JMenu hogarM;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem miPerfilMI;
@@ -356,6 +389,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem reporteMI;
     private javax.swing.JMenuItem tareaRealizadaMI;
     private javax.swing.JMenu tpM;
+    private javax.swing.JMenuItem verPostulacioesMI;
+    private javax.swing.JMenuItem verTareaRealizadaMI;
+    private javax.swing.JMenuItem verVisitasMI;
     private javax.swing.JMenuItem verZonasMI;
     private javax.swing.JMenu vetM;
     private javax.swing.JMenu volM;
@@ -495,6 +531,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setPostulacionListener(ActionListener l) {
         postulacionMI.addActionListener(l);
     }
+    public void setVerPostulacionesListener(ActionListener l) {
+        verPostulacioesMI.addActionListener(l);
+    }
     public void setPostulacionHogarListener(ActionListener l) {
         postulacionHogarMI.addActionListener(l);
     }
@@ -513,6 +552,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setTareaRealizadaListener(ActionListener l) {
         tareaRealizadaMI.addActionListener(l);
     }
+    public void setVerTareaRealizadaListener(ActionListener l) {
+        verTareaRealizadaMI.addActionListener(l);
+    }
     
     //REPORTE
     
@@ -522,6 +564,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     
     public void setVisitaListener(ActionListener l) {
         registrarVisitaMI.addActionListener(l);
+    }
+    public void setVerVisitasListener(ActionListener l) {
+        verVisitasMI.addActionListener(l);
     }
     public void setGatosFamiliaListener(ActionListener l) {
         gatosFamiliaMI.addActionListener(l);
@@ -577,6 +622,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
             case GATOS_FAMILIA -> new GatosDeFamiliaView();
             case GATOS_HOGAR -> new GatosDeHogarView();
             case ZONAS -> new ABZonaView();
+            case VER_TAREA_REALIZADA -> new VerTareasRealizadasView();
+            case VER_VISITAS -> new VerVisitasSeguimientoView();
+            case VER_POSTULACIONES -> new VerPostulacionesView();
             default -> null;
         };
     }
