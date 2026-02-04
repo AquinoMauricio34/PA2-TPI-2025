@@ -18,6 +18,7 @@ import com.mycompany.tpi2025.model.Veterinario;
 import com.mycompany.tpi2025.model.Voluntario;
 import com.mycompany.tpi2025.view.AdministradorViews.AdministradorPrincipalView;
 import com.mycompany.tpi2025.view.AdministradorViews.PanelesAdministrador;
+import com.mycompany.tpi2025.view.JPanels.ABZonaView;
 import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
 import com.mycompany.tpi2025.view.JPanels.BuscarView;
 import com.mycompany.tpi2025.view.JPanels.CrearDiagnosticoView;
@@ -69,6 +70,7 @@ public class AdministradorPrincipalController {
     private AMUsuarioController miPerfilController = null;
     private GatoDeFamiliaController gatoDeFamiliaController = null;
     private GatoDeHogarController gatoDeHogarController = null;
+    private CrearZonaController zonaController = null;
 
     public AdministradorPrincipalController(AdministradorPrincipalView principal, Administrador administrador, EntityManagerFactory emf) {
         this.view = principal;
@@ -125,7 +127,7 @@ public class AdministradorPrincipalController {
         view.setQRGatoListener(l -> mostrarQRGato());
         view.setGatosFamiliaListener(l -> mostrarGatosDeFamilia());
         view.setGatosHogarListener(l -> mostrarGatosDeHogar());
-
+        view.setZonasListener(l -> mostrarZonas());
     }
 
     public void cerrarView() {
@@ -639,5 +641,25 @@ public class AdministradorPrincipalController {
         QRGatoView qrView = new QRGatoView();
         VerQRGatoController verQRGatoController = new VerQRGatoController(emf);
     }
-    
+
+    private void mostrarZonas() {
+            System.out.println("MAM0.001-------------------------------------------");
+        view.mostrarPanel(PanelesAdministrador.ZONAS);
+        try {
+            System.out.println("MM0.001-------------------------------------------");
+            ABZonaView panel = view.getPanel(PanelesAdministrador.ZONAS, ABZonaView.class);
+            System.out.println("MM0.01-------------------------------------------");
+            if (panel == null) {
+                throw new Exception("No existe el panel");
+            }
+            if (zonaController == null) {
+                System.out.println("MM0.1-------------------------------------------");
+                zonaController = new CrearZonaController(panel, emf);
+            }
+            zonaController.iniciarTabla();
+            System.out.println("MM0.2-------------------------------------------");
+        } catch (Exception e) {
+            //System.out.println("MMm1-------------------------------------------");
+        }
+    }
 }

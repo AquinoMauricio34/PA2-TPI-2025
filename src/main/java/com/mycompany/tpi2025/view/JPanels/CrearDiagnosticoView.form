@@ -48,6 +48,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="eliminarBtn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="aniadirTratamiento" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="crear" min="-2" max="-2" attributes="0"/>
@@ -94,6 +96,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="crear" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="aniadirTratamiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="eliminarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="282" max="32767" attributes="0"/>
               </Group>
@@ -154,8 +157,8 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="0">
-                    <Column editable="true" title="Nro Tratamiento" type="java.lang.Integer"/>
-                    <Column editable="true" title="Descripci&#xf3;n" type="java.lang.String"/>
+                    <Column editable="false" title="Nro Tratamiento" type="java.lang.Integer"/>
+                    <Column editable="false" title="Descripci&#xf3;n" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -183,6 +186,11 @@
         <Component class="javax.swing.JButton" name="aniadirTratamiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xf1;adir Tratamiento"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="eliminarBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
         </Component>
       </SubComponents>

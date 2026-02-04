@@ -23,6 +23,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     public CrearDiagnosticoView() {
         initComponents();
         activarCreacion(true);
+        activarEliminacion(false);
     }
 
     /**
@@ -46,6 +47,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         aniadirTratamiento = new javax.swing.JButton();
+        eliminarBtn = new javax.swing.JButton();
 
         jLabel1.setText("Creación Diagnostico");
 
@@ -72,9 +74,16 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tablaDatos.setColumnSelectionAllowed(true);
@@ -83,6 +92,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         tablaDatos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         aniadirTratamiento.setText("Añadir Tratamiento");
+
+        eliminarBtn.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,6 +113,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(eliminarBtn)
+                                .addGap(18, 18, 18)
                                 .addComponent(aniadirTratamiento)
                                 .addGap(18, 18, 18)
                                 .addComponent(crear))
@@ -136,7 +149,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crear)
-                    .addComponent(aniadirTratamiento))
+                    .addComponent(aniadirTratamiento)
+                    .addComponent(eliminarBtn))
                 .addContainerGap(282, Short.MAX_VALUE))
         );
 
@@ -157,6 +171,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     private javax.swing.JButton aniadirTratamiento;
     private javax.swing.JButton crear;
     private javax.swing.JTextArea descripcionTA;
+    private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -177,6 +192,9 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     }
     public void setAniadirTratamientoListener(ActionListener l){
         aniadirTratamiento.addActionListener(l);
+    }
+    public void setEliminarTratamientoListener(ActionListener l){
+        eliminarBtn.addActionListener(l);
     }
     
     public void resaltarFila(int fila) {
@@ -258,6 +276,10 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     }
     public void mostrarInfoMensaje(String m){
         JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void activarEliminacion(boolean b) {
+        eliminarBtn.setEnabled(b);
     }
     
 }

@@ -29,6 +29,7 @@ public class CrearDiagnosticoController {
     private DiagnosticoJpaController dao;
     private GatoJpaController daoG;
     private Gato gato = null;
+    private Tratamiento tratamiento = null;
 
     public CrearDiagnosticoController(CrearDiagnosticoView view, Diagnostico diagnostico, EntityManagerFactory emf) {
         this.view = view;
@@ -48,6 +49,8 @@ public class CrearDiagnosticoController {
         view.setCreacionListener(l -> crear());
         //view.setSeleccionListaListener(l -> seleccionar());
         view.setAniadirTratamientoListener(l -> mostrarTratamientoView());
+        view.setEliminarTratamientoListener(l -> eliminarTratamiento());
+        view.setSeleccionListaListener(l -> seleccion());
     }
 
     public void iniciar() {//muestra la view
@@ -155,5 +158,38 @@ public class CrearDiagnosticoController {
 
     private void limpiar() {
         view.limpiarComponentes();
+    }
+
+    private void eliminarTratamiento() {
+        try {
+            if (tratamiento == null) {
+                throw new Exception("No se ha seleccionado un tratamiento.");
+            }
+            diagnostico.getTratamientos().removeIf(e -> e.getDescripcion().equals(tratamiento.getDescripcion()));
+            view.mostrarInfoMensaje("Tratamiento eliminado exitosamente.");
+            view.activarEliminacion(false);
+            iniciarTabla();
+        } catch (Exception e) {
+            e.printStackTrace();
+            view.mostrarErrorMensaje(e.getMessage());
+        }
+    }
+
+    private void seleccion() {
+        int fila = view.obtenerIndiceFila();
+        if (fila != -1) {
+            String descrip = view.obtenerValorTabla(fila, 1);//segundo parametro indice correspondiente a la columna del encabezado
+            int indice = obtenerIndiceTratamiento(descrip);
+            if (indice != -1) {
+                view.resaltarFila(indice);
+                tratamiento = obtenerLista().get(indice);
+                view.activarEliminacion(true);
+            }
+        }
+    }
+
+    private int obtenerIndiceTratamiento(String descripcionT) {
+        List<Tratamiento> lista = obtenerLista();
+        return lista.indexOf(lista.stream().filter(v -> v.getDescripcion().equals(descripcionT)).findFirst().orElse(null));
     }
 }

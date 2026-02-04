@@ -4,13 +4,14 @@
  */
 package com.mycompany.tpi2025.view.AdministradorViews;
 
+import com.mycompany.tpi2025.view.JPanels.ABZonaView;
 import com.mycompany.tpi2025.view.JPanels.AMUsuarioView;
 import com.mycompany.tpi2025.view.JPanels.BuscarView;
 import com.mycompany.tpi2025.view.JPanels.CrearDiagnosticoView;
 import com.mycompany.tpi2025.view.JPanels.CrearGatoView;
+import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
 import com.mycompany.tpi2025.view.JPanels.GatosDeFamiliaView;
 import com.mycompany.tpi2025.view.JPanels.GatosDeHogarView;
-import com.mycompany.tpi2025.view.JPanels.DatosPrincipalesPanelView;
 import com.mycompany.tpi2025.view.JPanels.PostulacionView;
 import com.mycompany.tpi2025.view.JPanels.ReporteView;
 import com.mycompany.tpi2025.view.JPanels.TareaRealizadaView;
@@ -50,6 +51,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         contenedor = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         tpM = new javax.swing.JMenu();
@@ -97,6 +99,10 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         postulacionMI = new javax.swing.JMenuItem();
         postulacionHogarMI = new javax.swing.JMenuItem();
         qrGatoMI = new javax.swing.JMenuItem();
+        zonasM = new javax.swing.JMenu();
+        verZonasMI = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("TPI");
@@ -251,6 +257,13 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
         menuBar.add(gatoHistorialMI);
 
+        zonasM.setText("Zonas");
+
+        verZonasMI.setText("Ver");
+        zonasM.add(verZonasMI);
+
+        menuBar.add(zonasM);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,6 +340,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem gatosHogarMI;
     private javax.swing.JMenuItem historialMI;
     private javax.swing.JMenu hogarM;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem miPerfilMI;
     private javax.swing.JMenuItem modificarAdminMI;
@@ -342,8 +356,10 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem reporteMI;
     private javax.swing.JMenuItem tareaRealizadaMI;
     private javax.swing.JMenu tpM;
+    private javax.swing.JMenuItem verZonasMI;
     private javax.swing.JMenu vetM;
     private javax.swing.JMenu volM;
+    private javax.swing.JMenu zonasM;
     // End of variables declaration//GEN-END:variables
 
     public void cargarDatosPrincipales(String titulo, String nombre, String telefono, String nombreUsuario) {
@@ -516,6 +532,9 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setQRGatoListener(ActionListener l) {
         qrGatoMI.addActionListener(l);
     }
+    public void setZonasListener(ActionListener l) {
+        verZonasMI.addActionListener(l);
+    }
     
     
     
@@ -557,6 +576,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
             case VISITA -> new VisitaSeguimientoView();
             case GATOS_FAMILIA -> new GatosDeFamiliaView();
             case GATOS_HOGAR -> new GatosDeHogarView();
+            case ZONAS -> new ABZonaView();
             default -> null;
         };
     }
