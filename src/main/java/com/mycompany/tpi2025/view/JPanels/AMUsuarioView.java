@@ -112,7 +112,6 @@ public class AMUsuarioView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accionBtn;
     private javax.swing.JTextField contrasenia;
@@ -146,12 +145,12 @@ public class AMUsuarioView extends javax.swing.JPanel {
     public String getTelefono() {
         return telefono.getText();
     }
-    
-    public void mostrarMensaje(String texto){
+
+    public void mostrarMensaje(String texto) {
         JOptionPane.showMessageDialog(this, texto);
     }
-    
-    public void setTitulo(String text){
+
+    public void setTitulo(String text) {
         titulo.setText(text);
     }
 
@@ -182,20 +181,21 @@ public class AMUsuarioView extends javax.swing.JPanel {
     public void setTransitorio(boolean estado) {
         this.transitorio.setSelected(estado);
     }
-    
-    public void visibilizarTransitorio(boolean estado){
+
+    public void visibilizarTransitorio(boolean estado) {
         this.transitorio.setVisible(estado);
     }
 
     public void estadoNombreUsuario(boolean b) {
         nombreDeUsuiario.setEditable(b);
     }
+
     public void estadoContrasenia(boolean b) {
         contrasenia.setEditable(b);
     }
-    
-    public void activarAccion(boolean b){
+
+    public void activarAccion(boolean b) {
         accionBtn.setVisible(b);
     }
-    
+
 }

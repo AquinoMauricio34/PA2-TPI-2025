@@ -16,11 +16,11 @@ import java.io.Serializable;
  */
 @Entity
 public class Postulacion implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     String postulante;
     long idGato;
 
@@ -55,8 +55,5 @@ public class Postulacion implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
-    
+
 }

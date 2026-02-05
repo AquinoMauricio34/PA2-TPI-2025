@@ -195,6 +195,7 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
     public void setMiPerfilListener(ActionListener listener) {
         miPerfilMI.addActionListener(listener);
     }
+
     public void setCerrarAplicacionListener(ActionListener listener) {
         cerrarMI.addActionListener(listener);
     }
@@ -203,36 +204,33 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
         cerrarSesionMI.addActionListener(listener);
     }
     //ASIGNACION
-    
+
     public void setAsignacionFamiliaListener(ActionListener l) {
         asignacionFamiliaMI.addActionListener(l);
     }
+
     public void setAsignacionHogarListener(ActionListener l) {
         asignacionHogarMI.addActionListener(l);
     }
-    
+
     //TAREA REALIZADA
-    
     public void setTareaRealizadaListener(ActionListener l) {
         tareaRealizadaMI.addActionListener(l);
     }
-    
-    
+
     public void setVisitaListener(ActionListener l) {
         registrarVisitaMI.addActionListener(l);
     }
-    
+
     public void setCrearGatoListener(ActionListener l) {
         crearGatoMI.addActionListener(l);
     }
-    
+
     public void setModificarGatoListener(ActionListener l) {
         modificarGatoMI.addActionListener(l);
     }
-    
-    
-    //GESTION DE PANELES
 
+    //GESTION DE PANELES
     public void mostrarPanel(PanelesVoluntario identificador) {
         JPanel vista = paneles.get(identificador);
 
@@ -251,16 +249,26 @@ public class VoluntarioPrincipalView extends javax.swing.JFrame {
 
     private JPanel crearPanel(PanelesVoluntario identificador) {
         return switch (identificador) {
-            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
-            case MI_PERFIL -> new AMUsuarioView();
-            case CREAR_GATO, MODIFICAR_GATO -> new CrearGatoView();
-            case POSTULARSE -> new PostulacionView();
-            case ASIGNAR_GATO_FAMILIA -> new VerPostulacionFamiliaView();
-            case ASIGNAR_GATO_HOGAR -> new VerPostulacionHogarView();
-            case BUSCAR_VOLUNTARIO_TAREA_REALIZADA,BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_ASIGNACION -> new BuscarView();
-            case TAREA_REALIZADA -> new TareaRealizadaView();
-            case VISITA -> new VisitaSeguimientoView();
-            default -> null;
+            case DATOS_PRINCIPALES ->
+                new DatosPrincipalesPanelView();
+            case MI_PERFIL ->
+                new AMUsuarioView();
+            case CREAR_GATO, MODIFICAR_GATO ->
+                new CrearGatoView();
+            case POSTULARSE ->
+                new PostulacionView();
+            case ASIGNAR_GATO_FAMILIA ->
+                new VerPostulacionFamiliaView();
+            case ASIGNAR_GATO_HOGAR ->
+                new VerPostulacionHogarView();
+            case BUSCAR_VOLUNTARIO_TAREA_REALIZADA, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_ASIGNACION ->
+                new BuscarView();
+            case TAREA_REALIZADA ->
+                new TareaRealizadaView();
+            case VISITA ->
+                new VisitaSeguimientoView();
+            default ->
+                null;
         };
     }
 

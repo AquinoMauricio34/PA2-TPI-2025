@@ -8,11 +8,11 @@ import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
 import com.mycompany.tpi2025.model.VisitaSeguimiento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import java.io.Serializable;
-import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -133,5 +133,5 @@ public class VisitaSeguimientoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

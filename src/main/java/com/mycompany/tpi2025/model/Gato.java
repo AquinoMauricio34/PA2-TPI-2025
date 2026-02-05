@@ -23,34 +23,34 @@ import java.io.Serializable;
  */
 @Entity
 public class Gato implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     @Enumerated(EnumType.STRING)
     private EstadoSalud estadoSalud;
-    
-    
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "historial_id")
-    private HistorialGato historial=null;
-    
+    private HistorialGato historial = null;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Usuario usuario=null;
-    
+    private Usuario usuario = null;
+
     @ManyToOne
     @JoinColumn(name = "zona_id")
-    private Zona zona=null;
-    
+    private Zona zona = null;
+
     private String qr;
     private String nombre; //opcional
     private String color;
     private String caracteristicas;
-    
-    
-    public Gato(){}
-    
+
+    public Gato() {
+    }
+
     public Gato(String qr, String nombre, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud) {
         this.qr = qr;
         this.caracteristicas = caracteristicas;
@@ -60,12 +60,11 @@ public class Gato implements Serializable {
         this.estadoSalud = estadoSalud;
         this.usuario = null;
     }
-    
+
     //atributo nombre es opcional
-    public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud){
-        this(qr,"",color,zona,caracteristicas,estadoSalud);
+    public Gato(String qr, String color, Zona zona, String caracteristicas, EstadoSalud estadoSalud) {
+        this(qr, "", color, zona, caracteristicas, estadoSalud);
     }
-    
 
     public void setEstadoSalud(EstadoSalud estadoSalud) {
         this.estadoSalud = estadoSalud;
@@ -100,15 +99,15 @@ public class Gato implements Serializable {
     }
 
     public void setHistorial() {
-        if(historial == null){
+        if (historial == null) {
             this.historial = new HistorialGato();
         }
     }
-    
+
     public void setQr(String qr) {
         this.qr = qr;
     }
-    
+
     public String getCaracteristicas() {
         return caracteristicas;
     }
@@ -148,12 +147,12 @@ public class Gato implements Serializable {
     @Override
     public String toString() {
         String usu;
-        if(this.usuario!=null){
+        if (this.usuario != null) {
             usu = this.usuario.getNombreUsuario();
-        }else
+        } else {
             usu = "---";
+        }
         return "Gato:\n\t* id=" + id + ",\n\t* estadoSalud=" + estadoSalud + ",\n\t* usuario=" + usu + ",\n\t* zona=" + zona.getLocalizacion() + ",\n\t* nombre=" + nombre + ",\n\t* color=" + color + ",\n\t* caracteristicas=" + caracteristicas;
     }
-    
-    
+
 }

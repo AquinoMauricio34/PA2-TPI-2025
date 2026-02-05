@@ -9,5 +9,6 @@ package com.mycompany.tpi2025.controller;
  * @author aquin
  */
 public interface DatosTabla {
+
     Object[] obtenerDatos();
 }

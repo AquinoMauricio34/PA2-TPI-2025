@@ -24,7 +24,7 @@ public class BuscarView extends javax.swing.JPanel {
     public BuscarView() {
         initComponents();
         activarAccion(false);
-        
+
     }
 
     /**
@@ -118,7 +118,6 @@ public class BuscarView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accionBtn;
     private javax.swing.JButton buscarBtn;
@@ -129,10 +128,6 @@ public class BuscarView extends javax.swing.JPanel {
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 
-//    public void setAccionListener(ActionListener listener) {
-//        accionBtn.addActionListener(listener);
-//    }
-    
     public void setAccionListener(ActionListener l) {
         for (ActionListener al : accionBtn.getActionListeners()) {
             accionBtn.removeActionListener(al);
@@ -143,8 +138,8 @@ public class BuscarView extends javax.swing.JPanel {
     public void setBuscarListener(ActionListener listener) {
         buscarBtn.addActionListener(listener);
     }
-    
-    public void setSeleccionTablaListener(ListSelectionListener listener){
+
+    public void setSeleccionTablaListener(ListSelectionListener listener) {
         this.tablaDatos.getSelectionModel().addListSelectionListener(listener);
     }
 
@@ -185,20 +180,20 @@ public class BuscarView extends javax.swing.JPanel {
     public void setBuscarUsuarioTf(String buscarUsuarioTf) {
         this.buscarUsuarioTf.setText(buscarUsuarioTf);
     }
-    
-    public void mostrarMensaje(String titulo,String texto, int tipoMensaje){
-        JOptionPane.showMessageDialog(this, texto,titulo,tipoMensaje);
+
+    public void mostrarMensaje(String titulo, String texto, int tipoMensaje) {
+        JOptionPane.showMessageDialog(this, texto, titulo, tipoMensaje);
     }
-    
-    public int obtenerIndiceFila(){
+
+    public int obtenerIndiceFila() {
         return tablaDatos.getSelectedRow();
     }
-    
-    public String obtenerValorTabla(int fila, int columna){
+
+    public String obtenerValorTabla(int fila, int columna) {
         return tablaDatos.getValueAt(fila, columna).toString();
     }
-    
-    public void activarAccion(boolean valor){
+
+    public void activarAccion(boolean valor) {
         accionBtn.setEnabled(valor);
     }
 }

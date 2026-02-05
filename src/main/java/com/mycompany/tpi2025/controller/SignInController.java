@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  * @author aquin
  */
 public class SignInController {
+
     private SignInView view;
     private UsuarioJpaController dao;
 
@@ -31,22 +32,27 @@ public class SignInController {
         String contrasenia = view.getContrasenia().trim();
         String telefono = view.getTelefono().trim();
         String usuario = view.getNombreDeUsuiario().trim();
-        
+
         try {
-            if(Utils.hayVacios(nombre,contrasenia,telefono,usuario)) throw new Exception("Todos los campos deben ser rellenados.");
-            if(dao.findUsuario(usuario)!=null) throw new Exception("Ya existe una familia con el mismo nombre de usuario");
+            if (Utils.hayVacios(nombre, contrasenia, telefono, usuario)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+            if (dao.findUsuario(usuario) != null) {
+                throw new Exception("Ya existe una familia con el mismo nombre de usuario");
+            }
             Familia v = new Familia(view.getNombre(), view.getContrasenia(), view.getTelefono(), view.getNombreDeUsuiario());
             dao.create(v);
             JOptionPane.showMessageDialog(view, "Familia registrada.");
             cerrar();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(view, e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void iniciarView() {
-        view.setVisible(true);view.toFront();
+        view.setVisible(true);
+        view.toFront();
         view.setLocationRelativeTo(null);
     }
 
@@ -54,6 +60,5 @@ public class SignInController {
         view.dispose();
         view = null;
     }
-    
-    
+
 }

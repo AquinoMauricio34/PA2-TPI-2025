@@ -16,11 +16,12 @@ import java.util.List;
  * @author aquin
  */
 public class CrearZonaController {
+
     private ABZonaView view;
     private ZonaJpaController dao;
-    private Zona zona=null;//utilizado para guardar la zona seleccionada de la tabla para ser eliminada
+    private Zona zona = null;//utilizado para guardar la zona seleccionada de la tabla para ser eliminada
 
-    public CrearZonaController(ABZonaView view,EntityManagerFactory emf) {
+    public CrearZonaController(ABZonaView view, EntityManagerFactory emf) {
         this.view = view;
         this.dao = new ZonaJpaController(emf);
         iniciarView();
@@ -28,8 +29,8 @@ public class CrearZonaController {
         view.setEliminarListener(l -> eliminar(emf));
         view.setSeleccionListaListener(l -> seleccion());
     }
-    
-    private void iniciarView(){
+
+    private void iniciarView() {
         view.setVisible(true);
         iniciarTabla();
         view.limpiarComponentes();
@@ -38,7 +39,9 @@ public class CrearZonaController {
     private void registrar() {
         String ubicacion = view.getUbicacionBtn().trim();
         try {
-            if(ubicacion.isBlank()) throw new Exception("Se debe indicar la ubicacion.");
+            if (ubicacion.isBlank()) {
+                throw new Exception("Se debe indicar la ubicacion.");
+            }
             Zona z = new Zona(ubicacion);
             dao.create(z);
             view.mostrarInfoMensaje("Zona registrada exitosamente.");
@@ -49,50 +52,53 @@ public class CrearZonaController {
             view.mostrarErrorMensaje(e.getMessage());
         }
     }
-    
-    private void eliminar(EntityManagerFactory emf){
+
+    private void eliminar(EntityManagerFactory emf) {
         GatoJpaController daoG = new GatoJpaController(emf);
         try {
-            if(zona==null) throw new Exception("No hay una zona seleccionada para ser eliminada.");
+            if (zona == null) {
+                throw new Exception("No hay una zona seleccionada para ser eliminada.");
+            }
             long cantidadGatoZona = daoG.countByZonaId(zona.getId());
-            if(cantidadGatoZona>0) throw new Exception("No se puede eliminar la zona porque hay "+cantidadGatoZona+" gatos relacionados a ella.");
+            if (cantidadGatoZona > 0) {
+                throw new Exception("No se puede eliminar la zona porque hay " + cantidadGatoZona + " gatos relacionados a ella.");
+            }
             dao.destroy(zona.getId());
             zona = null;
             view.mostrarInfoMensaje("Zona eliminada exitosamente.");
             view.activarEliminacion(false);
             iniciarTabla();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             view.mostrarErrorMensaje(e.getMessage());
         }
     }
 
-    
-    public void iniciarTabla(){
+    public void iniciarTabla() {
         List<Zona> lista = obtenerLista();
         view.reloadTable(lista);
     }
-    
-    private List<Zona> obtenerLista(){
+
+    private List<Zona> obtenerLista() {
         return dao.findZonaEntities();
     }
-    
+
     private void seleccion() {
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
             String id = view.obtenerValorTabla(fila, 0);//primer parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceZona(Long.parseLong(id));
-            if(indice != -1){
+            if (indice != -1) {
                 view.resaltarFila(indice);
                 zona = obtenerLista().get(indice);
                 view.activarEliminacion(true);
             }
         }
     }
-    
-    private int obtenerIndiceZona(long idZona){
+
+    private int obtenerIndiceZona(long idZona) {
         List<Zona> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId()==idZona).findFirst().orElse(null));
+        return lista.indexOf(lista.stream().filter(v -> v.getId() == idZona).findFirst().orElse(null));
     }
 }

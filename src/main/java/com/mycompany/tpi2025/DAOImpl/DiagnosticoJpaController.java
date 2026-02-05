@@ -33,46 +33,6 @@ public class DiagnosticoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-//    public void create(Diagnostico diagnostico) {
-//        if (diagnostico.getTratamientos() == null) {
-//            diagnostico.setTratamientos(new ArrayList<Tratamiento>());
-//        }
-//        EntityManager em = null;
-//        try {
-//            em = getEntityManager();
-//            em.getTransaction().begin();
-//            HistorialGato historial = diagnostico.getHistorial();
-//            if (historial != null) {
-//                historial = em.getReference(historial.getClass(), historial.getId());
-//                diagnostico.setHistorial(historial);
-//            }
-//            List<Tratamiento> attachedTratamientos = new ArrayList<Tratamiento>();
-//            for (Tratamiento tratamientosTratamientoToAttach : diagnostico.getTratamientos()) {
-//                tratamientosTratamientoToAttach = em.getReference(tratamientosTratamientoToAttach.getClass(), tratamientosTratamientoToAttach.getId());
-//                attachedTratamientos.add(tratamientosTratamientoToAttach);
-//            }
-//            diagnostico.setTratamientos(attachedTratamientos);
-//            em.persist(diagnostico);
-//            if (historial != null) {
-//                historial.getDiagnosticos().add(diagnostico);
-//                historial = em.merge(historial);
-//            }
-//            for (Tratamiento tratamientosTratamiento : diagnostico.getTratamientos()) {
-//                Diagnostico oldDiagnosticoOfTratamientosTratamiento = tratamientosTratamiento.getDiagnostico();
-//                tratamientosTratamiento.setDiagnostico(diagnostico);
-//                tratamientosTratamiento = em.merge(tratamientosTratamiento);
-//                if (oldDiagnosticoOfTratamientosTratamiento != null) {
-//                    oldDiagnosticoOfTratamientosTratamiento.getTratamientos().remove(tratamientosTratamiento);
-//                    oldDiagnosticoOfTratamientosTratamiento = em.merge(oldDiagnosticoOfTratamientosTratamiento);
-//                }
-//            }
-//            em.getTransaction().commit();
-//        } finally {
-//            if (em != null) {
-//                em.close();
-//            }
-//        }
-//    }
     public void create(Diagnostico diagnostico) {
         EntityManager em = null;
         try {

@@ -96,7 +96,6 @@ public class ReporteView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gatosAdoptados;
     private javax.swing.JLabel gatosEsterilizados;
@@ -105,12 +104,12 @@ public class ReporteView extends javax.swing.JPanel {
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
 
-    public void reloadTable(List<SimpleEntry<Long,Integer>> elementos) {
+    public void reloadTable(List<SimpleEntry<Long, Integer>> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
 
         for (SimpleEntry<Long, Integer> elem : elementos) {
-            model.addRow(new Object[]{ elem.getKey(), elem.getValue() });
+            model.addRow(new Object[]{elem.getKey(), elem.getValue()});
         }
 
         tablaDatos.setModel(model);
@@ -123,7 +122,5 @@ public class ReporteView extends javax.swing.JPanel {
     public void setGatosEsterilizados(String gatosEsterilizados) {
         this.gatosEsterilizados.setText(gatosEsterilizados);
     }
-
-    
 
 }

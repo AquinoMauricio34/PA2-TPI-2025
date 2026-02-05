@@ -12,13 +12,13 @@ public enum PanelesFamilia {
     DATOS_PRINCIPALES("DATOS_PRINCIPALES"),
     MI_PERFIL("MI_PERFIL"),
     POSTULARSE("POSTULARSE");
-    
+
     private final String texto;
-    
+
     private PanelesFamilia(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

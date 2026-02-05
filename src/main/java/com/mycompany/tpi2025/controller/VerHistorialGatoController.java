@@ -9,8 +9,8 @@ import com.mycompany.tpi2025.DAOImpl.GatoJpaController;
 import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.view.EstudiosView;
-import com.mycompany.tpi2025.view.VerGatoView;
 import com.mycompany.tpi2025.view.JPanels.VerHistorialGatoView;
+import com.mycompany.tpi2025.view.VerGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 
@@ -19,14 +19,15 @@ import java.util.List;
  * @author aquin
  */
 public class VerHistorialGatoController {
+
     private VerHistorialGatoView view;
     private DiagnosticoJpaController dao;
-    private Gato gato=null;
+    private Gato gato = null;
     private GatoJpaController daoG;
     private EntityManagerFactory emf;
-    private Diagnostico diagnostico=null;
-    
-    public VerHistorialGatoController(VerHistorialGatoView view,EntityManagerFactory emf) {
+    private Diagnostico diagnostico = null;
+
+    public VerHistorialGatoController(VerHistorialGatoView view, EntityManagerFactory emf) {
         this.view = view;
         this.dao = new DiagnosticoJpaController(emf);
         this.daoG = new GatoJpaController(emf);
@@ -39,12 +40,12 @@ public class VerHistorialGatoController {
         view.setSeleccionarGatoListener(l -> abrirSeleccion());
         view.setEstudiosListener(l -> abrirEstudios());
     }
-    
-    public void iniciarView(){
+
+    public void iniciarView() {
         view.setVisible(true);
     }
-    
-    public void setGato(Gato g){
+
+    public void setGato(Gato g) {
         gato = g;
     }
 
@@ -61,33 +62,33 @@ public class VerHistorialGatoController {
     public Gato getGato() {
         return gato;
     }
-    
-    public void iniciarTabla(){
+
+    public void iniciarTabla() {
         List<Diagnostico> lista = obtenerLista();
         view.reloadTable(lista);
     }
-    
-    private List<Diagnostico> obtenerLista(){
+
+    private List<Diagnostico> obtenerLista() {
         return gato.getHistorial().getDiagnosticos();
     }
-    
+
     private void seleccionar() {
-                System.out.println("seleeccionarrrrrrr");
+        
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndiceDiagnostico(Long.parseLong(id));
-                System.out.println("indice: "+indice);
-            if(indice != -1){
+            
+            if (indice != -1) {
                 diagnostico = obtenerLista().get(indice);
                 view.activarSeleccion(true);
             }
         }
     }
-    
-    private int obtenerIndiceDiagnostico(long idDiag){
+
+    private int obtenerIndiceDiagnostico(long idDiag) {
         List<Diagnostico> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId()==idDiag).findFirst().orElse(null));
+        return lista.indexOf(lista.stream().filter(v -> v.getId() == idDiag).findFirst().orElse(null));
     }
 
     public Diagnostico getDiagnostico() {
@@ -98,8 +99,5 @@ public class VerHistorialGatoController {
         EstudiosView eview = new EstudiosView();
         EstudioController controller = new EstudioController(eview, gato, emf);
     }
-    
-    
-    
-    
+
 }

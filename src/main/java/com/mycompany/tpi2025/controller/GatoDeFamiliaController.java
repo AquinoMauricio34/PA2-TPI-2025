@@ -52,7 +52,7 @@ public class GatoDeFamiliaController {
                 if (lista.isEmpty()) {
                     throw new Exception("La familia no tiene gatos asignados.");
                 }
-            vview.dispose();
+                vview.dispose();
                 view.reloadTable(lista);
             } catch (Exception e) {
                 vview.mostrarInfoMensaje(e.getMessage());

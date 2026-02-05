@@ -171,12 +171,13 @@ public class EstudioController {
             view.mostrarErrorMensaje("No hay ningún estudio seleccionado para eliminar.");
             return;
         }
-        
+
         boolean confirmacion = view.mostrarMensajeConfirmacion("¿Está seguro de eliminar el estudio '" + estudio.getTitulo() + "'?");
-        if(!confirmacion) return;
-        
+        if (!confirmacion) {
+            return;
+        }
+
         try {
-            
 
             // Intentar eliminar el estudio
             daoE.destroy(estudio.getId());
@@ -193,7 +194,7 @@ public class EstudioController {
             estudio = null;
 
         } catch (Exception e) {
-            // Error específico de persistencia (restricciones de clave foránea, etc.)
+            // Error específico de persistencia
             e.printStackTrace();
             view.mostrarErrorMensaje(e.getMessage());
         }

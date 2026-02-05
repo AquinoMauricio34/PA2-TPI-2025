@@ -176,6 +176,7 @@ public class VeterinarioPrincipalView extends javax.swing.JFrame {
     public void setMiPerfilListener(ActionListener listener) {
         miPerfilMI.addActionListener(listener);
     }
+
     public void setCerrarAplicacionListener(ActionListener listener) {
         cerrarMI.addActionListener(listener);
     }
@@ -183,25 +184,25 @@ public class VeterinarioPrincipalView extends javax.swing.JFrame {
     public void setCerrarSesionListener(ActionListener listener) {
         cerrarSesionMI.addActionListener(listener);
     }
-    
+
     public void setHistorialGatoListener(ActionListener l) {
         historialMI.addActionListener(l);
     }
+
     public void setModificarGatoListener(ActionListener l) {
         modificarGatoMI.addActionListener(l);
     }
-    
+
     //EMISION CERTIFICADO DE APTITUD
-    
     public void setEmitirAptitudFamiliaListener(ActionListener l) {
         emitirAptitudFamiliaMI.addActionListener(l);
     }
+
     public void setEmitirAptitudHogarListener(ActionListener l) {
         emitirAptitudHogarMI.addActionListener(l);
     }
-    
-    //GESTION DE PANELES
 
+    //GESTION DE PANELES
     public void mostrarPanel(PanelesVeterinario identificador) {
         JPanel vista = paneles.get(identificador);
 
@@ -220,13 +221,20 @@ public class VeterinarioPrincipalView extends javax.swing.JFrame {
 
     private JPanel crearPanel(PanelesVeterinario identificador) {
         return switch (identificador) {
-            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
-            case MI_PERFIL -> new AMUsuarioView();
-            case VER_HISTORIAL -> new VerHistorialGatoView();
-            case CREAR_DIAGNOSTICO, VER_DIAGNOSTICO -> new CrearDiagnosticoView();
-            case BUSCAR_FAMILIA_APTITUD, BUSCAR_HOGAR_APTITUD -> new BuscarView();
-            case MODIFICAR_GATO -> new CrearGatoView();
-            default -> null;
+            case DATOS_PRINCIPALES ->
+                new DatosPrincipalesPanelView();
+            case MI_PERFIL ->
+                new AMUsuarioView();
+            case VER_HISTORIAL ->
+                new VerHistorialGatoView();
+            case CREAR_DIAGNOSTICO, VER_DIAGNOSTICO ->
+                new CrearDiagnosticoView();
+            case BUSCAR_FAMILIA_APTITUD, BUSCAR_HOGAR_APTITUD ->
+                new BuscarView();
+            case MODIFICAR_GATO ->
+                new CrearGatoView();
+            default ->
+                null;
         };
     }
 

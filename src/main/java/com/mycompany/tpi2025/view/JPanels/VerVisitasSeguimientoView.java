@@ -108,7 +108,6 @@ public class VerVisitasSeguimientoView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel4;
@@ -139,7 +138,7 @@ public class VerVisitasSeguimientoView extends javax.swing.JPanel {
 
         if (elementos != null) {
             for (VisitaSeguimiento elem : elementos) {
-                model.addRow(new Object[]{elem.getId(), elem.getIdVoluntario(), elem.getIdGato(), elem.getFecha(),elem.getDescripcion()});
+                model.addRow(new Object[]{elem.getId(), elem.getIdVoluntario(), elem.getIdGato(), elem.getFecha(), elem.getDescripcion()});
             }
         }
 

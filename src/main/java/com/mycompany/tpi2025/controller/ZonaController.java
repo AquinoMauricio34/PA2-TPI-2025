@@ -15,6 +15,7 @@ import java.util.List;
  * @author aquin
  */
 public class ZonaController {
+
     private ZonaView view;
     private ZonaJpaController dao;
     private CrearGatoController padre;
@@ -22,7 +23,8 @@ public class ZonaController {
 
     public ZonaController(ZonaView view, CrearGatoController padre, EntityManagerFactory emf) {
         this.view = view;
-        view.setVisible(true);view.toFront();
+        view.setVisible(true);
+        view.toFront();
         view.setLocationRelativeTo(null);
         this.dao = new ZonaJpaController(emf);
         this.padre = padre;
@@ -31,42 +33,42 @@ public class ZonaController {
         view.setSeleccionListener(l -> enviarZona());
         view.setCerrarListener(l -> cerrar());
     }
-    
-    public void iniciarTabla(){
+
+    public void iniciarTabla() {
         List<Zona> lista = obtenerLista();
-        view.reloadTable(lista, new String[]{"ID","Localización"});
+        view.reloadTable(lista, new String[]{"ID", "Localización"});
     }
-    
-    private List<Zona> obtenerLista(){
+
+    private List<Zona> obtenerLista() {
         return dao.findZonaEntities();
     }
-    
+
     private void seleccionar() {
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
             String id = view.obtenerValorTabla(fila, 0);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
             int indice = obtenerIndiceZona(Long.parseLong(id));
-            if(indice != -1){
+            if (indice != -1) {
                 zona = obtenerLista().get(indice);
                 view.activarSeleccion(true);
             }
         }
     }
-    
-    private int obtenerIndiceZona(long idZona){
+
+    private int obtenerIndiceZona(long idZona) {
         List<Zona> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId()==idZona).findFirst().orElse(null));
+        return lista.indexOf(lista.stream().filter(v -> v.getId() == idZona).findFirst().orElse(null));
     }
-    
-    private void cerrar(){
+
+    private void cerrar() {
         view.dispose();
         view = null;
     }
 
     private void enviarZona() {
         padre.setZonaGato(zona);
-        padre.setZonaElegidaTexto("Zona N° "+zona.getId());
+        padre.setZonaElegidaTexto("Zona N° " + zona.getId());
         cerrar();
     }
-    
+
 }

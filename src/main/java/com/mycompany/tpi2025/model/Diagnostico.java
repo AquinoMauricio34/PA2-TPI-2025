@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,27 +24,24 @@ import java.util.List;
  */
 @Entity
 public class Diagnostico implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "tratamiento_id")
-//    private Tratamiento tratamiento=null;
-    
+
     @OneToMany(mappedBy = "diagnostico", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Tratamiento> tratamientos = new ArrayList<>();
-    
+
     @ManyToOne
     @JoinColumn(name = "historial_id")
-    private HistorialGato historial=null;
-
+    private HistorialGato historial = null;
 
     private String descripcion; // descripcion del estado general del gato (como se encuentra y como esta, los sintomas que tienen, como mejoró, etc.)
     private String diagnostico; // diagnóstico médico
     private LocalDate fecha_diagnostico;
 
-    public Diagnostico() {}
+    public Diagnostico() {
+    }
 
     public Diagnostico(String descripcion, String diagnostico, LocalDate fecha_diagnostico) {
         this.descripcion = descripcion;
@@ -100,13 +96,13 @@ public class Diagnostico implements Serializable {
     public void setTratamientos(List<Tratamiento> tratamientos) {
         this.tratamientos = tratamientos;
     }
-    
-    public void addTratamiento(Tratamiento tratamiento){
-        //System.out.println("AB3");
+
+    public void addTratamiento(Tratamiento tratamiento) {
+
         tratamiento.setDiagnostico(this);
-        //System.out.println("AB4");
+
         tratamientos.add(tratamiento);
-        //System.out.println("AB5");
+
     }
-    
+
 }

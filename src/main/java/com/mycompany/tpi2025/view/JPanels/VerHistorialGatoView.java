@@ -123,7 +123,6 @@ public class VerHistorialGatoView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDiagnostico;
     private javax.swing.JButton estudiosBtn;
@@ -134,22 +133,26 @@ public class VerHistorialGatoView extends javax.swing.JPanel {
     private javax.swing.JButton verDiagnostico;
     // End of variables declaration//GEN-END:variables
 
-    public void setSeleccionListener(ActionListener l){
+    public void setSeleccionListener(ActionListener l) {
         verDiagnostico.addActionListener(l);
     }
-    public void setSeleccionarGatoListener(ActionListener l){
+
+    public void setSeleccionarGatoListener(ActionListener l) {
         seleccionarGato.addActionListener(l);
     }
-    public void setAniadirListener(ActionListener l){
+
+    public void setAniadirListener(ActionListener l) {
         addDiagnostico.addActionListener(l);
     }
-    public void setEstudiosListener(ActionListener l){
+
+    public void setEstudiosListener(ActionListener l) {
         estudiosBtn.addActionListener(l);
     }
-    public void setSeleccionListaListener(ListSelectionListener l){
+
+    public void setSeleccionListaListener(ListSelectionListener l) {
         tablaDatos.getSelectionModel().addListSelectionListener(l);
     }
-    
+
     public void resaltarFila(int fila) {
         // -1 porque si no se encuentra el articulo con el nombre insertado devuelve -1
         if (fila != -1) {
@@ -157,26 +160,26 @@ public class VerHistorialGatoView extends javax.swing.JPanel {
             tablaDatos.scrollRectToVisible(tablaDatos.getCellRect(fila, 0, true));
         }
     }
-    
+
     public void reloadTable(List<Diagnostico> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
         for (Diagnostico elem : elementos) {
-            model.addRow(new Object[]{elem.getId(),elem.getDiagnostico()});
+            model.addRow(new Object[]{elem.getId(), elem.getDiagnostico()});
         }
 
         tablaDatos.setModel(model);
     }
-    
-    public int obtenerIndiceFila(){
+
+    public int obtenerIndiceFila() {
         return tablaDatos.getSelectedRow();
     }
-    
-    public String obtenerValorTabla(int fila, int columna){
+
+    public String obtenerValorTabla(int fila, int columna) {
         return tablaDatos.getValueAt(fila, columna).toString();
     }
-    
-    public void activarSeleccion(boolean valor){
+
+    public void activarSeleccion(boolean valor) {
         verDiagnostico.setEnabled(valor);
     }
 }

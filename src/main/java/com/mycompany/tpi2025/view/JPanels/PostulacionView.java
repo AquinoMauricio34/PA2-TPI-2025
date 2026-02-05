@@ -111,7 +111,6 @@ public class PostulacionView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -119,14 +118,15 @@ public class PostulacionView extends javax.swing.JPanel {
     private javax.swing.JButton postulacionBtn;
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
-    
-    public void setPostulacionListener(ActionListener l){
+
+    public void setPostulacionListener(ActionListener l) {
         postulacionBtn.addActionListener(l);
     }
-    public void setSeleccionListaListener(ListSelectionListener l){
+
+    public void setSeleccionListaListener(ListSelectionListener l) {
         tablaDatos.getSelectionModel().addListSelectionListener(l);
     }
-    
+
     public void resaltarFila(int fila) {
         // -1 porque si no se encuentra el articulo con el nombre insertado devuelve -1
         if (fila != -1) {
@@ -134,26 +134,26 @@ public class PostulacionView extends javax.swing.JPanel {
             tablaDatos.scrollRectToVisible(tablaDatos.getCellRect(fila, 0, true));
         }
     }
-    
+
     public void reloadTable(List<Gato> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
         for (Gato elem : elementos) {
-            model.addRow(new Object[]{elem.getId(),elem.getNombre(),elem.getCaracteristicas()});
+            model.addRow(new Object[]{elem.getId(), elem.getNombre(), elem.getCaracteristicas()});
         }
 
         tablaDatos.setModel(model);
     }
-    
-    public int obtenerIndiceFila(){
+
+    public int obtenerIndiceFila() {
         return tablaDatos.getSelectedRow();
     }
-    
-    public String obtenerValorTabla(int fila, int columna){
+
+    public String obtenerValorTabla(int fila, int columna) {
         return tablaDatos.getValueAt(fila, columna).toString();
     }
-    
-    public void activarPostulacion(boolean valor){
+
+    public void activarPostulacion(boolean valor) {
         postulacionBtn.setEnabled(valor);
     }
 }

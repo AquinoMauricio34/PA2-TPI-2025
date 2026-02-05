@@ -7,8 +7,8 @@ package com.mycompany.tpi2025.controller;
 import com.google.zxing.WriterException;
 import com.mycompany.tpi2025.Utils;
 import com.mycompany.tpi2025.model.Gato;
-import com.mycompany.tpi2025.view.VerGatoView;
 import com.mycompany.tpi2025.view.QRGatoView;
+import com.mycompany.tpi2025.view.VerGatoView;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -46,7 +46,6 @@ public class VerQRGatoController {
         view.setQRImage(qrImage);
         view.setCerrarListener(l -> cerrarView());
         view.setVisible(true);
-        
 
     }
 

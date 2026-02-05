@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  * @author aquin
  */
 public class VerPostulacionFamiliaController {
+
     private VerPostulacionFamiliaView view;
     private PostulacionJpaController daoP;
     private FamiliaJpaController daoF;
@@ -28,68 +29,66 @@ public class VerPostulacionFamiliaController {
     private long idGatoAsignar;
 
     public VerPostulacionFamiliaController(VerPostulacionFamiliaView view, Familia familia, EntityManagerFactory emf) {
-        //System.out.println("MM11-------------------------------------------");
+
         this.view = view;
         this.daoP = new PostulacionJpaController(emf);
         this.daoF = new FamiliaJpaController(emf);
         this.daoG = new GatoJpaController(emf);
         this.familia = familia;
-        //System.out.println("MM112-------------------------------------------");
+
         iniciarView();
-        //System.out.println("MM113-------------------------------------------");
+
         iniciarTabla();
-        //System.out.println("MM-------------------------------------------");
-        
+
         view.setSeleccionListaListener(l -> seleccionar());
         view.setAsignarListener(l -> asignar());
     }
-    
-    public void iniciarView(){
+
+    public void iniciarView() {
         view.setVisible(true);
-        view.setTitulo("Familia: "+familia.getNombre());
+        view.setTitulo("Familia: " + familia.getNombre());
     }
-    
-    public void iniciarTabla(){
+
+    public void iniciarTabla() {
         List<Postulacion> lista = obtenerLista();
-        //System.out.println("MM114-------------------------------------------");
-        //System.out.println(lista);
+
         view.reloadTable(lista);
     }
-    
-    private List<Postulacion> obtenerLista(){
+
+    private List<Postulacion> obtenerLista() {
         try {
             List<Postulacion> lista = daoP.findPostulacionesByPostulante(familia.getNombreUsuario());
             return lista;
         } catch (Exception e) {
             e.printStackTrace();
-            //System.out.println("asdflkjaskljasdfjklasdfjklñ");
+
         }
         return null;
     }
-    
+
     private void seleccionar() {
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
-//            idGatoAsignar = Long.parseLong(view.obtenerValorTabla(fila, 1));//segundo parametro indice correspondiente a la columna del encabezado
             String id = view.obtenerValorTabla(fila, 0);//segundo parametro indice correspondiente a la columna del encabezado
             int indice = obtenerIndicePostulacion(Long.parseLong(id));
-            if(indice != -1){
+            if (indice != -1) {
                 view.resaltarFila(indice);
                 idGatoAsignar = obtenerLista().get(indice).getIdGato();
                 view.activarAsignacion(true);
-                //iniciarTabla();
             }
         }
     }
-    
-    private int obtenerIndicePostulacion(long idPostulacion){
+
+    private int obtenerIndicePostulacion(long idPostulacion) {
         List<Postulacion> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId()==idPostulacion).findFirst().orElse(null));
+        return lista.indexOf(lista.stream().filter(v -> v.getId() == idPostulacion).findFirst().orElse(null));
     }
-    
-    private void asignar(){
+
+    private void asignar() {
         try {
-            if(!familia.isAptoAdopcion()) throw new Exception("La familia no es apta para adoptar.\nSolicitar emisión de adopción al veterinario.");
+            if (!familia.isAptoAdopcion()) {
+                throw new Exception("La familia no es apta para adoptar.\nSolicitar emisión de adopción al veterinario.");
+            }
             Gato g = daoG.findGato(idGatoAsignar);
             familia.addGato(g);
             daoG.edit(g);
@@ -97,17 +96,17 @@ public class VerPostulacionFamiliaController {
             daoF.edit(familia);
             //eliminar todas las postulaciones con el idGato
             List<Postulacion> lista = daoP.findPostulacionesByIdGato(idGatoAsignar);
-            for(Postulacion elem: lista){
+            for (Postulacion elem : lista) {
                 daoP.destroy(elem.getId());
             }
             iniciarTabla();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(view, e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void setFamilia(Familia f){
+
+    public void setFamilia(Familia f) {
         this.familia = f;
     }
 }

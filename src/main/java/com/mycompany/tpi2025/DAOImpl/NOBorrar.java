@@ -9,5 +9,5 @@ package com.mycompany.tpi2025.DAOImpl;
  * @author aquin
  */
 public class NOBorrar {
-    
+
 }

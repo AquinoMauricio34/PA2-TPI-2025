@@ -146,6 +146,7 @@ public class FamiliaPrincipalView extends javax.swing.JFrame {
     public void setMiPerfilListener(ActionListener listener) {
         miPerfilMI.addActionListener(listener);
     }
+
     public void setCerrarAplicacionListener(ActionListener listener) {
         cerrarMI.addActionListener(listener);
     }
@@ -153,17 +154,13 @@ public class FamiliaPrincipalView extends javax.swing.JFrame {
     public void setCerrarSesionListener(ActionListener listener) {
         cerrarSesionMI.addActionListener(listener);
     }
-    
+
     //POSTULACION
-    
     public void setPostulacionListener(ActionListener l) {
         postulacionMI.addActionListener(l);
     }
-    
-    
-    
-    //GESTION DE PANELES
 
+    //GESTION DE PANELES
     public void mostrarPanel(PanelesFamilia identificador) {
         JPanel vista = paneles.get(identificador);
 
@@ -182,10 +179,14 @@ public class FamiliaPrincipalView extends javax.swing.JFrame {
 
     private JPanel crearPanel(PanelesFamilia identificador) {
         return switch (identificador) {
-            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
-            case MI_PERFIL -> new AMUsuarioView();
-            case POSTULARSE -> new PostulacionView();
-            default -> null;
+            case DATOS_PRINCIPALES ->
+                new DatosPrincipalesPanelView();
+            case MI_PERFIL ->
+                new AMUsuarioView();
+            case POSTULARSE ->
+                new PostulacionView();
+            default ->
+                null;
         };
     }
 

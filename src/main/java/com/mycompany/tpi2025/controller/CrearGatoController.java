@@ -49,7 +49,6 @@ public class CrearGatoController {
             view.activarModificar(false);
         });
         if ("MODIFICAR".equals(tipoAccion)) {
-            //abrirSeleccion();
             view.activarComponentes(false);
             view.activarRegistrar(false);
             view.activarModificar(true);
@@ -122,7 +121,6 @@ public class CrearGatoController {
 
             // Mensaje de éxito
             view.mostrarInfoMensaje("Gato registrado exitosamente.");
-            // cerrar(); // Descomenta si tienes este método
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -176,7 +174,6 @@ public class CrearGatoController {
             dao.edit(gato);
 
             view.mostrarInfoMensaje("Gato modificado exitosamente.");
-            // cerrar(); // Descomenta si tienes este método
 
         } catch (Exception e) {
             e.printStackTrace();

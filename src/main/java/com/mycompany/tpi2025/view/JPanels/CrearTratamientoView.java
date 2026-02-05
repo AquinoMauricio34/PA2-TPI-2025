@@ -5,9 +5,6 @@
 package com.mycompany.tpi2025.view.JPanels;
 
 import java.awt.event.ActionListener;
-import javax.swing.JCheckBox;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
@@ -130,7 +127,6 @@ public class CrearTratamientoView extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox abandono;

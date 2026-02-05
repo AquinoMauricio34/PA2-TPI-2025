@@ -19,14 +19,15 @@ import javax.swing.JOptionPane;
  * @author aquin
  */
 public class BuscarController<T extends Usuario> {
+
     private BuscarView view;
     private UsuarioJpaController dao;
     private final Class<T> tipoUsuario;
     private Usuario usuario = null;
     private String[] encabezados;
     private AccionBuscar tipoAccion;
-    
-     public BuscarController(BuscarView view, Class<T> tipoUsuario, AccionBuscar tipoAccion,String[] encabezados , EntityManagerFactory emf) {
+
+    public BuscarController(BuscarView view, Class<T> tipoUsuario, AccionBuscar tipoAccion, String[] encabezados, EntityManagerFactory emf) {
         this.view = view;
         this.dao = new UsuarioJpaController(emf);
         this.tipoUsuario = tipoUsuario;
@@ -38,25 +39,30 @@ public class BuscarController<T extends Usuario> {
         view.setAccionListener(l -> accion(tipoAccion));
         view.setBuscarListener(l -> buscarUsuario());
         view.setSeleccionTablaListener(l -> filaSeleccionada());
-        if(tipoAccion == AccionBuscar.DETALLES){
+        if (tipoAccion == AccionBuscar.DETALLES) {
             view.activarAccion(false);
-        }else
+        } else {
             view.activarAccion(true);
+        }
     }
-    
-    public void iniciarTabla(String[] encabezados){
+
+    public void iniciarTabla(String[] encabezados) {
         List<Usuario> lista = dao.findUsuariosByTipo(tipoUsuario.getSimpleName());
         view.reloadTable(lista, encabezados);
     }
-     
 
     private void accion(AccionBuscar tipo) {
         switch (tipo) {
-            case DETALLES -> {}
-            case ELIMINAR -> eliminar();
-            case ESTABLECER_APTITUD -> cambiarAptitud();
-            case SELECCION -> {}
-            default -> throw new AssertionError(tipo.name());
+            case DETALLES -> {
+            }
+            case ELIMINAR ->
+                eliminar();
+            case ESTABLECER_APTITUD ->
+                cambiarAptitud();
+            case SELECCION -> {
+            }
+            default ->
+                throw new AssertionError(tipo.name());
         }
     }
 
@@ -64,19 +70,20 @@ public class BuscarController<T extends Usuario> {
         String nombreUsuario = view.getBuscarUsuarioTf();
         List<Usuario> lista = obtenerLista();
         int indice = lista.indexOf(lista.stream().filter(v -> v.getNombreUsuario().toLowerCase().equals(nombreUsuario.toLowerCase()) || v.getNombre().toLowerCase().equals(nombreUsuario.toLowerCase())).findFirst().orElse(null));
-        if(indice != -1){
+        if (indice != -1) {
             view.resaltarFila(indice); //aunque aquí ya se haga la verificación del -1 se mantiene en el view por si se utiliza en otro momento.  
             usuario = lista.get(indice);
             view.activarAccion(true);
-        }else
+        } else {
             usuario = null;
+        }
     }
-    
-    private void eliminar(){
-        if(usuario != null){
-            int resultado = JOptionPane.showConfirmDialog(view, "El usuario será eliminado permanentemente. ¿Confirma la eliminación?","Confirmación",JOptionPane.OK_CANCEL_OPTION);
+
+    private void eliminar() {
+        if (usuario != null) {
+            int resultado = JOptionPane.showConfirmDialog(view, "El usuario será eliminado permanentemente. ¿Confirma la eliminación?", "Confirmación", JOptionPane.OK_CANCEL_OPTION);
             try {
-                if(resultado == JOptionPane.OK_OPTION){
+                if (resultado == JOptionPane.OK_OPTION) {
                     dao.destroy(usuario.getNombreUsuario());
                 }
                 iniciarTabla(encabezados);
@@ -85,31 +92,33 @@ public class BuscarController<T extends Usuario> {
                 view.mostrarMensaje("Error", "Error eliminar usuario", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
-        }else
+        } else {
             view.mostrarMensaje("Error", "Error eliminar usuario", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    
-    private int obtenerIndiceUsuario(String nombreUsuario){
+
+    private int obtenerIndiceUsuario(String nombreUsuario) {
         List<Usuario> lista = obtenerLista();
         return lista.indexOf(lista.stream().filter(v -> v.getNombreUsuario().toLowerCase().equals(nombreUsuario.toLowerCase()) || v.getNombre().toLowerCase().equals(nombreUsuario.toLowerCase())).findFirst().orElse(null));
     }
-    
-    private List<Usuario> obtenerLista(){
+
+    private List<Usuario> obtenerLista() {
         return dao.findUsuariosByTipo(tipoUsuario.getSimpleName());
     }
-    
+
     private void filaSeleccionada() {
         int fila = view.obtenerIndiceFila();
         if (fila != -1) {
             String nombre = view.obtenerValorTabla(fila, 1);//1 es el indice correspondiente a la columna del encabezado nombreUsuario
             int indice = obtenerIndiceUsuario(nombre);
-            if(indice != -1){
+            if (indice != -1) {
                 usuario = obtenerLista().get(indice);
-                if(tipoAccion != AccionBuscar.DETALLES){
+                if (tipoAccion != AccionBuscar.DETALLES) {
                     view.activarAccion(true);
-                    //System.out.println("sldajklñsdjklfsdklklsdfkasdfasdflñkasdfkkasdfñjklasdfñjklasdfafsdlñjklñsfadjklñasdfjklñ");
-                }else
+
+                } else {
                     view.activarAccion(false);
+                }
             }
         }
     }
@@ -119,14 +128,15 @@ public class BuscarController<T extends Usuario> {
     }
 
     private void cambiarAptitud() {
-        if(usuario != null){
+        if (usuario != null) {
             try {
                 if (usuario instanceof Hogar hogar) {
                     hogar.setAptoAdopcion(!hogar.isAptoAdopcion());
-                }else if(usuario instanceof Familia familia){
+                } else if (usuario instanceof Familia familia) {
                     familia.setAptoAdopcion(!familia.isAptoAdopcion());
-                }else
+                } else {
                     throw new Exception("Error clase no es ni familia ni hogar.");
+                }
                 dao.edit(usuario);
                 iniciarTabla(encabezados);
                 view.activarAccion(false);
@@ -134,8 +144,7 @@ public class BuscarController<T extends Usuario> {
                 e.printStackTrace();
             }
         }
-        
+
     }
 
-    
 }

@@ -16,10 +16,11 @@ import java.io.Serializable;
  */
 @Entity
 public class VisitaSeguimiento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private String nombreUsuarioVoluntario;
     private long idGato;
     private String fecha;
@@ -74,6 +75,5 @@ public class VisitaSeguimiento implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
+
 }

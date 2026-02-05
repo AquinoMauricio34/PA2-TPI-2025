@@ -108,7 +108,6 @@ public class VerTareasRealizadasView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel4;
@@ -139,7 +138,7 @@ public class VerTareasRealizadasView extends javax.swing.JPanel {
 
         if (elementos != null) {
             for (Tarea elem : elementos) {
-                model.addRow(new Object[]{elem.getId(), elem.getNombreUsuarioVoluntario(), elem.getUbicacion(), elem.getFecha(),elem.getHora(),elem.getTipo()});
+                model.addRow(new Object[]{elem.getId(), elem.getNombreUsuarioVoluntario(), elem.getUbicacion(), elem.getFecha(), elem.getHora(), elem.getTipo()});
             }
         }
 

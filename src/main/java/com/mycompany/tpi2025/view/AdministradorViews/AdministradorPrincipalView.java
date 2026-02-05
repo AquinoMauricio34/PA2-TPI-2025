@@ -409,6 +409,7 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setMiPerfilListener(ActionListener listener) {
         miPerfilMI.addActionListener(listener);
     }
+
     public void setCerrarAplicacionListener(ActionListener listener) {
         cerrarMI.addActionListener(listener);
     }
@@ -416,9 +417,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setCerrarSesionListener(ActionListener listener) {
         cerrarSesionMI.addActionListener(listener);
     }
-    
+
     //CREACION
-    
     public void setCrearAdminListener(ActionListener listener) {
         crearAdminMI.addActionListener(listener);
     }
@@ -438,9 +438,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setCrearHogarListener(ActionListener l) {
         crearHogarMI.addActionListener(l);
     }
-    
+
     //ELIMINAR
-    
     public void setEliminarAdminListener(ActionListener listener) {
         eliminarAdminMI.addActionListener(listener);
     }
@@ -460,9 +459,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setEliminarHogarListener(ActionListener l) {
         eliminarHogarMI.addActionListener(l);
     }
-    
+
     //BUSCAR
-    
     public void setBuscarAdminListener(ActionListener listener) {
         buscarAdminMI.addActionListener(listener);
     }
@@ -482,9 +480,8 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setBuscarHogarListener(ActionListener l) {
         buscarHogarMI.addActionListener(l);
     }
-    
+
     //MODIFICAR
-    
     public void setModificarAdminListener(ActionListener listener) {
         modificarAdminMI.addActionListener(listener);
     }
@@ -504,87 +501,90 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     public void setModificarHogarListener(ActionListener l) {
         modificarHogarMI.addActionListener(l);
     }
-    
+
     //GATOS
-    
     public void setCrearGatoListener(ActionListener l) {
         crearGatoMI.addActionListener(l);
     }
+
     public void setHistorialGatoListener(ActionListener l) {
         historialMI.addActionListener(l);
     }
+
     public void setModificarGatoListener(ActionListener l) {
         modificarGatoMI.addActionListener(l);
     }
-    
+
     //EMISION CERTIFICADO DE APTITUD
-    
     public void setEmitirAptitudFamiliaListener(ActionListener l) {
         emitirAptitudFamiliaMI.addActionListener(l);
     }
+
     public void setEmitirAptitudHogarListener(ActionListener l) {
         emitirAptitudHogarMI.addActionListener(l);
     }
-    
+
     //POSTULACION
-    
     public void setPostulacionListener(ActionListener l) {
         postulacionMI.addActionListener(l);
     }
+
     public void setVerPostulacionesListener(ActionListener l) {
         verPostulacioesMI.addActionListener(l);
     }
+
     public void setPostulacionHogarListener(ActionListener l) {
         postulacionHogarMI.addActionListener(l);
     }
-    
+
     //ASIGNACION
-    
     public void setAsignacionFamiliaListener(ActionListener l) {
         asignacionFamiliaMI.addActionListener(l);
     }
+
     public void setAsignacionHogarListener(ActionListener l) {
         asignacionHogarMI.addActionListener(l);
     }
-    
+
     //TAREA REALIZADA
-    
     public void setTareaRealizadaListener(ActionListener l) {
         tareaRealizadaMI.addActionListener(l);
     }
+
     public void setVerTareaRealizadaListener(ActionListener l) {
         verTareaRealizadaMI.addActionListener(l);
     }
-    
+
     //REPORTE
-    
     public void setReporteListener(ActionListener l) {
         reporteMI.addActionListener(l);
     }
-    
+
     public void setVisitaListener(ActionListener l) {
         registrarVisitaMI.addActionListener(l);
     }
+
     public void setVerVisitasListener(ActionListener l) {
         verVisitasMI.addActionListener(l);
     }
+
     public void setGatosFamiliaListener(ActionListener l) {
         gatosFamiliaMI.addActionListener(l);
     }
+
     public void setGatosHogarListener(ActionListener l) {
         gatosHogarMI.addActionListener(l);
     }
+
     public void setQRGatoListener(ActionListener l) {
         qrGatoMI.addActionListener(l);
     }
+
     public void setZonasListener(ActionListener l) {
         verZonasMI.addActionListener(l);
     }
-    
-    
-    
-    //GESTION DE PANELES
 
+    //GESTION DE PANELES
     public void mostrarPanel(PanelesAdministrador identificador) {
         JPanel vista = paneles.get(identificador);
 
@@ -603,29 +603,44 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
     private JPanel crearPanel(PanelesAdministrador identificador) {
         return switch (identificador) {
-            case DATOS_PRINCIPALES -> new DatosPrincipalesPanelView();
-            case MI_PERFIL, CREAR_ADMINISTRADOR, CREAR_FAMILIA, CREAR_VETERINARIO, CREAR_VOLUNTARIO, CREAR_HOGAR,
-                MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR -> new AMUsuarioView();
-            case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR,
-                ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR,
-                BUSCAR_FAMILIA_APTITUD, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_APTITUD, BUSCAR_HOGAR_ASIGNACION,BUSCAR_VOLUNTARIO_TAREA_REALIZADA,
-                BUSCAR_FAMILIA_MODIFICAR, BUSCAR_HOGAR_MODIFICAR, BUSCAR_ADMINISTRADOR_MODIFICAR, BUSCAR_VETERINARIO_MODIFICAR, BUSCAR_VOLUNTARIO_MODIFICAR-> new BuscarView();
-            case CREAR_GATO, MODIFICAR_GATO -> new CrearGatoView();
-            case VER_HISTORIAL -> new VerHistorialGatoView();
-            case CREAR_DIAGNOSTICO,VER_DIAGNOSTICO -> new CrearDiagnosticoView();
-            case POSTULARSE,POSTULAR_HOGAR -> new PostulacionView();
-            case ASIGNAR_GATO_FAMILIA -> new VerPostulacionFamiliaView();
-            case ASIGNAR_GATO_HOGAR -> new VerPostulacionHogarView();
-            case TAREA_REALIZADA -> new TareaRealizadaView();
-            case REPORTE -> new ReporteView();
-            case VISITA -> new VisitaSeguimientoView();
-            case GATOS_FAMILIA -> new GatosDeFamiliaView();
-            case GATOS_HOGAR -> new GatosDeHogarView();
-            case ZONAS -> new ABZonaView();
-            case VER_TAREA_REALIZADA -> new VerTareasRealizadasView();
-            case VER_VISITAS -> new VerVisitasSeguimientoView();
-            case VER_POSTULACIONES -> new VerPostulacionesView();
-            default -> null;
+            case DATOS_PRINCIPALES ->
+                new DatosPrincipalesPanelView();
+            case MI_PERFIL, CREAR_ADMINISTRADOR, CREAR_FAMILIA, CREAR_VETERINARIO, CREAR_VOLUNTARIO, CREAR_HOGAR, MODIFICAR_ADMINISTRADOR, MODIFICAR_FAMILIA, MODIFICAR_VETERINARIO, MODIFICAR_VOLUNTARIO, MODIFICAR_HOGAR ->
+                new AMUsuarioView();
+            case BUSCAR_ADMINISTRADOR, BUSCAR_FAMILIA, BUSCAR_VETERINARIO, BUSCAR_VOLUNTARIO, BUSCAR_HOGAR, ELIMINAR_ADMINISTRADOR, ELIMINAR_FAMILIA, ELIMINAR_VETERINARIO, ELIMINAR_VOLUNTARIO, ELIMINAR_HOGAR, BUSCAR_FAMILIA_APTITUD, BUSCAR_FAMILIA_ASIGNACION, BUSCAR_HOGAR_APTITUD, BUSCAR_HOGAR_ASIGNACION, BUSCAR_VOLUNTARIO_TAREA_REALIZADA, BUSCAR_FAMILIA_MODIFICAR, BUSCAR_HOGAR_MODIFICAR, BUSCAR_ADMINISTRADOR_MODIFICAR, BUSCAR_VETERINARIO_MODIFICAR, BUSCAR_VOLUNTARIO_MODIFICAR ->
+                new BuscarView();
+            case CREAR_GATO, MODIFICAR_GATO ->
+                new CrearGatoView();
+            case VER_HISTORIAL ->
+                new VerHistorialGatoView();
+            case CREAR_DIAGNOSTICO, VER_DIAGNOSTICO ->
+                new CrearDiagnosticoView();
+            case POSTULARSE, POSTULAR_HOGAR ->
+                new PostulacionView();
+            case ASIGNAR_GATO_FAMILIA ->
+                new VerPostulacionFamiliaView();
+            case ASIGNAR_GATO_HOGAR ->
+                new VerPostulacionHogarView();
+            case TAREA_REALIZADA ->
+                new TareaRealizadaView();
+            case REPORTE ->
+                new ReporteView();
+            case VISITA ->
+                new VisitaSeguimientoView();
+            case GATOS_FAMILIA ->
+                new GatosDeFamiliaView();
+            case GATOS_HOGAR ->
+                new GatosDeHogarView();
+            case ZONAS ->
+                new ABZonaView();
+            case VER_TAREA_REALIZADA ->
+                new VerTareasRealizadasView();
+            case VER_VISITAS ->
+                new VerVisitasSeguimientoView();
+            case VER_POSTULACIONES ->
+                new VerPostulacionesView();
+            default ->
+                null;
         };
     }
 

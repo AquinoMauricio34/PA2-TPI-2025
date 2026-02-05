@@ -141,7 +141,6 @@ public class CrearGatoView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea caracteristicasGato;
     private javax.swing.JTextField colorGato;
@@ -159,18 +158,19 @@ public class CrearGatoView extends javax.swing.JPanel {
     private javax.swing.JLabel zonaElegida;
     // End of variables declaration//GEN-END:variables
 
-    public void setSeleccionarZonaListener(ActionListener l){
+    public void setSeleccionarZonaListener(ActionListener l) {
         zonaBtn.addActionListener(l);
     }
 
     public void setZonaElegida(String zonaElegida) {
         this.zonaElegida.setText(zonaElegida);
     }
-    
-    public void setRegistrarListener(ActionListener l){
+
+    public void setRegistrarListener(ActionListener l) {
         registrarGato.addActionListener(l);
     }
-    public void setModificarListener(ActionListener l){
+
+    public void setModificarListener(ActionListener l) {
         modificar.addActionListener(l);
     }
 
@@ -205,12 +205,12 @@ public class CrearGatoView extends javax.swing.JPanel {
     public void setNombreGato(String nombreGato) {
         this.nombreGato.setText(nombreGato);
     }
-    
-    public void setRegistrarText(String text){
+
+    public void setRegistrarText(String text) {
         registrarGato.setText(text);
     }
-    
-    public void activarRegistrar(boolean b){
+
+    public void activarRegistrar(boolean b) {
         registrarGato.setEnabled(b);
     }
 
@@ -225,12 +225,13 @@ public class CrearGatoView extends javax.swing.JPanel {
     public void activarModificar(boolean b) {
         modificar.setEnabled(b);
     }
-    
-    public void mostrarErrorMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+
+    public void mostrarErrorMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    public void mostrarInfoMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+    public void mostrarInfoMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

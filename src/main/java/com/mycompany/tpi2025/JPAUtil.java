@@ -11,11 +11,12 @@ import jakarta.persistence.EntityManagerFactory;
  * @author aquin
  */
 public class JPAUtil {
+
     // se cierra el emf
     public static void close(EntityManagerFactory emf) {
         if (emf != null && emf.isOpen()) {
             emf.close();
         }
     }
-    
+
 }

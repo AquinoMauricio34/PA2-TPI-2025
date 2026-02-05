@@ -5,15 +5,15 @@
 package com.mycompany.tpi2025.DAOImpl;
 
 import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
-import java.io.Serializable;
-import jakarta.persistence.Query;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
 import com.mycompany.tpi2025.model.Diagnostico;
 import com.mycompany.tpi2025.model.HistorialGato;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,5 +185,5 @@ public class HistorialGatoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

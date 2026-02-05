@@ -4,15 +4,11 @@
  */
 package com.mycompany.tpi2025.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -20,16 +16,12 @@ import java.util.List;
  */
 @Entity
 public class Zona implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private String localizacion;
-    
-//    @OneToMany(mappedBy = "zona", cascade = CascadeType.ALL, orphanRemoval = false)
-//    private List<Gato> gatos = new ArrayList<>();
-
-
     public Zona() {
     }
 
@@ -52,18 +44,6 @@ public class Zona implements Serializable {
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
     }
-    
-    
-    
-//    public void addGato(Gato g) {
-//        gatos.add(g);
-//        g.setZona(this);
-//    }
-//
-//    public void removeGato(Gato g) {
-//        gatos.remove(g);
-//        g.setZona(null);
-//    }
 
     @Override
     public String toString() {

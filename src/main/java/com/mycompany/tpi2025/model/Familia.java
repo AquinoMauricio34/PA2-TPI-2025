@@ -17,15 +17,19 @@ import java.util.Optional;
  * @author aquin
  */
 @Entity
-public class Familia extends Usuario{
+public class Familia extends Usuario {
+
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Gato> gatos = new ArrayList<>();
 
-    private boolean aptoAdopcion=false;
+    private boolean aptoAdopcion = false;
+
     //para que el hibernate funcione necesita de un constructor vacio
-    public Familia() {super();}
-    
-    public Familia(String nombre, String contrasenia, String telefono, String usuario){
+    public Familia() {
+        super();
+    }
+
+    public Familia(String nombre, String contrasenia, String telefono, String usuario) {
         super(nombre, contrasenia, telefono, usuario);
     }
 
@@ -38,26 +42,26 @@ public class Familia extends Usuario{
     public void setGatos(List<Gato> gatos) {
         this.gatos = gatos;
     }
-    
-    public void removeGato(long id) throws Exception{
+
+    public void removeGato(long id) throws Exception {
         //no no removio nada, devuelve falso, si !falso, lanza la exception
-        if(!gatos.removeIf(v -> v.getId() == id)) throw new Exception("No la familia no tiene un gato con el id: "+id);
+        if (!gatos.removeIf(v -> v.getId() == id)) {
+            throw new Exception("No la familia no tiene un gato con el id: " + id);
+        }
     }
 
     public Optional<Gato> getGato(long id) {
         return gatos.stream().filter(v -> v.getId() == id).findFirst();
     }
-    
-    public List<Gato> getAllGatos(){
+
+    public List<Gato> getAllGatos() {
         return new ArrayList<>(gatos);
     }
 
     public List<Gato> getGatos() {
         return gatos;
     }
-    
-    
-    
+
     public boolean isAptoAdopcion() {
         return aptoAdopcion;
     }
@@ -65,16 +69,15 @@ public class Familia extends Usuario{
     public void setAptoAdopcion(boolean aptoAdopcion) {
         this.aptoAdopcion = aptoAdopcion;
     }
-    
+
     @Override
     public Object[] obtenerDatos() {
-        return new Object[] { this.getNombre(), this.getNombreUsuario(), this.getTelefono(), this.isAptoAdopcion()? "SI":"NO"};
+        return new Object[]{this.getNombre(), this.getNombreUsuario(), this.getTelefono(), this.isAptoAdopcion() ? "SI" : "NO"};
     }
 
     @Override
     public String toString() {
-        return getNombre()+"Familia{" + "gatos=" + gatos + ", aptoAdopcion=" + aptoAdopcion + '}';
+        return getNombre() + "Familia{" + "gatos=" + gatos + ", aptoAdopcion=" + aptoAdopcion + '}';
     }
-    
-    
+
 }

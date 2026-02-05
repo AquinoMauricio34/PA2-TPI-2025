@@ -46,7 +46,7 @@ public class Tpi2025 {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            //System.out.println("error con el look and feel");
+
         }
 
         UsuarioJpaController dao = new UsuarioJpaController(emf);
@@ -203,11 +203,11 @@ public class Tpi2025 {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             Diagnostico d = diagnosticosBase.get(i); // diagnóstico correspondiente
 
             g.getHistorial().addDiagnostico(d);
-            
+
             try {
                 daoD.create(d);
             } catch (Exception e) {
@@ -232,13 +232,13 @@ public class Tpi2025 {
                 new Postulacion("msuarezv", 19),
                 new Postulacion("lgvol", 20),
                 new Postulacion("fambenitez", 5),
-                new Postulacion("famherrera", 1), // Cambiado de 22 a 1
-                new Postulacion("robertodz", 2), // Cambiado de 23 a 2
-                new Postulacion("elenacast", 3), // Cambiado de 24 a 3
-                new Postulacion("famherrera", 4), // Cambiado de 26 a 4
-                new Postulacion("gatofeliz", 5), // Cambiado de 27 a 5
+                new Postulacion("famherrera", 1),
+                new Postulacion("robertodz", 2),
+                new Postulacion("elenacast", 3),
+                new Postulacion("famherrera", 4),
+                new Postulacion("gatofeliz", 5),
                 new Postulacion("hogpatitas", 11),
-                new Postulacion("famrios", 6), // Cambiado de 30 a 6
+                new Postulacion("famrios", 6),
                 new Postulacion("anamtz", 5)
         );
 

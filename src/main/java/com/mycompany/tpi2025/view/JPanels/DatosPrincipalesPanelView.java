@@ -89,7 +89,6 @@ public class DatosPrincipalesPanelView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -100,21 +99,20 @@ public class DatosPrincipalesPanelView extends javax.swing.JPanel {
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre.setText(nombre);
     }
-    
-    public void setTelefono(String telefono){
+
+    public void setTelefono(String telefono) {
         this.telefono.setText(telefono);
     }
-    
-    public void setUsuario(String usuario){
+
+    public void setUsuario(String usuario) {
         this.usuario.setText(usuario);
     }
-    
-    public void setTitulo(String titulo){
+
+    public void setTitulo(String titulo) {
         this.titulo.setText(titulo);
     }
-
 
 }

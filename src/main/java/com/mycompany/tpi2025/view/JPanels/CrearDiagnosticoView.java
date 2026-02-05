@@ -166,7 +166,6 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aniadirTratamiento;
     private javax.swing.JButton crear;
@@ -183,20 +182,22 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     private javax.swing.JTextField tituloDiag;
     // End of variables declaration//GEN-END:variables
 
-    public void setSeleccionListaListener(ListSelectionListener l){
+    public void setSeleccionListaListener(ListSelectionListener l) {
         tablaDatos.getSelectionModel().addListSelectionListener(l);
     }
-    
-    public void setCreacionListener(ActionListener l){
+
+    public void setCreacionListener(ActionListener l) {
         crear.addActionListener(l);
     }
-    public void setAniadirTratamientoListener(ActionListener l){
+
+    public void setAniadirTratamientoListener(ActionListener l) {
         aniadirTratamiento.addActionListener(l);
     }
-    public void setEliminarTratamientoListener(ActionListener l){
+
+    public void setEliminarTratamientoListener(ActionListener l) {
         eliminarBtn.addActionListener(l);
     }
-    
+
     public void resaltarFila(int fila) {
         // -1 porque si no se encuentra el articulo con el nombre insertado devuelve -1
         if (fila != -1) {
@@ -204,7 +205,7 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
             tablaDatos.scrollRectToVisible(tablaDatos.getCellRect(fila, 0, true));
         }
     }
-    
+
     public void reloadTable(List<Tratamiento> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
@@ -217,23 +218,22 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
 
         tablaDatos.setModel(model);
     }
-    
-    public int obtenerIndiceFila(){
+
+    public int obtenerIndiceFila() {
         return tablaDatos.getSelectedRow();
     }
-    
-    public String obtenerValorTabla(int fila, int columna){
+
+    public String obtenerValorTabla(int fila, int columna) {
         return tablaDatos.getValueAt(fila, columna).toString();
     }
-    
-    public void activarCreacion(boolean valor){
+
+    public void activarCreacion(boolean valor) {
         crear.setEnabled(valor);
     }
 
     public String getDescripcionTA() {
         return descripcionTA.getText();
     }
-
 
     public String getjTextArea1() {
         return descripcionTA.getText();
@@ -242,8 +242,8 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
     public String getTituloDiag() {
         return tituloDiag.getText();
     }
-    
-    public void activarComponentesCreacion(boolean b){
+
+    public void activarComponentesCreacion(boolean b) {
         crear.setEnabled(b);
         aniadirTratamiento.setEnabled(b);
         crear.setVisible(b);
@@ -263,23 +263,24 @@ public class CrearDiagnosticoView extends javax.swing.JPanel {
         descripcionTA.setText("");
         reloadTable(null);
     }
-    
-    public void activarComponentes(boolean b){
+
+    public void activarComponentes(boolean b) {
         tituloDiag.setEnabled(b);
         descripcionTA.setEnabled(b);
         aniadirTratamiento.setEnabled(b);
         crear.setEnabled(b);
     }
-    
-    public void mostrarErrorMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+
+    public void mostrarErrorMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    public void mostrarInfoMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+    public void mostrarInfoMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void activarEliminacion(boolean b) {
         eliminarBtn.setEnabled(b);
     }
-    
+
 }

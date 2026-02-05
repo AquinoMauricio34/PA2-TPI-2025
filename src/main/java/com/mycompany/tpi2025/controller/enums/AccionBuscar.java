@@ -13,13 +13,13 @@ public enum AccionBuscar {
     ELIMINAR("ELIMINAR"),
     ESTABLECER_APTITUD("ESTABLECER_APTITUD"),
     SELECCION("SELECCION");
-    
+
     private final String texto;
-    
+
     private AccionBuscar(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

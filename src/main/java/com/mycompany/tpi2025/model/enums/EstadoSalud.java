@@ -13,13 +13,13 @@ public enum EstadoSalud {
     SANO("SANO"),
     EN_TRATAMIENTO("EN_TRATAMIENTO"),
     ESTERILIZADO("ESTERILIZADO");
-    
+
     private final String texto;
-    
+
     private EstadoSalud(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

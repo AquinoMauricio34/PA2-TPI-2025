@@ -76,9 +76,15 @@ public class AMUsuarioController<T extends Usuario> {
         String telU = view.getTelefono().trim();
         String nombreU = view.getNombre().trim();
         try {
-            if(Utils.hayVacios(usuarioU,contraU,telU,nombreU)) throw new Exception("Todos los campos deben ser rellenados.");
-            if(dao.findUsuario(usuarioU)!=null) throw new Exception("El nombre de usuario no se puede utilizar\nporque ya se encuentra registrado en el sistema.");
-            if(!Utils.isLong(telU)) throw new Exception("El telefono no es válido. Solo numeros son validos.");
+            if (Utils.hayVacios(usuarioU, contraU, telU, nombreU)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+            if (dao.findUsuario(usuarioU) != null) {
+                throw new Exception("El nombre de usuario no se puede utilizar\nporque ya se encuentra registrado en el sistema.");
+            }
+            if (!Utils.isLong(telU)) {
+                throw new Exception("El telefono no es válido. Solo numeros son validos.");
+            }
             T usuario = tipoUsuario.getDeclaredConstructor().newInstance();
             usuario.setNombre(nombreU);
             usuario.setContrasenia(contraU);
@@ -100,8 +106,12 @@ public class AMUsuarioController<T extends Usuario> {
         String telU = view.getTelefono().trim();
         String nombreU = view.getNombre().trim();
         try {
-            if(Utils.hayVacios(usuarioU,telU,nombreU)) throw new Exception("Todos los campos deben ser rellenados.");
-            if(!Utils.isLong(telU)) throw new Exception("El telefono no es válido. Solo numeros son validos.");
+            if (Utils.hayVacios(usuarioU, telU, nombreU)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+            if (!Utils.isLong(telU)) {
+                throw new Exception("El telefono no es válido. Solo numeros son validos.");
+            }
             usuario.setNombre(nombreU);
             usuario.setTelefono(telU);
             usuario.setNombreUsuario(usuarioU);

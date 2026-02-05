@@ -11,22 +11,22 @@ import jakarta.persistence.Entity;
  * @author aquin
  */
 @Entity
-public class Veterinario extends Usuario{
+public class Veterinario extends Usuario {
 
     //para que el hibernate funcione necesita de un constructor vacio
     public Veterinario() {
         super();
     }
-    
+
     public Veterinario(String nombre, String contrasenia, String telefono, String usuario) {
         super(nombre, contrasenia, telefono, usuario);
     }
-    
+
     /*
         - hacer un diagnostico
         - asignar tratamiento
         - actualizar diag y tratam
         - subir estudios
         - emitir certificado de aptitud para adopción (creo que es para la familia)
-    */
+     */
 }

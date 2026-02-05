@@ -11,13 +11,13 @@ package com.mycompany.tpi2025.controller.enums;
 public enum AccionUsuario {
     GUARDAR("GUARDAR"),
     MODIFICAR("MODIFICAR");
-    
+
     private final String texto;
-    
+
     private AccionUsuario(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

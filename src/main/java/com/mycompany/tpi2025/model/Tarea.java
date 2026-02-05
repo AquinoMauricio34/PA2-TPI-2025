@@ -16,11 +16,11 @@ import java.io.Serializable;
  */
 @Entity
 public class Tarea implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private String fecha;
     private String hora;
     private String nombreUsuarioVoluntario;
@@ -85,8 +85,5 @@ public class Tarea implements Serializable {
     public void setNombreUsuarioVoluntario(String nombreUsuarioVoluntario) {
         this.nombreUsuarioVoluntario = nombreUsuarioVoluntario;
     }
-    
-    
-    
-    
+
 }

@@ -11,11 +11,13 @@ import jakarta.persistence.Entity;
  * @author aquin
  */
 @Entity
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
     //para que el hibernate funcione necesita de un constructor vacio
-    public Administrador() {super();}
-    
+    public Administrador() {
+        super();
+    }
+
     public Administrador(String nombre, String contrasenia, String telefono, String usuario) {
         super(nombre, contrasenia, telefono, usuario);
     }

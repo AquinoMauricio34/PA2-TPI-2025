@@ -17,36 +17,40 @@ import java.util.Optional;
  * @author aquin
  */
 @Entity
-public class Hogar extends Usuario{
+public class Hogar extends Usuario {
+
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final List<Gato> gatos = new ArrayList<>();
-    
-    private boolean transitorio;
-    private boolean aptoAdopcion=false;
 
-    public Hogar() {}
+    private boolean transitorio;
+    private boolean aptoAdopcion = false;
+
+    public Hogar() {
+    }
 
     public Hogar(String nombre, String contrasenia, String telefono, String usuario, boolean transitorio) {
         super(nombre, contrasenia, telefono, usuario);
         this.transitorio = transitorio;
     }
-    
+
     public void addGato(Gato gato) {
         //hacemos que la familia sea esta misma instancia
         gato.setUsuario(this);
         this.gatos.add(gato);
     }
-    
-    public void removeGato(long id) throws Exception{
+
+    public void removeGato(long id) throws Exception {
         //no no removio nada, devuelve falso, si !falso, lanza la exception
-        if(!gatos.removeIf(v -> v.getId() == id)) throw new Exception("No la familia no tiene un gato con el id: "+id);
+        if (!gatos.removeIf(v -> v.getId() == id)) {
+            throw new Exception("No la familia no tiene un gato con el id: " + id);
+        }
     }
 
     public Optional<Gato> getGato(long id) {
         return gatos.stream().filter(v -> v.getId() == id).findFirst();
     }
-    
-    public List<Gato> getAllGatos(){
+
+    public List<Gato> getAllGatos() {
         return new ArrayList<>(gatos);
     }
 
@@ -65,10 +69,10 @@ public class Hogar extends Usuario{
     public void setAptoAdopcion(boolean aptoAdopcion) {
         this.aptoAdopcion = aptoAdopcion;
     }
-    
+
     @Override
     public Object[] obtenerDatos() {
-        return new Object[] { this.getNombre(), this.getNombreUsuario(), this.getTelefono(), this.isAptoAdopcion()? "SI":"NO"};
+        return new Object[]{this.getNombre(), this.getNombreUsuario(), this.getTelefono(), this.isAptoAdopcion() ? "SI" : "NO"};
     }
-    
+
 }

@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
  * @author aquin
  */
 public class ReporteController {
+
     private ReporteView view;
     private GatoJpaController daoG;
     private ZonaJpaController daoZ;
@@ -36,37 +37,33 @@ public class ReporteController {
         List<Zona> zonas = daoZ.findZonaEntities();
         List<SimpleEntry<Long, Integer>> lista = contarGatosPorZona(gatos);
         view.reloadTable(lista);
-        view.setGatosAdoptados("Gatos adoptados: "+contarGatosConUsuario(gatos));
-        view.setGatosEsterilizados("Gatos esterilizados: "+contarGatosEsterilizados(gatos));
+        view.setGatosAdoptados("Gatos adoptados: " + contarGatosConUsuario(gatos));
+        view.setGatosEsterilizados("Gatos esterilizados: " + contarGatosEsterilizados(gatos));
     }
-    
+
     public List<SimpleEntry<Long, Integer>> contarGatosPorZona(List<Gato> gatos) {
         return gatos.stream()
-            .filter(g -> g.getZona() != null)
-            .collect(Collectors.groupingBy(
-                g -> g.getZona().getId(),
-                Collectors.summingInt(g -> 1)
-            ))
-            .entrySet()
-            .stream()
-            .map(e -> new SimpleEntry<>(e.getKey(), e.getValue()))
-            .collect(Collectors.toList());
+                .filter(g -> g.getZona() != null)
+                .collect(Collectors.groupingBy(
+                        g -> g.getZona().getId(),
+                        Collectors.summingInt(g -> 1)
+                ))
+                .entrySet()
+                .stream()
+                .map(e -> new SimpleEntry<>(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
     }
 
     public int contarGatosEsterilizados(List<Gato> gatos) {
         return (int) gatos.stream()
-            .filter(g -> g.getEstadoSalud() == EstadoSalud.ESTERILIZADO)
-            .count();
+                .filter(g -> g.getEstadoSalud() == EstadoSalud.ESTERILIZADO)
+                .count();
     }
 
-        public int contarGatosConUsuario(List<Gato> gatos) {
+    public int contarGatosConUsuario(List<Gato> gatos) {
         return (int) gatos.stream()
-            .filter(g -> g.getUsuario() != null)
-            .count();
+                .filter(g -> g.getUsuario() != null)
+                .count();
     }
 
-    
-    
-    
-    
 }

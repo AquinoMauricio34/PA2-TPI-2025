@@ -43,11 +43,9 @@ public class CrearDiagnosticoController {
             this.diagnostico = diagnostico;
             cargarCampos();
         }
-        //System.out.println("AB6");
+
         //se crea y guarda el diagnostico para poder luego cargar los tratamientos
-        //dao.create(diagnostico);
         view.setCreacionListener(l -> crear());
-        //view.setSeleccionListaListener(l -> seleccionar());
         view.setAniadirTratamientoListener(l -> mostrarTratamientoView());
         view.setEliminarTratamientoListener(l -> eliminarTratamiento());
         view.setSeleccionListaListener(l -> seleccion());
@@ -120,18 +118,13 @@ public class CrearDiagnosticoController {
 
     public void iniciarTabla() {
         List<Tratamiento> lista = obtenerLista();
-        //System.out.println(lista);
+
         view.reloadTable(lista);
     }
 
     private List<Tratamiento> obtenerLista() {
         return diagnostico.getTratamientos();
     }
-
-//    private int obtenerIndiceTratamiento(long idTratamiento) {
-//        List<Tratamiento> lista = obtenerLista();
-//        return lista.indexOf(lista.stream().filter(v -> v.getId() == idTratamiento).findFirst().orElse(null));
-//    }
     public void setDiagnostico(Diagnostico diagnostico) {
         this.diagnostico = diagnostico;
     }
@@ -141,15 +134,15 @@ public class CrearDiagnosticoController {
     }
 
     private void mostrarTratamientoView() {
-        //System.out.println("AB0.1");
+
         TratamientoView viewT = new TratamientoView();
         TratamientoController controller = new TratamientoController(viewT);
         viewT.setCrearListener(l -> {
             controller.crear();
-            //System.out.println("AB0.2");
+
             this.diagnostico.addTratamiento(controller.getTratamiento());
             controller.setTratamiento(null);
-            //System.out.println("AB0.3");
+
             controller.cerrarView();
             iniciarTabla();
         });

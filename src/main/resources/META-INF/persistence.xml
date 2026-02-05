@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="3.2" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd">
-  <persistence-unit name="tpi25PU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.mycompany.tpi2025.model.Usuario</class>
-    <class>com.mycompany.tpi2025.model.Administrador</class>
-    <class>com.mycompany.tpi2025.model.Familia</class>
-    <class>com.mycompany.tpi2025.model.Voluntario</class>
-    <class>com.mycompany.tpi2025.model.Gato</class>
-    <class>com.mycompany.tpi2025.model.Diagnostico</class>
-    <class>com.mycompany.tpi2025.model.HistorialGato</class>
-    <class>com.mycompany.tpi2025.model.Tratamiento</class>
-    <class>com.mycompany.tpi2025.model.Veterinario</class>
-    <class>com.mycompany.tpi2025.model.Hogar</class>
-    <class>com.mycompany.tpi2025.model.Zona</class>
-    <class>com.mycompany.tpi2025.model.Postulacion</class>
-    <class>com.mycompany.tpi2025.model.Tarea</class>
-    <class>com.mycompany.tpi2025.model.Estudio</class>
-    <class>com.mycompany.tpi2025.model.VisitaSeguimiento</class>
-    <properties>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbtp?serverTimezone = UTC"/>
-      <property name="jakarta.persistence.jdbc.user" value="root"/>
-      <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="jakarta.persistence.jdbc.password" value="123"/>
-      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <!--<property name="jakarta.persistence.schema-generation.database.action" value="create"/>-->
-      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-      <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.format_sql" value="true"/>
-    </properties>
-  </persistence-unit>
+    <persistence-unit name="tpi25PU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.mycompany.tpi2025.model.Usuario</class>
+        <class>com.mycompany.tpi2025.model.Administrador</class>
+        <class>com.mycompany.tpi2025.model.Familia</class>
+        <class>com.mycompany.tpi2025.model.Voluntario</class>
+        <class>com.mycompany.tpi2025.model.Gato</class>
+        <class>com.mycompany.tpi2025.model.Diagnostico</class>
+        <class>com.mycompany.tpi2025.model.HistorialGato</class>
+        <class>com.mycompany.tpi2025.model.Tratamiento</class>
+        <class>com.mycompany.tpi2025.model.Veterinario</class>
+        <class>com.mycompany.tpi2025.model.Hogar</class>
+        <class>com.mycompany.tpi2025.model.Zona</class>
+        <class>com.mycompany.tpi2025.model.Postulacion</class>
+        <class>com.mycompany.tpi2025.model.Tarea</class>
+        <class>com.mycompany.tpi2025.model.Estudio</class>
+        <class>com.mycompany.tpi2025.model.VisitaSeguimiento</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbtp?serverTimezone = UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="123"/>
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <!--<property name="jakarta.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
 </persistence>

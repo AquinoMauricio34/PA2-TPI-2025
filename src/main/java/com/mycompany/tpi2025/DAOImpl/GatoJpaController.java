@@ -133,7 +133,7 @@ public class GatoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public long countByZonaId(Long zonaId) {
         EntityManager em = getEntityManager();
         try {
@@ -147,5 +147,5 @@ public class GatoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

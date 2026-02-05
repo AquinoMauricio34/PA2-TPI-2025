@@ -84,7 +84,6 @@ public class TareaRealizadaView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -106,15 +105,16 @@ public class TareaRealizadaView extends javax.swing.JPanel {
         this.titulo.setText(titulo);
     }
 
-    public void setRegistrarListener(ActionListener l){
+    public void setRegistrarListener(ActionListener l) {
         registrarBtn.addActionListener(l);
     }
-    
-    public void mostrarErrorMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Error",JOptionPane.ERROR_MESSAGE);
+
+    public void mostrarErrorMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    public void mostrarInfoMensaje(String m){
-        JOptionPane.showMessageDialog(this, m,"Informacion",JOptionPane.INFORMATION_MESSAGE);
+
+    public void mostrarInfoMensaje(String m) {
+        JOptionPane.showMessageDialog(this, m, "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

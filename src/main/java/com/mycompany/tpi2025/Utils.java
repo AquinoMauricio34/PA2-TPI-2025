@@ -30,7 +30,7 @@ public class Utils {
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
-        // 🔹 Configuración para español (tildes, ñ, etc.)
+        // config para español
         Map<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
 
@@ -95,8 +95,8 @@ public class Utils {
             return false;
         }
     }
-    
-    public static boolean hayVacios(String... campos){
+
+    public static boolean hayVacios(String... campos) {
         return Stream.of(campos).anyMatch(String::isBlank);
     }
 

@@ -21,13 +21,13 @@ public enum PanelesVoluntario {
     TAREA_REALIZADA("TAREA_REALIZADA"),
     MODIFICAR_GATO("MODIFICAR_GATOS"),
     VISITA("VISITA");
-    
+
     private final String texto;
-    
+
     private PanelesVoluntario(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

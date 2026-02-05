@@ -12,7 +12,6 @@ public enum PanelesVeterinario {
     DATOS_PRINCIPALES("DATOS_PRINCIPALES"),
     MI_PERFIL("MI_PERFIL"),
     // Administrador
-    
 
     VER_HISTORIAL("VER_HISTORIAL"),
     CREAR_DIAGNOSTICO("CREAR_DIAGNOSTICO"),
@@ -20,13 +19,13 @@ public enum PanelesVeterinario {
     BUSCAR_FAMILIA_APTITUD("BUSCAR_FAMILIA_APTITUD"),
     MODIFICAR_GATO("MODIFICAR_GATOS"),
     BUSCAR_HOGAR_APTITUD("BUSCAR_HOGAR_APTITUD");
-    
+
     private final String texto;
-    
+
     private PanelesVeterinario(String texto) {
         this.texto = texto;
     }
-    
+
     public String getTexto() {
         return texto;
     }

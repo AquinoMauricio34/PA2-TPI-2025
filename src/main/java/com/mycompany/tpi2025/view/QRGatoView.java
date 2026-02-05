@@ -104,7 +104,7 @@ public class QRGatoView extends javax.swing.JFrame {
     private javax.swing.JButton cerrarBtn;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
-    
+
     public void setCerrarListener(ActionListener l) {
         cerrarBtn.addActionListener(l);
     }

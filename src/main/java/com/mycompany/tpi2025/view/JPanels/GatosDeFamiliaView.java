@@ -68,23 +68,22 @@ public class GatosDeFamiliaView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables
 
-
     public void reloadTable(List<Gato> elementos) {
         DefaultTableModel model = (DefaultTableModel) tablaDatos.getModel();
         model.setRowCount(0);
         for (Gato elem : elementos) {
-            if(elem.getNombre().equals("")){
-                model.addRow(new Object[]{elem.getId(),"[Sin nombre]"});
-            }else
-                model.addRow(new Object[]{elem.getId(),elem.getNombre()});
-                
+            if (elem.getNombre().equals("")) {
+                model.addRow(new Object[]{elem.getId(), "[Sin nombre]"});
+            } else {
+                model.addRow(new Object[]{elem.getId(), elem.getNombre()});
+            }
+
         }
 
         tablaDatos.setModel(model);

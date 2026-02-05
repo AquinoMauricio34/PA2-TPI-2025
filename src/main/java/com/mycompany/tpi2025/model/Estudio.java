@@ -16,15 +16,16 @@ import java.io.Serializable;
  */
 @Entity
 public class Estudio implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private long idGato;
     private String titulo;
     private String descripcion;
 
-    public Estudio(long idGato,String titulo, String descripcion) {
+    public Estudio(long idGato, String titulo, String descripcion) {
         this.idGato = idGato;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -64,5 +65,5 @@ public class Estudio implements Serializable {
     public void setIdGato(long idGato) {
         this.idGato = idGato;
     }
-    
+
 }

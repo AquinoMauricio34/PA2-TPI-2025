@@ -17,6 +17,7 @@ import java.util.List;
  * @author aquin
  */
 public class GatoDeHogarController {
+
     private GatosDeHogarView view;
     private GatoJpaController dao;
     private Hogar hogar = null;
@@ -28,11 +29,11 @@ public class GatoDeHogarController {
         this.emf = emf;
         iniciar();
     }
-    
-    private List<Gato> obtenerLista(){
+
+    private List<Gato> obtenerLista() {
         return hogar.getAllGatos();
     }
-    
+
     private void abrirSeleccion() {
         VerHogarView vview = new VerHogarView();
         VerHogarController controller = new VerHogarController(vview, emf);
@@ -43,7 +44,7 @@ public class GatoDeHogarController {
                 if (lista.isEmpty()) {
                     throw new Exception("El hogar no tiene gatos asignados.");
                 }
-            vview.dispose();
+                vview.dispose();
                 view.reloadTable(lista);
             } catch (Exception e) {
                 vview.mostrarInfoMensaje(e.getMessage());
@@ -54,6 +55,5 @@ public class GatoDeHogarController {
     void iniciar() {
         abrirSeleccion();
     }
-    
-    
+
 }

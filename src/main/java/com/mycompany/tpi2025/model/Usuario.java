@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.tpi2025.model;
+
 import com.mycompany.tpi2025.controller.DatosTabla;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,17 +17,17 @@ import java.io.Serializable;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario implements Serializable,DatosTabla {
-    
+public class Usuario implements Serializable, DatosTabla {
+
     private String nombre;
     private String contrasenia;
     private String telefono;
     private String tipoUsuario;
-    
+
     @Id
     private String nombreUsuario;
-    
-    public Usuario(){
+
+    public Usuario() {
         this.tipoUsuario = this.getClass().getSimpleName();
     }
 
@@ -53,7 +54,7 @@ public class Usuario implements Serializable,DatosTabla {
     public String getNombreUsuario() {
         return nombreUsuario;
     }
-    
+
     //en caso de cambio de contrasenia
     public void setContrasenia(String contrasena) {
         this.contrasenia = contrasena;
@@ -82,16 +83,12 @@ public class Usuario implements Serializable,DatosTabla {
 
     @Override
     public Object[] obtenerDatos() {
-        return new Object[] { nombre, nombreUsuario, telefono };
+        return new Object[]{nombre, nombreUsuario, telefono};
     }
 
     @Override
     public String toString() {
         return "Usuario{" + "nombre=" + nombre + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", tipoUsuario=" + tipoUsuario + ", nombreUsuario=" + nombreUsuario + '}';
     }
-    
-    
-    
-    
-    
+
 }

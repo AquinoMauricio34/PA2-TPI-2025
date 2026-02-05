@@ -20,16 +20,17 @@ import java.util.List;
  */
 @Entity
 public class HistorialGato implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(mappedBy = "historial", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Diagnostico> diagnosticos = new ArrayList<>();
 
+    public HistorialGato() {
+    }
 
-    public HistorialGato() {}
-    
-    public void addDiagnostico(Diagnostico diagnostico){
+    public void addDiagnostico(Diagnostico diagnostico) {
         diagnostico.setHistorial(this);
         this.diagnosticos.add(diagnostico);
     }
@@ -50,7 +51,4 @@ public class HistorialGato implements Serializable {
         this.diagnosticos = diagnosticos;
     }
 
-    
-    
-    
 }

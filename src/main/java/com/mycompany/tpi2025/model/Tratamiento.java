@@ -18,21 +18,22 @@ import java.io.Serializable;
  */
 @Entity
 public class Tratamiento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "diagnostico_id")
-    private Diagnostico diagnostico=null;
+    private Diagnostico diagnostico = null;
 
     private String descripcion;
     private String fecha_inicio;
     private String fecha_fin;
     private Boolean abandono_tratamiento;
 
-    public Tratamiento() {}
-    
+    public Tratamiento() {
+    }
 
     public Tratamiento(String descripcion, String fecha_inicio, String fecha_fin) {
         this.descripcion = descripcion;
@@ -88,9 +89,5 @@ public class Tratamiento implements Serializable {
     public void setDiagnostico(Diagnostico diagnostico) {
         this.diagnostico = diagnostico;
     }
-    
-    
-    
-    
-    
+
 }

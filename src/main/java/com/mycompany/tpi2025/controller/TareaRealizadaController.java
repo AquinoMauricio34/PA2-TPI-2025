@@ -18,22 +18,23 @@ import java.time.format.DateTimeFormatter;
  * @author aquin
  */
 public class TareaRealizadaController {
+
     private TareaRealizadaView view;
     private Voluntario voluntario;
     private TareaJpaController dao;
 
-    public TareaRealizadaController(TareaRealizadaView view, Voluntario voluntario,EntityManagerFactory emf) {
+    public TareaRealizadaController(TareaRealizadaView view, Voluntario voluntario, EntityManagerFactory emf) {
         this.view = view;
         this.dao = new TareaJpaController(emf);
         this.voluntario = voluntario;
         iniciarView();
-        
+
         view.setRegistrarListener(l -> registrar());
     }
-    
-    public void iniciarView(){
+
+    public void iniciarView() {
         view.setVisible(true);
-        view.setTitulo("Voluntario: "+voluntario.getNombre());
+        view.setTitulo("Voluntario: " + voluntario.getNombre());
     }
 
     public void setVoluntario(Voluntario voluntario) {
@@ -43,8 +44,10 @@ public class TareaRealizadaController {
     private void registrar() {
         String ubicacion = view.getUbicacion().trim();
         try {
-            if(ubicacion.isBlank()) throw new Exception("Se debe indicar la ubicacion.");
-            Tarea t = new Tarea(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), voluntario.getNombreUsuario(),ubicacion,view.getTareaRealizada());
+            if (ubicacion.isBlank()) {
+                throw new Exception("Se debe indicar la ubicacion.");
+            }
+            Tarea t = new Tarea(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")), voluntario.getNombreUsuario(), ubicacion, view.getTareaRealizada());
             dao.create(t);
             view.mostrarInfoMensaje("Tarea realizada registrada exitosamente.");
         } catch (Exception e) {
@@ -52,6 +55,5 @@ public class TareaRealizadaController {
             view.mostrarErrorMensaje(e.getMessage());
         }
     }
-    
-    
+
 }

@@ -17,13 +17,13 @@ import jakarta.persistence.EntityManagerFactory;
  * @author aquin
  */
 public class VisitaSeguimientoController {
-    
+
     private VisitaSeguimientoView view;
-    private Gato gato=null;
+    private Gato gato = null;
     private VisitaSeguimientoJpaController daoG;
     private EntityManagerFactory emf;
-    
-    public VisitaSeguimientoController(VisitaSeguimientoView view, String nombreUsuario,EntityManagerFactory emf) {
+
+    public VisitaSeguimientoController(VisitaSeguimientoView view, String nombreUsuario, EntityManagerFactory emf) {
         this.view = view;
         this.daoG = new VisitaSeguimientoJpaController(emf);
         this.emf = emf;
@@ -31,8 +31,8 @@ public class VisitaSeguimientoController {
         abrirSeleccion();
         view.setRegistrarListener(l -> registrar(nombreUsuario));
     }
-    
-    public void iniciarView(){
+
+    public void iniciarView() {
         view.setVisible(true);
     }
 
@@ -49,8 +49,12 @@ public class VisitaSeguimientoController {
         String fecha = view.getFecha().trim();
         String descripcion = view.getDescripcion().trim();
         try {
-            if(Utils.hayVacios(fecha,descripcion)) throw new Exception("Todos los campos deben ser rellenados.");
-            if(!Utils.isFechaValida(fecha)) throw new Exception("La fecha debe tener el formato dd/mm/yyyy.");
+            if (Utils.hayVacios(fecha, descripcion)) {
+                throw new Exception("Todos los campos deben ser rellenados.");
+            }
+            if (!Utils.isFechaValida(fecha)) {
+                throw new Exception("La fecha debe tener el formato dd/mm/yyyy.");
+            }
             VisitaSeguimiento v = new VisitaSeguimiento(nombreUsuario, gato.getId(), fecha, descripcion);
             daoG.create(v);
             view.mostrarInfoMensaje("Visita de seguimiento registrada exitosamente.");
@@ -60,5 +64,4 @@ public class VisitaSeguimientoController {
         }
     }
 
-    
 }

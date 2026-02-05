@@ -8,12 +8,12 @@ import com.mycompany.tpi2025.DAOImpl.exceptions.NonexistentEntityException;
 import com.mycompany.tpi2025.model.Postulacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import java.io.Serializable;
-import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -134,13 +134,13 @@ public class PostulacionJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     public List<Postulacion> findPostulacionesByPostulante(String postulante) {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Postulacion> query = em.createQuery(
-                "SELECT p FROM Postulacion p WHERE p.postulante = :postulante",
-                Postulacion.class
+                    "SELECT p FROM Postulacion p WHERE p.postulante = :postulante",
+                    Postulacion.class
             );
             query.setParameter("postulante", postulante);
             return query.getResultList();
@@ -149,13 +149,12 @@ public class PostulacionJpaController implements Serializable {
         }
     }
 
-    
     public List<Postulacion> findPostulacionesByIdGato(long idGato) {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Postulacion> query = em.createQuery(
-                "SELECT p FROM Postulacion p WHERE p.idGato = :idGato",
-                Postulacion.class
+                    "SELECT p FROM Postulacion p WHERE p.idGato = :idGato",
+                    Postulacion.class
             );
             query.setParameter("idGato", idGato);
             return query.getResultList();
@@ -163,5 +162,5 @@ public class PostulacionJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

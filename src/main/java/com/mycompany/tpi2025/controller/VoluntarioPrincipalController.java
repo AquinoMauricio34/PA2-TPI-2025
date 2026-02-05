@@ -44,8 +44,8 @@ public class VoluntarioPrincipalController {
     private final Map<JPanel, BuscarController> BuscarControllers = new HashMap<>();
     private CrearGatoController crearGatoController = null;
     private VerHistorialGatoController verHistorialGatoController = null;
-    private CrearDiagnosticoController crearDiagnosticoController=null;
-    private PostulacionController postulacionController=null;
+    private CrearDiagnosticoController crearDiagnosticoController = null;
+    private PostulacionController postulacionController = null;
     private VerPostulacionFamiliaController verPostulacionFamiliaController = null;
     private VerPostulacionHogarController verPostulacionHogarController = null;
     private TareaRealizadaController tareaRealizadaController = null;
@@ -67,8 +67,8 @@ public class VoluntarioPrincipalController {
         view.setCerrarSesionListener(l -> cerrarSesion());
         //CREACION
         //GATOS
-        view.setCrearGatoListener(l -> mostrarCrearGatoView(PanelesVoluntario.CREAR_GATO,"GUARDAR"));
-        
+        view.setCrearGatoListener(l -> mostrarCrearGatoView(PanelesVoluntario.CREAR_GATO, "GUARDAR"));
+
         //ASIGNACION GATO
         view.setAsignacionFamiliaListener(l -> establecerComunicacionBuscarView_VerPostulacion());
         view.setAsignacionHogarListener(l -> establecerComunicacionBuscarHogarView_VerPostulacion());
@@ -76,8 +76,8 @@ public class VoluntarioPrincipalController {
         view.setTareaRealizadaListener(l -> establecerComunicacionBuscarVoluntarioView_TareaRealizada());
         //REPORTE
         view.setVisitaListener(l -> mostrarVisita());
-        view.setModificarGatoListener(l -> mostrarVMGatoView(PanelesVoluntario.MODIFICAR_GATO,"MODIFICAR"));
-        
+        view.setModificarGatoListener(l -> mostrarVMGatoView(PanelesVoluntario.MODIFICAR_GATO, "MODIFICAR"));
+
     }
 
     public void cerrarView() {
@@ -86,15 +86,16 @@ public class VoluntarioPrincipalController {
         JPAUtil.close(emf);
         System.exit(0);
     }
-    
-    public void cerrarSesion(){
+
+    public void cerrarSesion() {
         view.dispose();
         view = null;
         Tpi2025.login(emf);
     }
 
     public void iniciarView() {
-        view.setVisible(true);view.toFront();
+        view.setVisible(true);
+        view.toFront();
         view.setLocationRelativeTo(null);
         view.addWindowListener(new WindowAdapter() {
             @Override
@@ -108,31 +109,30 @@ public class VoluntarioPrincipalController {
     public void mostrarDatosPrincipales() {
         view.mostrarPanel(PanelesVoluntario.DATOS_PRINCIPALES);
         view.cargarDatosPrincipales(
-                "Datos " + miUsu.getClass().getSimpleName(), 
+                "Datos " + miUsu.getClass().getSimpleName(),
                 miUsu.getNombre(),
                 miUsu.getTelefono(),
                 miUsu.getNombreUsuario()
         );
     }
 
-    
     private void mostrarCrearGatoView(PanelesVoluntario identificador, String tipoAccion) {
         view.mostrarPanel(identificador);
         try {
             CrearGatoView panel = view.getPanel(identificador, CrearGatoView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(crearGatoController == null) crearGatoController = new CrearGatoController(panel,tipoAccion, emf);
-            if(!tipoAccion.equals("GUARDAR")){
+            if (crearGatoController == null) {
+                crearGatoController = new CrearGatoController(panel, tipoAccion, emf);
+            }
+            if (!tipoAccion.equals("GUARDAR")) {
                 crearGatoController.abrirSeleccion();
             }
         } catch (Exception e) {
         }
     }
-    
-    
-    
+
     private void establecerComunicacionBuscarView_VerPostulacion() {
         view.mostrarPanel(PanelesVoluntario.BUSCAR_FAMILIA_ASIGNACION);
         try {
@@ -142,11 +142,11 @@ public class VoluntarioPrincipalController {
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if (!BuscarControllers.containsKey(panel)) {
-                //System.out.println("crear controller..........-----------------------------------------------");
+
                 BuscarControllers.put(panel, new BuscarController<Familia>(panel, Familia.class, AccionBuscar.SELECCION, new String[]{"Nombre", "Nombre de Usuario", "Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Familia f = (Familia) BuscarControllers.get(panel).getUsuario();
-                    System.out.println("familia nombre: " + f.getNombre());
+                    
                     if (f.isAptoAdopcion()) {
                         mostrarVerPostulacionFamiliaView(f);
                     } else {
@@ -161,29 +161,30 @@ public class VoluntarioPrincipalController {
         }
 
     }
-    
+
     private void mostrarVerPostulacionFamiliaView(Familia familia) {
-        //System.out.println(familia);
+
         view.mostrarPanel(PanelesVoluntario.ASIGNAR_GATO_FAMILIA);
         try {
             VerPostulacionFamiliaView panel = view.getPanel(PanelesVoluntario.ASIGNAR_GATO_FAMILIA, VerPostulacionFamiliaView.class);
-            //System.out.println("MM0.01-------------------------------------------");
+
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
             if (verPostulacionFamiliaController == null) {
-                //System.out.println("MM0.1-------------------------------------------");
+
                 verPostulacionFamiliaController = new VerPostulacionFamiliaController(panel, familia, emf);
             } else {// esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
                 verPostulacionFamiliaController.setFamilia(familia);
                 verPostulacionFamiliaController.iniciarView();
                 verPostulacionFamiliaController.iniciarTabla();
             }
-            //System.out.println("MM0.2-------------------------------------------");
+
         } catch (Exception e) {
-            //System.out.println("MMm1-------------------------------------------");
+
         }
     }
+
     private void establecerComunicacionBuscarHogarView_VerPostulacion() {
         view.mostrarPanel(PanelesVoluntario.BUSCAR_HOGAR_ASIGNACION);
         try {
@@ -193,7 +194,7 @@ public class VoluntarioPrincipalController {
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if (!BuscarControllers.containsKey(panel)) {
-                //System.out.println("crear controller..........-----------------------------------------------");
+
                 BuscarControllers.put(panel, new BuscarController<Hogar>(panel, Hogar.class, AccionBuscar.SELECCION, new String[]{"Nombre", "Nombre de Usuario", "Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Hogar h = (Hogar) BuscarControllers.get(panel).getUsuario();
@@ -211,20 +212,20 @@ public class VoluntarioPrincipalController {
         }
 
     }
-    
+
     private void mostrarVerPostulacionHogarView(Hogar hogar) {
-        //System.out.println(hogar);
+
         view.mostrarPanel(PanelesVoluntario.ASIGNAR_GATO_HOGAR);
-        //System.out.println("MM0.0001-------------------------------------------");
+
         try {
-            //System.out.println("MM0.001-------------------------------------------");
+
             VerPostulacionHogarView panel = view.getPanel(PanelesVoluntario.ASIGNAR_GATO_HOGAR, VerPostulacionHogarView.class);
-            //System.out.println("MM0.01-------------------------------------------");
+
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
             if (verPostulacionHogarController == null) {
-                //System.out.println("MM0.1-------------------------------------------");
+
                 verPostulacionHogarController = new VerPostulacionHogarController(panel, hogar, emf);
             } else // esta en el else para no iniciar la tabla 2 veces si se crea el controller por primera vez
             {
@@ -232,45 +233,47 @@ public class VoluntarioPrincipalController {
             }
             verPostulacionHogarController.iniciarView();
             verPostulacionHogarController.iniciarTabla();
-            //System.out.println("MM0.2-------------------------------------------");
+
         } catch (Exception e) {
-            //System.out.println("MMm1-------------------------------------------");
+
         }
     }
-    
-    private void establecerComunicacionBuscarVoluntarioView_TareaRealizada(){
+
+    private void establecerComunicacionBuscarVoluntarioView_TareaRealizada() {
         view.mostrarPanel(PanelesVoluntario.BUSCAR_VOLUNTARIO_TAREA_REALIZADA);
         try {
             BuscarView panel = view.getPanel(PanelesVoluntario.BUSCAR_VOLUNTARIO_TAREA_REALIZADA, BuscarView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
-            if(!BuscarControllers.containsKey(panel)){
-                //System.out.println("crear controller..........-----------------------------------------------");
-                BuscarControllers.put(panel, new BuscarController<Voluntario>(panel, Voluntario.class, AccionBuscar.DETALLES, new String[]{"Nombre","Nombre de Usuario","Telefono"}, emf));
+            if (!BuscarControllers.containsKey(panel)) {
+
+                BuscarControllers.put(panel, new BuscarController<Voluntario>(panel, Voluntario.class, AccionBuscar.DETALLES, new String[]{"Nombre", "Nombre de Usuario", "Telefono"}, emf));
                 panel.setAccionListener(l -> {
                     Voluntario h = (Voluntario) BuscarControllers.get(panel).getUsuario();
                     mostrarTareaRealizadaView(h);
                 });
-            }else
-                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre","Nombre de Usuario","Telefono"});//siempre que se muestra, se actualiza la tabla
-            
+            } else {
+                BuscarControllers.get(panel).iniciarTabla(new String[]{"Nombre", "Nombre de Usuario", "Telefono"});//siempre que se muestra, se actualiza la tabla
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
     private void mostrarVMGatoView(PanelesVoluntario identificador, String tipoAccion) {
         view.mostrarPanel(identificador);
         try {
             CrearGatoView panel = view.getPanel(identificador, CrearGatoView.class);
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(vmGatoController == null) vmGatoController = new CrearGatoController(panel,tipoAccion, emf);
-            if(!tipoAccion.equals("GUARDAR")){
+            if (vmGatoController == null) {
+                vmGatoController = new CrearGatoController(panel, tipoAccion, emf);
+            }
+            if (!tipoAccion.equals("GUARDAR")) {
                 vmGatoController.abrirSeleccion();
             }
         } catch (Exception e) {
@@ -279,68 +282,65 @@ public class VoluntarioPrincipalController {
 
     private void mostrarTareaRealizadaView(Voluntario h) {
         view.mostrarPanel(PanelesVoluntario.TAREA_REALIZADA);
-        //System.out.println("MM0.0001-------------------------------------------");
+
         try {
-            //System.out.println("MM0.001-------------------------------------------");
+
             TareaRealizadaView panel = view.getPanel(PanelesVoluntario.TAREA_REALIZADA, TareaRealizadaView.class);
-            //System.out.println("MM0.01-------------------------------------------");
+
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
             if (tareaRealizadaController == null) {
-                //System.out.println("MM0.1-------------------------------------------");
+
                 tareaRealizadaController = new TareaRealizadaController(panel, h, emf);
-            }else{
+            } else {
                 tareaRealizadaController.setVoluntario(h);
                 tareaRealizadaController.iniciarView();
             }
-            //System.out.println("MM0.2-------------------------------------------");
+
         } catch (Exception e) {
-            //System.out.println("MMm1-------------------------------------------");
+
         }
     }
-    
-    
-    
-    private void mostrarVisita(){
+
+    private void mostrarVisita() {
         view.mostrarPanel(PanelesVoluntario.VISITA);
         try {
-            //System.out.println("MM0.001-------------------------------------------");
+
             VisitaSeguimientoView panel = view.getPanel(PanelesVoluntario.VISITA, VisitaSeguimientoView.class);
-            //System.out.println("MM0.01-------------------------------------------");
+
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(visitaSeguimientoController == null){
-                //System.out.println("MM0.1-------------------------------------------");
-                visitaSeguimientoController = new VisitaSeguimientoController(panel,miUsu.getNombreUsuario(), emf);
-            }else
+            if (visitaSeguimientoController == null) {
+
+                visitaSeguimientoController = new VisitaSeguimientoController(panel, miUsu.getNombreUsuario(), emf);
+            } else {
                 visitaSeguimientoController.abrirSeleccion();
-            //System.out.println("MM0.2-------------------------------------------");
+            }
+
         } catch (Exception e) {
-            //System.out.println("MMm1-------------------------------------------");
+
         }
     }
-    
-    private void mostrarMiPerfil(){
+
+    private void mostrarMiPerfil() {
         view.mostrarPanel(PanelesVoluntario.MI_PERFIL);
         try {
-            //System.out.println("MM0.001-------------------------------------------");
+
             AMUsuarioView panel = view.getPanel(PanelesVoluntario.MI_PERFIL, AMUsuarioView.class);
-            //System.out.println("MM0.01-------------------------------------------");
+
             if (panel == null) {
-                    throw new Exception("No existe el panel");
+                throw new Exception("No existe el panel");
             }
-            if(miPerfilController == null){
-                //System.out.println("MM0.1-------------------------------------------");
-                miPerfilController = new AMUsuarioController(panel, miUsu, miUsu.getClass(),true, emf, AccionUsuario.MODIFICAR);
+            if (miPerfilController == null) {
+
+                miPerfilController = new AMUsuarioController(panel, miUsu, miUsu.getClass(), true, emf, AccionUsuario.MODIFICAR);
             }
-            //System.out.println("MM0.2-------------------------------------------");
+
         } catch (Exception e) {
-            //System.out.println("MMm1-------------------------------------------");
+
         }
     }
-    
-    
-    
+
 }

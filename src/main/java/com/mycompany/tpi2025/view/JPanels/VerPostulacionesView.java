@@ -108,7 +108,6 @@ public class VerPostulacionesView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel4;

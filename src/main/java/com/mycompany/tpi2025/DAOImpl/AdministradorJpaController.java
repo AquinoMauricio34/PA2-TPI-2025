@@ -9,11 +9,11 @@ import com.mycompany.tpi2025.DAOImpl.exceptions.PreexistingEntityException;
 import com.mycompany.tpi2025.model.Administrador;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import java.io.Serializable;
-import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -139,5 +139,5 @@ public class AdministradorJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

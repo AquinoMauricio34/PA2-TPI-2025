@@ -28,9 +28,9 @@ public class QRPanel extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (qrImage != null) {
-            int panelWidth  = getWidth();
-            int panelHeight  = getHeight();
-            g.drawImage(qrImage,0,0, panelWidth, panelHeight, this);
+            int panelWidth = getWidth();
+            int panelHeight = getHeight();
+            g.drawImage(qrImage, 0, 0, panelWidth, panelHeight, this);
         }
     }
 
@@ -54,7 +54,6 @@ public class QRPanel extends javax.swing.JPanel {
             .addGap(0, 400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
