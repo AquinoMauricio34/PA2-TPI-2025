@@ -35,7 +35,8 @@ import java.util.List;
 public class Tpi2025 {
 
     public static void main(String[] args) {
-
+        
+        //emf UNICO de todo el programa
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("tpi25PU");
 
         try {
@@ -248,7 +249,9 @@ public class Tpi2025 {
             } catch (Exception ignored) {
             }
         }
-
+        
+        
+        //ya cargados todos los datos, se llama al login
         login(emf);
     }
 

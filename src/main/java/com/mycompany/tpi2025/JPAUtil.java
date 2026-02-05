@@ -12,7 +12,7 @@ import jakarta.persistence.EntityManagerFactory;
  */
 public class JPAUtil {
 
-    // se cierra el emf
+    // se cierra el emf (IMPORTANTE)
     public static void close(EntityManagerFactory emf) {
         if (emf != null && emf.isOpen()) {
             emf.close();

@@ -17,13 +17,14 @@ import jakarta.persistence.EntityManagerFactory;
  * @author aquin
  * @param <T>
  */
+//el parametro T sirve para poder utilizar esta clase en cualquier otra clase que herede a Usuario
 public class AMUsuarioController<T extends Usuario> {
 
     private final AMUsuarioView view;
     private final UsuarioJpaController dao;
     private final Class<T> tipoUsuario;
     private T usuario;
-    private AccionUsuario tipoAccion;
+    private AccionUsuario tipoAccion;//define que tipo de accion realizara la vista
 
     public AMUsuarioController(AMUsuarioView view, Class<T> tipoUsuario, boolean mostrarContrasenia, EntityManagerFactory emf, AccionUsuario tipoAccion) {
         this(view, null, tipoUsuario, mostrarContrasenia, emf, tipoAccion);
@@ -39,21 +40,24 @@ public class AMUsuarioController<T extends Usuario> {
     }
 
     private void iniciar(AccionUsuario tipoAccion, boolean mostrarContrasenia) {
-        view.setAccionListener(l -> accion(tipoAccion));
-        view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());
+        view.setAccionListener(l -> accion(tipoAccion));//listener para el boton accion (el metodo que se ejecuta depende de la accion)
+        view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());//titulo depende del tipo de usuario en base a T
         view.setAccionTexto(tipoAccion.getTexto());
+        //si la accion realizada sera una modificacion de algun usuario
         if (tipoAccion == AccionUsuario.MODIFICAR) {
-            view.estadoNombreUsuario(false);
+            view.estadoNombreUsuario(false);//el nombre de usuario no se puede modificar
             view.setNombre(usuario.getNombre());
             view.setNombreDeUsuiario(usuario.getNombreUsuario());
             view.setTelefono(usuario.getTelefono());
+            //entra si no esta permitido mostrar la contraseña
             if (!mostrarContrasenia) {
                 view.setContrasenia("---");
-                view.estadoContrasenia(false);
-            } else {
+                view.estadoContrasenia(false);//no permite modificar la contraseña
+            } else {//si se puede mostrar la contrasenia entonces la carga en el campo
                 view.setContrasenia(usuario.getContrasena());
             }
         }
+        //si es hogar activa checkbox para indicar si es transitorio
         if (tipoUsuario == Hogar.class) {
             view.visibilizarTransitorio(true);
         }
@@ -71,11 +75,13 @@ public class AMUsuarioController<T extends Usuario> {
     }
 
     public void guardarUsuario() {
+        //obtencion de datos
         String usuarioU = view.getNombreDeUsuiario().trim();
         String contraU = view.getContrasenia().trim();
         String telU = view.getTelefono().trim();
         String nombreU = view.getNombre().trim();
         try {
+            //verificaciones
             if (Utils.hayVacios(usuarioU, contraU, telU, nombreU)) {
                 throw new Exception("Todos los campos deben ser rellenados.");
             }
@@ -85,7 +91,7 @@ public class AMUsuarioController<T extends Usuario> {
             if (!Utils.isLong(telU)) {
                 throw new Exception("El telefono no es válido. Solo numeros son validos.");
             }
-            T usuario = tipoUsuario.getDeclaredConstructor().newInstance();
+            T usuario = tipoUsuario.getDeclaredConstructor().newInstance(); //se obtiene una nueva instancia de T
             usuario.setNombre(nombreU);
             usuario.setContrasenia(contraU);
             usuario.setTelefono(telU);
@@ -102,10 +108,12 @@ public class AMUsuarioController<T extends Usuario> {
     }
 
     private void modificarUsuario() {
+        //obtencion de datos
         String usuarioU = view.getNombreDeUsuiario().trim();
         String telU = view.getTelefono().trim();
         String nombreU = view.getNombre().trim();
         try {
+            //valicaciones
             if (Utils.hayVacios(usuarioU, telU, nombreU)) {
                 throw new Exception("Todos los campos deben ser rellenados.");
             }
@@ -128,7 +136,7 @@ public class AMUsuarioController<T extends Usuario> {
 
     public void setUsuario(T usuario) {
         this.usuario = usuario;
-        iniciar(tipoAccion, true);
+        iniciar(tipoAccion, true);//creo que esto no debería ir aqui
     }
 
 }

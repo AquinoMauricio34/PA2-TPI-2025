@@ -53,14 +53,12 @@ public class BuscarController<T extends Usuario> {
 
     private void accion(AccionBuscar tipo) {
         switch (tipo) {
-            case DETALLES -> {
+            case DETALLES,SELECCION -> {//no se realiza ninguna accion, externamente se toma el valor seleccionado
             }
             case ELIMINAR ->
                 eliminar();
             case ESTABLECER_APTITUD ->
                 cambiarAptitud();
-            case SELECCION -> {
-            }
             default ->
                 throw new AssertionError(tipo.name());
         }

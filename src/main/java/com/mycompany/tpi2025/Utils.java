@@ -22,7 +22,9 @@ import java.util.stream.Stream;
 import javax.imageio.ImageIO;
 
 public class Utils {
-
+    
+    
+    //convierte texto normal en un string que representa a un qr
     public static String generarQRBase64(String texto) throws WriterException, IOException {
 
         int width = 200;
@@ -51,7 +53,8 @@ public class Utils {
 
         return Base64.getEncoder().encodeToString(bytes);
     }
-
+    
+    //convierte el string que representa a un qr en una imagen
     public static BufferedImage base64ToImage(String base64) throws IOException {
         byte[] bytes = Base64.getDecoder().decode(base64);
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
@@ -96,6 +99,7 @@ public class Utils {
         }
     }
 
+    //verifica si any de los parametros pasados (tipo string) es vacío
     public static boolean hayVacios(String... campos) {
         return Stream.of(campos).anyMatch(String::isBlank);
     }

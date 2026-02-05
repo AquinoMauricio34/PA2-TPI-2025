@@ -8,6 +8,7 @@ package com.mycompany.tpi2025.view.AdministradorViews;
  *
  * @author aquin
  */
+//este enum sirve para indicarle a los controller qué VISTA deben abrir
 public enum PanelesAdministrador {
     DATOS_PRINCIPALES("DATOS_PRINCIPALES"),
     MI_PERFIL("MI_PERFIL"),

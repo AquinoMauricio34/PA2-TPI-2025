@@ -36,6 +36,10 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdministradorPrincipalView.class.getName());
     private final CardLayout cl;
+    //mapa de pares de PanelesAdministrador y una Vista.
+    // Se usa un HashMap para reutilizar los paneles ya creados,
+    // evitar instanciarlos varias veces y acceder a ellos fácilmente
+    // sin depender del contenedor ni recorrer sus componentes.
     private final Map<PanelesAdministrador, JPanel> paneles = new HashMap<>();
 
     public AdministradorPrincipalView() {
@@ -587,20 +591,21 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
     //GESTION DE PANELES
     public void mostrarPanel(PanelesAdministrador identificador) {
         JPanel vista = paneles.get(identificador);
-
+        //si no existe en el hashMap
         if (vista == null) {
-            vista = crearPanel(identificador);
-            if (vista != null) {
-                paneles.put(identificador, vista);
-                contenedor.add(vista, identificador.getTexto());
+            vista = crearPanel(identificador);//nueva instancia de la vista en base al identificador
+            if (vista != null) {//en caso de que no ocurra algun error
+                paneles.put(identificador, vista);//guarda el par en el hashmap
+                contenedor.add(vista, identificador.getTexto());//carga la vista en el jpanel contenedor
             } else {
                 return;
             }
         }
 
-        cl.show(contenedor, identificador.getTexto());
+        cl.show(contenedor, identificador.getTexto());//muestra la vista
     }
 
+    //en base al identificador, devuelve una nueva instancia
     private JPanel crearPanel(PanelesAdministrador identificador) {
         return switch (identificador) {
             case DATOS_PRINCIPALES ->
@@ -644,13 +649,15 @@ public class AdministradorPrincipalView extends javax.swing.JFrame {
         };
     }
 
+    //N puede ser cualquier clase que derive de JPanel, no puede ser JFrame
     public <N extends JPanel> N getPanel(PanelesAdministrador identificador, Class<N> tipo) {
         JPanel panel = paneles.get(identificador);
         if (panel == null) {
             return null;
         }
+        //verifica si panel es una instancia de tipo
         if (tipo.isInstance(panel)) {
-            return tipo.cast(panel);
+            return tipo.cast(panel);//como panel es JPanel panel, se le hace un cast a tipo
         }
         throw new IllegalArgumentException("El panel no es del tipo esperado: " + tipo.getSimpleName());
     }

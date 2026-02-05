@@ -88,13 +88,14 @@ public class AdministradorPrincipalController {
         view.setCerrarAplicacionListener(l -> cerrarView());
         view.setCerrarSesionListener(l -> cerrarSesion());
         //CREACION
+        //obs: no tiene sentido que todos tengan el mismo parametro GUARDAR, mejor borrar el parametro y fijarlo en el metodo
         view.setCrearAdminListener(l -> mostrarAMUsuarioView(PanelesAdministrador.CREAR_ADMINISTRADOR, Administrador.class, AccionUsuario.GUARDAR));
         view.setCrearVetListener(l -> mostrarAMUsuarioView(PanelesAdministrador.CREAR_VETERINARIO, Veterinario.class, AccionUsuario.GUARDAR));
         view.setCrearVolListener(l -> mostrarAMUsuarioView(PanelesAdministrador.CREAR_VOLUNTARIO, Voluntario.class, AccionUsuario.GUARDAR));
         view.setCrearFamListener(l -> mostrarAMUsuarioView(PanelesAdministrador.CREAR_FAMILIA, Familia.class, AccionUsuario.GUARDAR));
         view.setCrearHogarListener(l -> mostrarAMUsuarioView(PanelesAdministrador.CREAR_HOGAR, Hogar.class, AccionUsuario.GUARDAR));
         //BUSQUEDA
-        String[] encabezados = {"Nombre", "Nombre de Usuario", "Telefono"};
+        String[] encabezados = {"Nombre", "Nombre de Usuario", "Telefono"};//sirven para las tablas
         view.setBuscarAdminListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_ADMINISTRADOR, Administrador.class, AccionBuscar.DETALLES, encabezados));
         view.setBuscarVetListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_VETERINARIO, Veterinario.class, AccionBuscar.DETALLES, encabezados));
         view.setBuscarVolListener(l -> mostrarBuscarView(PanelesAdministrador.BUSCAR_VOLUNTARIO, Voluntario.class, AccionBuscar.DETALLES, encabezados));
@@ -156,6 +157,7 @@ public class AdministradorPrincipalController {
         view.setVisible(true);
         view.toFront();
         view.setLocationRelativeTo(null);
+        //sirve para detectar cuando se cierra la view de este controller y ejecutar el codigo dentro
         view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -175,15 +177,19 @@ public class AdministradorPrincipalController {
         );
     }
 
+    //
     public <T extends Usuario> void mostrarAMUsuarioView(PanelesAdministrador identificador, Class<T> tipoUsuario, AccionUsuario tipoAccion) {
+        //muestra el panel indicado
         view.mostrarPanel(identificador);
         try {
+            //obtener el panel indicado del hashMap que tiene la view
             AMUsuarioView panel = view.getPanel(identificador, AMUsuarioView.class);
             if (panel == null) {
                 throw new Exception("No existe el panel");
             }
             //si todavía no tiene controller, se crea y guarda en el HashMap
             if (!AMUsuarioControllers.containsKey(panel)) {
+                //controller para el tipo T
                 AMUsuarioControllers.put(panel, new AMUsuarioController<T>(panel, tipoUsuario, false, emf, tipoAccion));
             }
         } catch (Exception ex) {
@@ -208,7 +214,7 @@ public class AdministradorPrincipalController {
             ex.printStackTrace();
         }
     }
-
+    
     private <T extends Usuario> void mostrarBuscarView(PanelesAdministrador identificador, Class<T> tipoUsuario, AccionBuscar tipoAccion, String[] encabezados) {
         view.mostrarPanel(identificador);
         try {
@@ -226,19 +232,22 @@ public class AdministradorPrincipalController {
             ex.printStackTrace();
         }
     }
-
+    
+    //el primer param indica qué panel de busqueda utilizar, y el segundo inica qué panel para modificar utilizar (se indica manualmente en el listener)
     private <T extends Usuario> void gestionModificacion(PanelesAdministrador identificadorBusqueda, PanelesAdministrador identificadorModificacion, Class<T> tipoUsuario, String[] encabezados) {
-//      
+        //muestra la lista de usuario de tipo T
         mostrarBuscarView(identificadorBusqueda, tipoUsuario, AccionBuscar.SELECCION, encabezados);
+        //obtenemos el panel
         BuscarView panel = view.getPanel(identificadorBusqueda, BuscarView.class);
-        //se obtiene el controller de la vista creada
+        //se obtiene el controller del panel
         BuscarController<T> controller = BuscarControllers.get(panel);
+        //al listener del boton de seleccionar del panel se asignamos el lambda que toma al usuario seleccionado y lo manda para ser modificado (sus datos)
         panel.setAccionListener(l -> {
             mostrarModificacionUsuarioView(identificadorModificacion, controller.getUsuario(), tipoUsuario);
         });
 
     }
-
+    //obs: este metodo y mostrarVMGatoView son el mismo método, unificar
     private void mostrarCrearGatoView(PanelesAdministrador identificador, String tipoAccion) {
         view.mostrarPanel(identificador);
         try {
@@ -249,6 +258,7 @@ public class AdministradorPrincipalController {
             if (crearGatoController == null) {
                 crearGatoController = new CrearGatoController(panel, tipoAccion, emf);
             }
+            //va a abrir la seleccion de gatos en caso que el tipo de accion sea modificar gato
             if (!tipoAccion.equals("GUARDAR")) {
                 crearGatoController.abrirSeleccion();
             }
