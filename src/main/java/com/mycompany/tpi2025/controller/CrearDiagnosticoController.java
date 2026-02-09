@@ -82,7 +82,7 @@ public class CrearDiagnosticoController {
                 throw new Exception("El gato no tiene historial médico.");
             }
 
-            // Configurar diagnóstico
+            
             diagnostico.setDiagnostico(titulo);
             diagnostico.setDescripcion(descripcion);
             diagnostico.setFecha_diagnostico(LocalDate.now());
@@ -91,10 +91,9 @@ public class CrearDiagnosticoController {
             gato.getHistorial().addDiagnostico(diagnostico);
 
             try {
-                // Persistir diagnóstico
                 dao.create(diagnostico);
 
-                // Actualizar gato
+                // Actualizar gato para que se guarde el diagnostico
                 daoG.edit(gato);
 
                 // Resetear diagnóstico para nuevo uso
