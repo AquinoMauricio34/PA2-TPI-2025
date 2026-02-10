@@ -37,10 +37,10 @@ public class AMUsuarioController<T extends Usuario> {
         this.usuario = usuario;
         this.tipoAccion = tipoAccion;
         iniciar(tipoAccion, mostrarContrasenia);
+        view.setAccionListener(l -> accion(tipoAccion));//listener para el boton accion (el metodo que se ejecuta depende de la accion)
     }
 
     private void iniciar(AccionUsuario tipoAccion, boolean mostrarContrasenia) {
-        view.setAccionListener(l -> accion(tipoAccion));//listener para el boton accion (el metodo que se ejecuta depende de la accion)
         view.setTitulo(tipoAccion + " " + tipoUsuario.getSimpleName());//titulo depende del tipo de usuario en base a T
         view.setAccionTexto(tipoAccion.getTexto());
         //si la accion realizada sera una modificacion de algun usuario

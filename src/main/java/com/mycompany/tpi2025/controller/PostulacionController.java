@@ -10,6 +10,7 @@ import com.mycompany.tpi2025.model.Gato;
 import com.mycompany.tpi2025.model.Postulacion;
 import com.mycompany.tpi2025.view.JPanels.PostulacionView;
 import jakarta.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ public class PostulacionController {
     private PostulacionJpaController daoP;
     private Gato gato = null;
     private String nombreUsuario;
+    private List<Gato> listaGatosDisponibles = null;
 
     public PostulacionController(PostulacionView view, String nombreUsuario, EntityManagerFactory emf) {
 
@@ -31,6 +33,7 @@ public class PostulacionController {
         this.dao = new GatoJpaController(emf);
         this.daoP = new PostulacionJpaController(emf);
         this.nombreUsuario = nombreUsuario;
+        this.listaGatosDisponibles = new ArrayList<>();
 
         iniciarView();
 
@@ -56,9 +59,9 @@ public class PostulacionController {
 
     public void iniciarTabla() {
 
-        List<Gato> lista = obtenerLista();
+        listaGatosDisponibles = obtenerLista();
 
-        view.reloadTable(lista);
+        view.reloadTable(listaGatosDisponibles);
 
     }
 
@@ -90,15 +93,14 @@ public class PostulacionController {
             int indice = obtenerIndiceGato(Long.parseLong(id));
             if (indice != -1) {
                 view.resaltarFila(indice);
-                gato = obtenerLista().get(indice);
+                gato = listaGatosDisponibles.get(indice);
                 view.activarPostulacion(true);
             }
         }
     }
 
     private int obtenerIndiceGato(long idGato) {
-        List<Gato> lista = obtenerLista();
-        return lista.indexOf(lista.stream().filter(v -> v.getId() == idGato).findFirst().orElse(null));
+        return listaGatosDisponibles.indexOf(listaGatosDisponibles.stream().filter(v -> v.getId() == idGato).findFirst().orElse(null));
     }
 
     public Gato getGato() {

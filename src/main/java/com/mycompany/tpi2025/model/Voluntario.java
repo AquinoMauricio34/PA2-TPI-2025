@@ -22,11 +22,4 @@ public class Voluntario extends Usuario {
         super(nombre, contrasenia, telefono, usuario);
     }
 
-    /*
-        - registrar gato
-        - actualizar el estado de un gato
-        - asignar un qr a el gato
-        - registrar tarea realizada
-        - asignar gato a familia y hogar
-     */
 }

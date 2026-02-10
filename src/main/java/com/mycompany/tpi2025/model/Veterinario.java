@@ -22,11 +22,4 @@ public class Veterinario extends Usuario {
         super(nombre, contrasenia, telefono, usuario);
     }
 
-    /*
-        - hacer un diagnostico
-        - asignar tratamiento
-        - actualizar diag y tratam
-        - subir estudios
-        - emitir certificado de aptitud para adopción (creo que es para la familia)
-     */
 }

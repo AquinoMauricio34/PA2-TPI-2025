@@ -162,7 +162,8 @@ public class BuscarView extends javax.swing.JPanel {
     public void setAccionTexto(String texto) {
         this.accionBtn.setText(texto);
     }
-
+    
+    //es importante porque cada tipo de usuario hace un override del metodo de DatosTabla para devolver los elementos que necesita la tabla
     public <T extends DatosTabla> void reloadTable(List<T> elementos, String[] encabezados) {
         DefaultTableModel model = new DefaultTableModel(encabezados, 0);
 
